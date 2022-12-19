@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Layout } from "./components";
+import { Layout } from "../components";
 // TODO: like Helmet
 // import Head from "next/head";
 
