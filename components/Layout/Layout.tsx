@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { CSSProperties, ReactNode, useState } from "react";
 import styled from "styled-components";
 import UnstyledButton from "../UnstyledButton";
 import VisuallyHidden from "../VisuallyHidden";
@@ -95,7 +95,8 @@ const SubNavMenu = styled.nav`
   padding: 1rem;
 `;
 
-const SubNav = (props) => {
+// TODO: fix any type
+const SubNav = (props: any) => {
   const { display, items } = props;
   const [showSubmenu, setShowSubmenu] = useState(false);
 
@@ -106,8 +107,11 @@ const SubNav = (props) => {
         {showSubmenu ? "Hide" : "Show"} Sub menu for:
       </VisuallyHidden>{" "}
       {display}
-      <SubNavMenu style={{ "--display": showSubmenu ? "flex" : "none" }}>
-        {items.map((item) => (
+      {/* TODO: find permanent solution here: https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript */}
+      <SubNavMenu
+        style={{ "--display": showSubmenu ? "flex" : "none" } as CSSProperties}
+      >
+        {items.map((item: any) => (
           <NavLink key={item.display} href={item.href}>
             {item.display}
           </NavLink>
