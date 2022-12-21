@@ -36,7 +36,10 @@ const Picture = styled(Image)`
   width: 100%;
 `;
 
-const Pictures = ({ pictures }) => (
+type PictureGridProps = {
+  pictures: any[];
+};
+const Pictures = ({ pictures }: PictureGridProps) => (
   <>
     {pictures.map((picture) => {
       // TODO: Fix images themselves, don't resize them
@@ -53,7 +56,7 @@ const Pictures = ({ pictures }) => (
   </>
 );
 
-const PictureGrid = ({ pictures }) => (
+const PictureGrid = ({ pictures }: PictureGridProps) => (
   <Wrapper>
     <Pictures pictures={pictures} />
   </Wrapper>

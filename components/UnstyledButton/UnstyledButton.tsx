@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default styled.button`
-  display: ${(props) => props.display || 'block'};
+  display: block;
   margin: 0;
   padding: 0;
   border: none;
