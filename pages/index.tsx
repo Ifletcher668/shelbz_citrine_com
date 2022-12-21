@@ -8,7 +8,7 @@ const Home = () => (
   <Layout>
     <MainWrapper>
       <Row>
-        <h1>Hi, I'm Shelbz</h1>
+        <h1>Hi, I&apos;m Shelbz</h1>
         <ParagraphWithStyledFirstLetter>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad qui
           suscipit commodi porro veritatis, illo similique tempore inventore
@@ -26,7 +26,7 @@ const Home = () => (
       <Row>
         <Column>
           <Link href={"/book"}>
-            <h2>I'm a Barber:</h2>
+            <h2>I&apos;m a Barber:</h2>
           </Link>
           <ParagraphWithStyledFirstLetter>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
