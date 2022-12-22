@@ -13,17 +13,17 @@ type SpacerProps = {
 const defaultSpacing = '24px';
 
 const Spacer = styled.div<SpacerProps>`
-  margin: ${({ all }) =>
+  padding: ${({ all }) =>
     typeof all === 'number' ? `${all}px` : all === true ? defaultSpacing : 0};
 
   /* Vertical values do not set left/right to avoid override */
-  margin-top: ${({ vertical }) =>
+  padding-top: ${({ vertical }) =>
     typeof vertical === 'number'
       ? `${vertical}px`
       : vertical === true
       ? defaultSpacing
       : 0};
-  margin-bottom: ${({ vertical }) =>
+  padding-bottom: ${({ vertical }) =>
     typeof vertical === 'number'
       ? `${vertical}px`
       : vertical === true
@@ -31,13 +31,13 @@ const Spacer = styled.div<SpacerProps>`
       : 0};
 
   /* Horizontal values do not set  top/bottom to avoid override */
-  margin-left: ${({ horizontal }) =>
+  padding-left: ${({ horizontal }) =>
     typeof horizontal === 'number'
       ? `${horizontal}px`
       : horizontal === true
       ? defaultSpacing
       : 0};
-  margin-right: ${({ horizontal }) =>
+  padding-right: ${({ horizontal }) =>
     typeof horizontal === 'number'
       ? `${horizontal}px`
       : horizontal === true
@@ -45,26 +45,26 @@ const Spacer = styled.div<SpacerProps>`
       : 0};
 
   /* Individual values take precedence over all */
-  margin-top: ${({ top }) =>
+  padding-top: ${({ top }) =>
     // prettier-ignore
     typeof top === 'number' 
       ? `${top}px` 
       : top === true 
       ? defaultSpacing 
       : 0};
-  margin-bottom: ${({ bottom }) =>
+  padding-bottom: ${({ bottom }) =>
     typeof bottom === 'number'
       ? `${bottom}px`
       : bottom === true
       ? defaultSpacing
       : 0};
-  margin-left: ${({ left }) =>
+  padding-left: ${({ left }) =>
     typeof left === 'number'
       ? `${left}px`
       : left === true
       ? defaultSpacing
       : 0};
-  margin-right: ${({ right }) =>
+  padding-right: ${({ right }) =>
     typeof right === 'number'
       ? `${right}px`
       : right === true
