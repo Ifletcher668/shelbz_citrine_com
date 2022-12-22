@@ -1,6 +1,6 @@
 import { Layout } from "../components";
 
-const AboutMe = () => (
+const AboutPage = () => (
   <Layout>
     <main>
       <h1>About Me</h1>
@@ -14,4 +14,4 @@ const AboutMe = () => (
   </Layout>
 );
 
-export default AboutMe;
+export default AboutPage;

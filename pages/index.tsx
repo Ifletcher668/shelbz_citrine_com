@@ -1,8 +1,9 @@
-import Spacer from 'components/Spacer';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Column, Layout, MainWrapper, Row } from '../components';
+
 import { ROUTES } from '../utils/constants';
+
+import { Column, Layout, MainWrapper, Row, Spacer } from '~components/index';
 // TODO: like Helmet
 // import Head from "next/head";
 
