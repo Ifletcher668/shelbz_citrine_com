@@ -8,6 +8,7 @@ import variables from './_variables';
     change 'createGlobalStyle' to 'css', format the file, then change it back to 'createGlobalStyle'
 */
 const GlobalStyle = createGlobalStyle`
+  /* TODO: This does not perform well in production. look into injecting another 'link' for this*/
   @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cormorant:ital,wght@0,400;0,500;1,300&display=swap');
 
   ${variables}
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--font-primary);
     font-family: 'Cinzel Decorative', cursive;
   }
+  
 
   a {
     color: var(---link-primary);
@@ -42,10 +44,10 @@ const GlobalStyle = createGlobalStyle`
     background-size: 0% 6px, 100% 6px;
     background-repeat: no-repeat;
     background-position: 0 bottom, 0 bottom;
-    transition-property: all;
+    transition-property: background;
     transition-duration: 100ms;
     transition-timing-function: ease-in-out;
-
+    
     &:hover {
       text-decoration: none;
       color: var(---link-primary);
@@ -60,6 +62,7 @@ const GlobalStyle = createGlobalStyle`
     @media (prefers-reduced-motion) {
       transition: none;
     }
+
   }
 
   h1 {

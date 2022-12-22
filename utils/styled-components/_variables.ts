@@ -9,14 +9,15 @@ const variables = css`
     --max-width-wrapper: min(960px, 92vw);
     --border-radius: 12px;
     /* spacing */
-    --spacing-triple-extra-large: 3.5rem;
-    --spacing-double-extra-large: 3rem;
-    --spacing-extra-large: 2.5rem;
-    --spacing-large: 2rem;
-    --spacing-medium: 1.5rem;
-    --spacing-small: 1.25rem;
-    --spacing-extra-small: 1rem;
-    --spacing-double-extra-small: 0.5rem;
+    --main-content-gap: 80px;
+    --spacing-triple-extra-large: 56px;
+    --spacing-double-extra-large: 48px;
+    --spacing-extra-large: 40px;
+    --spacing-large: 32px;
+    --spacing-medium: 24px;
+    --spacing-small: 18px;
+    --spacing-extra-small: 16px;
+    --spacing-double-extra-small: 8px;
 
     --size-moon: 400px;
     /* font-size */
@@ -27,9 +28,6 @@ const variables = css`
     --font-size-small: 1.125rem;
     --font-size-extra-small: 1rem;
     --font-size-double-extra-small: 0.875rem;
-
-    /* misc */
-    --gutter: 3.5rem;
 
     /* seafoam */
     /* linear-gradient(180deg, #54756e, #55766f, #597a73, #5e7f79, #648680, #6b8d88, #74938f, #7d9996, #859d9b, #8ba1a0, #8fa4a3, #91a5a4) */
@@ -58,9 +56,6 @@ const variables = css`
       var(--blue-800),
       var(--blue-900)
     );
-
-    --black: hsl(var(--blue-hue) 86%, 1%);
-    --white: hsl(var(--blue-hue) 86% 100%);
 
     --green-hue: 177deg;
     --green-50: hsl(var(--green-hue) 40% 75%);
@@ -97,6 +92,13 @@ const variables = css`
     --orange-700: hsl(var(--orange-hue) 100% 28%);
     --orange-800: hsl(var(--orange-hue) 90% 25%);
     --orange-900: hsl(var(--orange-hue) 80% 24%);
+
+    /* Shadow based on red-400 */
+    --shadow-color: 1deg 100% 10%;
+
+    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
+      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
+      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
   }
 
   @media (prefers-color-scheme: light) {
@@ -106,7 +108,7 @@ const variables = css`
       --accent: var(--red-100);
       --link-primary: var(--black);
       --link-accent: var(--red-50);
-      --header-background: var(--red-900);
+      --header-background: var(--red-400);
     }
   }
 
@@ -117,7 +119,7 @@ const variables = css`
       --accent: var(--white);
       --link-primary: var(--white);
       --link-accent: var(--white);
-      --header-background: var(--red-900);
+      --header-background: var(--red-400);
     }
   }
 `;
