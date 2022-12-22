@@ -1,18 +1,24 @@
-import Link from "next/link";
-import { CSSProperties, ReactNode, useState } from "react";
-import styled from "styled-components";
-import UnstyledButton from "../UnstyledButton";
-import VisuallyHidden from "../VisuallyHidden";
+import Link from 'next/link';
+import { CSSProperties, ReactNode, useState } from 'react';
+import styled from 'styled-components';
+import { ROUTES } from '../../utils/constants';
+import { fadeIn } from '../../utils/styledComponents';
+import UnstyledButton from '../UnstyledButton';
+import VisuallyHidden from '../VisuallyHidden';
 
 type Props = {
   children: ReactNode;
 };
 
+const TransitionWrapper = styled.div`
+  animation: ${fadeIn} 750ms ease-in-out;
+`;
+
 const Layout = ({ children }: Props) => {
   return (
     <AppWrapper>
       <Header />
-      {children}
+      <TransitionWrapper>{children}</TransitionWrapper>
       <Footer />
     </AppWrapper>
   );
@@ -23,7 +29,6 @@ const AppWrapper = styled.div`
   max-width: var(--max-width-wrapper);
   margin-left: auto;
   margin-right: auto;
-
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -73,20 +78,11 @@ const SubNavWrapper = styled(UnstyledButton)`
 `;
 
 const SubNavMenu = styled.nav`
-  @keyframes slideIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  display: var(--display, "flex");
+  display: var(--display, 'flex');
   flex-direction: column;
   gap: clamp(16px, 2vw + 1rem, 48px);
   background-color: var(--header-background);
-  animation: slideIn 500ms ease-in-out;
+  animation: ${fadeIn} 500ms ease-in-out;
 
   position: absolute;
   top: 45px;
@@ -97,6 +93,7 @@ const SubNavMenu = styled.nav`
 
 // TODO: fix any type
 const SubNav = (props: any) => {
+  // TODO: make 'items' accept only typeof ROUTES
   const { display, items } = props;
   const [showSubmenu, setShowSubmenu] = useState(false);
 
@@ -104,12 +101,12 @@ const SubNav = (props: any) => {
   return (
     <SubNavWrapper onClick={() => setShowSubmenu(!showSubmenu)}>
       <VisuallyHidden>
-        {showSubmenu ? "Hide" : "Show"} Sub menu for:
-      </VisuallyHidden>{" "}
+        {showSubmenu ? 'Hide' : 'Show'} Sub menu for:
+      </VisuallyHidden>{' '}
       {display}
       {/* TODO: find permanent solution here: https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript */}
       <SubNavMenu
-        style={{ "--display": showSubmenu ? "flex" : "none" } as CSSProperties}
+        style={{ '--display': showSubmenu ? 'flex' : 'none' } as CSSProperties}
       >
         {items.map((item: any) => (
           <NavLink key={item.display} href={item.href}>
@@ -126,19 +123,20 @@ const Header = () => {
     <HeaderWrapper>
       <Nav>
         <Spacer>
-          <NavLink href={"/"}>
+          <NavLink href={ROUTES.HOME}>
             <SiteTitle>Shelbz Citrine</SiteTitle>
           </NavLink>
         </Spacer>
 
-        <NavLink href={"/about"}>About Me</NavLink>
-        {/* TODO: find actual booking link */}
-        <NavLink href={"/book"}>Book</NavLink>
+        <NavLink href={ROUTES.ABOUT}>About Me</NavLink>
+        <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
+          Book
+        </a>
         <SubNav
           display="portfolio"
           items={[
-            { display: "art", href: "/portfolio/art" },
-            { display: "hair", href: "/portfolio/barber" },
+            { display: 'art', href: ROUTES.ART_PORTFOLIO },
+            { display: 'hair', href: ROUTES.BARBER_PORTFOLIO },
           ]}
         />
         <Spacer />
@@ -153,6 +151,7 @@ const SiteTitle = styled.span`
   font-size: 2rem;
 `;
 
+// TODO: Make moon smaller on scroll
 const Moon = styled.div`
   position: absolute;
   top: 5px;

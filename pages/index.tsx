@@ -1,14 +1,16 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { Column, Layout, MainWrapper, Row } from "../components";
+import Spacer from 'components/Spacer';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { Column, Layout, MainWrapper, Row } from '../components';
+import { ROUTES } from '../utils/constants';
 // TODO: like Helmet
 // import Head from "next/head";
 
 const Home = () => (
   <Layout>
     <MainWrapper>
-      <Row>
-        <h1>Hi, I&apos;m Shelbz</h1>
+      <>
+        <h1>Hi, I'm Shelbz</h1>
         <ParagraphWithStyledFirstLetter>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad qui
           suscipit commodi porro veritatis, illo similique tempore inventore
@@ -21,12 +23,27 @@ const Home = () => (
           veritatis, illo similique tempore inventore corrupti ullam, veniam ab
           exercitationem quia officiis, iusto architecto. Quae, non!
         </ParagraphWithStyledFirstLetter>
+      </>
+
+      {/* BOOKING CALL TO ACTION */}
+
+      {/* not setting margin values because of this wrapper's "gap" */}
+      <Spacer />
+      <Row justify>
+        <h2>
+          Here to book an appointment?{' '}
+          <a href={ROUTES.BOOK} target="_blank" rel="noopener noreferrer">
+            Book now!
+          </a>{' '}
+        </h2>
       </Row>
+      {/* not setting margin values because of this wrapper's "gap" */}
+      <Spacer />
 
       <Row>
         <Column>
-          <Link href={"/book"}>
-            <h2>I&apos;m a Barber:</h2>
+          <Link href={ROUTES.BARBER_PORTFOLIO}>
+            <h2>I'm a Barber</h2>
           </Link>
           <ParagraphWithStyledFirstLetter>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
@@ -42,17 +59,17 @@ const Home = () => (
           </ParagraphWithStyledFirstLetter>
           <div
             style={{
-              width: "450px",
-              height: "450px",
-              background: "white",
-              color: "black",
+              width: '450px',
+              height: '450px',
+              background: 'white',
+              color: 'black',
             }}
           >
             Image Goes here
           </div>
         </Column>
         <Column>
-          <Link href={"/portfolio"}>
+          <Link href={ROUTES.ART_PORTFOLIO}>
             <h2>and an Artist</h2>
           </Link>
           <ParagraphWithStyledFirstLetter>
@@ -69,10 +86,10 @@ const Home = () => (
           </ParagraphWithStyledFirstLetter>
           <div
             style={{
-              width: "450px",
-              height: "450px",
-              background: "white",
-              color: "black",
+              width: '450px',
+              height: '450px',
+              background: 'white',
+              color: 'black',
             }}
           >
             Image Goes here
@@ -88,7 +105,7 @@ const ParagraphWithStyledFirstLetter = styled.p`
     font-size: 2rem;
     font-weight: 700;
     margin-right: 2px;
-    font-family: "Cinzel Decorative", cursive;
+    font-family: 'Cinzel Decorative', cursive;
   }
 `;
 

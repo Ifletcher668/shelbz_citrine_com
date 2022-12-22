@@ -1,5 +1,7 @@
-import Image from "next/image";
-import styled from "styled-components";
+import Image from 'next/image';
+import { CSSProperties } from 'react';
+import styled from 'styled-components';
+import { fadeIn } from '../../utils/styledComponents';
 
 const Wrapper = styled.div`
   display: grid;
@@ -13,11 +15,17 @@ const PictureCaption = styled.figcaption`
   text-align: center;
 `;
 
+const PictureDescription = styled.p`
+  
+`;
+
 const PictureWrapper = styled.article`
   display: flex;
   flex-direction: column;
   gap: 16px;
   transition: all 250ms ease-in-out;
+
+  animation: ${fadeIn} var(--duration) ease-in-out;
 
   ${PictureCaption} {
     opacity: 0;
@@ -41,13 +49,16 @@ type PictureGridProps = {
 };
 const Pictures = ({ pictures }: PictureGridProps) => (
   <>
-    {pictures.map((picture) => {
+    {pictures.map((picture, idx) => {
       // TODO: Fix images themselves, don't resize them
       const width = picture.width / 4;
       const height = width;
 
       return (
-        <PictureWrapper key={picture.src}>
+        <PictureWrapper
+          key={picture.src}
+          style={{ '--duration': `${1000 * idx}ms` } as CSSProperties}
+        >
           <Picture src={picture.src} alt="" width={width} height={height} />
           <PictureCaption>Working at night</PictureCaption>
         </PictureWrapper>
