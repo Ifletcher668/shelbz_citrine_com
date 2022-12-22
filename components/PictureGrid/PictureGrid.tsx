@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
-import { fadeIn } from '../../utils/styledComponents';
+import { fadeIn } from '../../utils/styled-components/snippets';
 
 const Wrapper = styled.div`
   display: grid;

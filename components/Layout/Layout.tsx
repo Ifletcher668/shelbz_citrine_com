@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CSSProperties, ReactNode, useState } from 'react';
 import styled from 'styled-components';
 import { ROUTES } from '../../utils/constants';
-import { fadeIn } from '../../utils/styledComponents';
+import { fadeIn } from '../../utils/styled-components/snippets';
 import UnstyledButton from '../UnstyledButton';
 import VisuallyHidden from '../VisuallyHidden';
 
