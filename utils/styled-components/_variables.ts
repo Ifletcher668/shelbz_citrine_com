@@ -106,6 +106,7 @@ const variables = css`
       --background: var(--red-800);
       --font-primary: var(--blue-50);
       --accent: var(--red-100);
+      --accent-shadow: 0 0 30px 10px var(--blue-900);
       --link-primary: var(--black);
       --link-accent: var(--red-50);
       --header-background: var(--red-400);
@@ -117,6 +118,7 @@ const variables = css`
       --background: var(--black);
       --font-primary: var(--blue-50);
       --accent: var(--white);
+      --accent-shadow: 0 0 30px 10px var(--blue-900);
       --link-primary: var(--white);
       --link-accent: var(--white);
       --header-background: var(--red-400);

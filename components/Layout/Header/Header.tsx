@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import type { CSSProperties } from 'styled-components';
 import styled from 'styled-components';
 
+import MobileMenu from './MobileMenu';
 import Moon from './Moon';
 import Navbar from './Navbar';
 
 const Header = () => {
   const [isAtTop, setIsAtTop] = useState(true);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,13 +29,19 @@ const Header = () => {
     '--max-width': isAtTop
       ? 'min(calc(var(--max-width-wrapper) * 1.5), 90vw)'
       : 'var(--max-width-wrapper)',
-    '--moon-size': isAtTop ? '250px' : '100px',
+    '--moon-size': isAtTop ? '300px' : '250px',
     '--box-shadow': isAtTop ? '0 0 0 0' : 'var(--shadow-elevation-medium)',
   } as CSSProperties;
 
   return (
     <HeaderWrapper style={styles}>
-      <Navbar />
+      <Navbar setShowMobileMenu={setShowMobileMenu} />
+
+      <MobileMenu
+        isOpen={showMobileMenu}
+        setIsOpen={setShowMobileMenu}
+        onDismiss={() => setShowMobileMenu(false)}
+      />
 
       <Moon />
     </HeaderWrapper>

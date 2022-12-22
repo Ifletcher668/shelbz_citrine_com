@@ -5,37 +5,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Icon from '~components/Icon';
 import UnstyledButton from '~components/UnstyledButton';
 import VisuallyHidden from '~components/VisuallyHidden';
 import type { ROUTES } from '~utils/constants';
 import { fadeIn } from '~utils/styled-components/snippets';
-
-const SubNavMenu = styled.nav`
-  display: var(--display, 'flex');
-  flex-direction: column;
-  gap: clamp(16px, 2vw + 1rem, 48px);
-  background-color: var(--header-background);
-  animation: ${fadeIn} 500ms ease-in-out;
-  border-radius: 0 0 5px 5px;
-
-  position: absolute;
-  top: 45px;
-  left: 0;
-  min-width: 100%;
-  padding: 1rem;
-`;
-
-const SubNavWrapper = styled(UnstyledButton)`
-  position: relative;
-  color: var(---link-primary);
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  background: none;
-  padding: 0;
-  border-radius: 0;
-  width: fit-content;
-`;
 
 type Props = {
   display: string;
@@ -89,6 +63,7 @@ const SubNav = (props: Props) => {
         {showSubmenu ? 'Hide' : 'Show'} Sub menu for:
       </VisuallyHidden>{' '}
       {display}
+      <Icon id={showSubmenu ? 'chevron-up' : 'chevron-down'} strokeWidth={2} />
       <SubNavMenu style={style}>
         {items.map(item => (
           <Link key={item.display} href={item.href}>
@@ -101,3 +76,34 @@ const SubNav = (props: Props) => {
 };
 
 export default SubNav;
+
+const SubNavMenu = styled.nav`
+  display: var(--display, 'flex');
+  flex-direction: column;
+  gap: clamp(16px, 2vw + 1rem, 48px);
+  background-color: var(--header-background);
+  animation: ${fadeIn} 500ms ease-in-out;
+  border-radius: 0 0 5px 5px;
+
+  position: absolute;
+  top: 45px;
+  left: 0;
+  min-width: 100%;
+  padding: 1rem;
+`;
+
+const SubNavWrapper = styled(UnstyledButton)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  font-size: var(--font-size, 1.125rem);
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 700;
+
+  ${Icon} {
+    pointer-events: none;
+  }
+`;

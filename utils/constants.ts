@@ -15,5 +15,5 @@ export const BREAKPOINTS = {
   MOBILE: 0,
   TABLET: `(min-width: ${769 / 16}rem)`,
   LAPTOP: `(min-width: ${1101 / 16}rem)`,
-  desktop: `(min-width: ${1501 / 16}rem)`,
+  DESKTOP: `(min-width: ${1501 / 16}rem)`,
 } as const;

@@ -25,9 +25,14 @@ const GlobalStyle = createGlobalStyle`
     color: var(--font-primary);
     font-family: 'Cinzel Decorative', cursive;
   }
-  
 
   a {
+    font-size: var(--font-size, 1.125rem);
+    text-transform: uppercase;
+    text-decoration: none;
+
+    /* TODO: figure out color */
+    font-weight: 700;
     color: var(---link-primary);
     text-decoration: none;
     border: none;
@@ -47,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
     transition-property: background;
     transition-duration: 100ms;
     transition-timing-function: ease-in-out;
-    
+
     &:hover {
       text-decoration: none;
       color: var(---link-primary);
@@ -62,7 +67,6 @@ const GlobalStyle = createGlobalStyle`
     @media (prefers-reduced-motion) {
       transition: none;
     }
-
   }
 
   h1 {
