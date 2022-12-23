@@ -29,36 +29,36 @@ const GlobalStyle = createGlobalStyle`
 
     /* TODO: figure out color */
     font-weight: 700;
-    color: var(---link-primary);
+    color: var(--link-primary);
     text-decoration: none;
     border: none;
-    border-radius: 5px;
-    background: none;
     padding: 0;
     border-radius: 0;
     width: fit-content;
+
     background-image: linear-gradient(
-        transparent calc(100% - 1px),
-        var(--link-accent) 1px
+        transparent calc(100% - 2px),
+        var(--link-accent) 2px
       ),
-      linear-gradient(transparent calc(100% - 1px), #8398a3 1px);
+      linear-gradient(transparent calc(100% - 2px), var(--blue-50) 2px);
     background-size: 0% 6px, 100% 6px;
     background-repeat: no-repeat;
     background-position: 0 bottom, 0 bottom;
-    transition-property: background;
-    transition-duration: 250ms;
+    
     transition-timing-function: ease-in-out;
+    
+
+    transition-duration: 500ms, 200ms;
+    transition-property: background-size, color;
+    
 
     &:hover {
       text-decoration: none;
-      color: var(---link-primary);
+      color: var(--link-accent);
       cursor: pointer;
       background-size: 100% 6px, 100% 6px;
     }
-
-    &:visited {
-      color: var(---link-primary);
-    }
+    
 
     @media (prefers-reduced-motion) {
       transition: none;

@@ -103,8 +103,14 @@ const SubNavWrapper = styled(UnstyledButton)`
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 700;
+  transition-duration: 250ms;
+  transition-property: color;
 
   ${Icon} {
     pointer-events: none;
+  }
+
+  &:hover {
+    color: var(--link-accent);
   }
 `;
