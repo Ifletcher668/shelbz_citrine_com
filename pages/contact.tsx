@@ -1,27 +1,44 @@
+import { useState } from 'react';
+
 import styled from 'styled-components';
 
 import { Layout, MainWrapper } from '../components';
 
 const ContactPage = () => {
-  function encode(data) {
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  // TODO: success message and errors
+  // const [showSuccessMessage, setShowSendMessage] = useState<boolean>(false)
+  // const [successMessage, setSuccessMessage] = useState<string>(
+  //     'Excellent! I appreciate you wanting to connect. I will get back with you shortly!',
+  // )
+
+  function encode(data: any) {
     return Object.keys(data)
       .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
       .join('&');
   }
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const formData = {
+      name,
+      email,
+      message,
+    };
 
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': event.target.getAttribute('name'),
-        ...name,
-      }),
-    })
-      .then(() => console.log('⭐thank-you⭐'))
-      .catch(error => alert(error));
+      body: encode({ 'form-name': 'contact', ...formData }),
+    }).catch(err => alert(err));
+
+    setName('');
+    setEmail('');
+    setMessage('');
+    // setShowSendMessage(true)
   };
 
   return (
