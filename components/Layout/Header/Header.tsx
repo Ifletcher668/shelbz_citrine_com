@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import type { CSSProperties } from 'styled-components';
 import styled from 'styled-components';
+import { BREAKPOINTS } from '~utils/constants';
 
 import MobileMenu from './MobileMenu';
 import Moon from './Moon';
@@ -58,7 +59,7 @@ const HeaderWrapper = styled.header`
   /* Always on top */
   z-index: 1000000;
   margin: auto;
-  border-radius: 0px 0px 0px 5px;
+  border-radius: 0px 0px 5px 5px;
 
   max-width: var(--max-width);
   min-width: var(--max-width-wrapper);
