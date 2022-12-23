@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 import Icon from '~components/Icon';
@@ -17,7 +18,9 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
       <Spacer />
       <Side>
         <Link href={ROUTES.HOME}>
-          <SiteTitle>Shelbz Citrine</SiteTitle>
+          <SiteTitle>
+            Shelbz <br /> Citrine
+          </SiteTitle>
         </Link>
       </Side>
 
@@ -41,13 +44,19 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
     </Nav>
 
     <MobileNav>
-      <Link href={ROUTES.HOME}>
-        <SiteTitle>Shelbz Citrine</SiteTitle>
-      </Link>
+      <Spacer />
+      <Side style={{ '--flex': '3' } as CSSProperties}>
+        <Link href={ROUTES.HOME}>
+          <SiteTitle>
+            Shelbz <br /> Citrine
+          </SiteTitle>
+        </Link>
+      </Side>
 
       <UnstyledButton onClick={() => setShowMobileMenu(true)}>
         <Icon id="menu" strokeWidth={2} size={48} />
       </UnstyledButton>
+      <Side />
     </MobileNav>
   </>
 );
@@ -67,8 +76,9 @@ const Nav = styled.nav`
 
 const MobileNav = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-around;
+  gap: clamp(16px, 2vw + 1rem, 48px);
 
   @media ${BREAKPOINTS.LAPTOP} {
     display: none;
@@ -76,9 +86,10 @@ const MobileNav = styled.div`
 `;
 
 const SiteTitle = styled.span`
-  font-size: calc(var(--font-size) * 1.2vw);
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: calc(var(--font-size) * 1.4);
 `;
 
 const Side = styled.div`
-  flex: 1;
+  flex: var(--flex, 1);
 `;

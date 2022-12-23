@@ -24,9 +24,7 @@ const Header = () => {
 
   const styles = {
     '--transition': 'all 300ms ease',
-    '--padding': isAtTop
-      ? 'var(--spacing-double-extra-large)'
-      : 'var(--spacing-large)',
+    '--padding': isAtTop ? 'var(--spacing-large)' : 'var(--spacing-medium)',
     '--font-size': isAtTop ? '1.5rem' : '1rem',
     '--max-width': isAtTop
       ? 'min(calc(var(--max-width-wrapper) * 1.5), 90vw)'
