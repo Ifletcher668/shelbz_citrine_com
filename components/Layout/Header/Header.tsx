@@ -24,12 +24,14 @@ const Header = () => {
 
   const styles = {
     '--transition': 'all 300ms ease',
-    '--padding': isAtTop ? 'var(--spacing-double-extra-large)' : 'var(--spacing-large)',
+    '--padding': isAtTop
+      ? 'var(--spacing-double-extra-large)'
+      : 'var(--spacing-large)',
     '--font-size': isAtTop ? '1.5rem' : '1rem',
     '--max-width': isAtTop
       ? 'min(calc(var(--max-width-wrapper) * 1.5), 90vw)'
-      : 'var(--max-width-wrapper)',
-    '--moon-size': isAtTop ? '300px' : '250px',
+      : 'calc(var(--max-width-wrapper) * 1.3)',
+    '--moon-size': isAtTop ? '25vw' : '22vw',
     '--box-shadow': isAtTop ? '0 0 0 0' : 'var(--shadow-elevation-medium)',
   } as CSSProperties;
 
@@ -55,6 +57,8 @@ const HeaderWrapper = styled.header`
   top: 0;
   left: 0;
   right: 0;
+  /* Always on top */
+  z-index: 1000000;
   margin: auto;
   border-radius: 0px 0px 0px 5px;
 

@@ -18,6 +18,12 @@ const Moon = styled.div`
     box-shadow: var(--accent-shadow);
     transition: var(--transition);
   }
+
+  @media ${BREAKPOINTS.DESKTOP} {
+    /* Adjust position to be closer to rest of menu */
+    top: -130px;
+    right: -20px;
+  }
 `;
 
 export default Moon;

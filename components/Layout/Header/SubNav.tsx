@@ -41,6 +41,7 @@ const SubNav = (props: Props) => {
 
   // Close submenu on Escape key press
   useEffect(() => {
+    // TODO: figure out how to do this only when SubNavWrapper is focused
     const handleEscapeKeyPress = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setShowSubmenu(false);
     };

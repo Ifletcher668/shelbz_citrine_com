@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import SubNav from './SubNav';
-
 import Icon from '~components/Icon';
 import Spacer from '~components/Spacer';
 import UnstyledButton from '~components/UnstyledButton';
 import { BREAKPOINTS, ROUTES } from '~utils/constants';
+
+import SubNav from './SubNav';
 
 type Props = {
   setShowMobileMenu: (show: boolean) => void;
@@ -14,9 +14,7 @@ type Props = {
 const Navbar = ({ setShowMobileMenu }: Props) => (
   <>
     <Nav>
-      {/* No padding applied to spacer to allow "gap" to handle spacing */}
       <Spacer />
-
       <Side>
         <Link href={ROUTES.HOME}>
           <SiteTitle>Shelbz Citrine</SiteTitle>
@@ -62,7 +60,7 @@ const Nav = styled.nav`
   @media ${BREAKPOINTS.LAPTOP} {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: clamp(16px, 2vw + 1rem, 48px);
   }
 `;
@@ -78,7 +76,7 @@ const MobileNav = styled.div`
 `;
 
 const SiteTitle = styled.span`
-  font-size: calc(var(--font-size) * 1.3);
+  font-size: calc(var(--font-size) * 1.2vw);
 `;
 
 const Side = styled.div`
