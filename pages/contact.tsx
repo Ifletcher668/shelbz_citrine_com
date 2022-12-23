@@ -66,17 +66,28 @@ const ContactPage = () => {
           <input type="hidden" name="form-name" value="contact" />
           <Label>
             <LabelText>Your Name:</LabelText>
-            <Input type="text" name="name" />
+            <Input
+              type="text"
+              name="name"
+              onChange={e => setName(e.target.value)}
+            />
           </Label>
 
           <Label>
             <LabelText>Your Email:</LabelText>{' '}
-            <Input type="email" name="email" />
+            <Input
+              type="email"
+              name="email"
+              onChange={e => setEmail(e.target.value)}
+            />
           </Label>
 
           <Label>
             <LabelText>Message:</LabelText>
-            <Textarea name="message"></Textarea>
+            <Textarea
+              name="message"
+              onChange={e => setMessage(e.target.value)}
+            ></Textarea>
           </Label>
 
           <Label>
