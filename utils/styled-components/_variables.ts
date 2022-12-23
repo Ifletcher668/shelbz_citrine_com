@@ -7,6 +7,8 @@ const variables = css`
     --black: hsl(var(--blue-hue) 86%, 1%);
     --white: hsl(var(--blue-hue) 86% 100%);
     --max-width-wrapper: min(960px, 92vw);
+    --focus-shadow: 0 0 20px 2px var(--blue-300), 0 0 0 3px var(--blue-200);
+
     --border-radius: 12px;
     /* spacing */
     --main-content-gap: 80px;

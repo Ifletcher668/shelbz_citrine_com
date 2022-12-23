@@ -8,7 +8,7 @@ import variables from './_variables';
     change 'createGlobalStyle' to 'css', format the file, then change it back to 'createGlobalStyle'
 */
 const GlobalStyle = createGlobalStyle`
-  /* TODO: This does not perform well in production. look into injecting another 'link' for this*/
+  /* TODO: This does not perform well in production. look into injecting another 'link' for this */
   @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cormorant:ital,wght@0,400;0,500;1,300&display=swap');
 
   ${variables}
@@ -27,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    font-size: var(--font-size, 1.125rem);
     text-transform: uppercase;
     text-decoration: none;
 
@@ -103,6 +102,18 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.25rem;
     font-weight: 400;
     letter-spacing: 0.05vw;
+  }
+
+  input,
+  button,
+  textarea,
+  select,
+  a {
+    outline: none;
+    &:focus {
+      border-radius: 5px;
+      box-shadow: var(--focus-shadow);
+    }
   }
 `;
 
