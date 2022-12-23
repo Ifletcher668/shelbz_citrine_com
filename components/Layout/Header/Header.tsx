@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import type { CSSProperties } from 'styled-components';
 import styled from 'styled-components';
-import { BREAKPOINTS } from '~utils/constants';
 
 import MobileMenu from './MobileMenu';
 import Moon from './Moon';

@@ -1,5 +1,6 @@
+import type { CSSProperties } from 'react';
+
 import Link from 'next/link';
-import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 import Icon from '~components/Icon';

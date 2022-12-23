@@ -62,8 +62,9 @@ const ContactPage = () => {
           onSubmit={handleSubmit}
           data-netlify="true"
         >
-          {/* why is this necessary? */}
+          {/* Necessary for Netlify forms to work */}
           <input type="hidden" name="form-name" value="contact" />
+
           <Label>
             <LabelText>Your Name:</LabelText>
             <Input
