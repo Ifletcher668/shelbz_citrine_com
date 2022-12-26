@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { ROUTES } from '~utils/constants';
+import { open } from '~utils/styled-components/snippets';
+
 import Icon from '../../Icon';
 import UnstyledButton from '../../UnstyledButton';
 import VisuallyHidden from '../../VisuallyHidden';
 
 import SubNav from './SubNav';
-
-import { ROUTES } from '~utils/constants';
-import { open } from '~utils/styled-components/snippets';
 
 type Props = {
   isOpen: boolean;
@@ -18,6 +18,7 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
 };
 
+// TODO: use Reach Router when it supports React 18
 const MobileMenu = (props: Props) => {
   const { isOpen, setIsOpen, onDismiss } = props;
 
@@ -81,6 +82,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000000;
 
   height: 100%;
   width: 100%;
@@ -94,31 +96,24 @@ const Gap = styled(UnstyledButton)`
   min-width: 75px;
   max-width: 150px;
   opacity: 0.8;
-  background-color: var(--blue-500);
+  background-color: var(--blue-800);
 `;
 
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 5.5vw - 4rem, 3rem);
-  margin: 0px 48px;
 `;
 
 const Footer = styled.footer`
-  /* TODO: figure out color */
-  --color: var(--red-100);
-  --font-size: 0.875rem;
-
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 5.5vw - 4rem, 3rem);
-
-  margin: 0px 48px;
 `;
 
 const Body = styled.div`
   flex: 1;
-  background-color: var(--red-900);
+  background-color: var(--blue-400);
 
   display: flex;
   flex-direction: column;

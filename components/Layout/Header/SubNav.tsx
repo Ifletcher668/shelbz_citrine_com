@@ -82,9 +82,11 @@ const SubNavMenu = styled.nav`
   display: var(--display, 'flex');
   flex-direction: column;
   gap: clamp(16px, 2vw + 1rem, 48px);
+
   background-color: var(--header-background);
   animation: ${fadeIn} 500ms ease-in-out;
   border-radius: 0 0 5px 5px;
+  box-shadow: var(--focus-shadow);
 
   position: absolute;
   top: 45px;

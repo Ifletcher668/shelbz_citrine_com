@@ -22,6 +22,7 @@ const Header = () => {
     return () => document.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // All styles pertaining to top positioning, or shared styles between parent and children, are defined here
   const styles = {
     '--transition': 'all 300ms ease',
     '--padding': isAtTop ? 'var(--spacing-large)' : 'var(--spacing-medium)',
@@ -57,6 +58,7 @@ const HeaderWrapper = styled.header`
   right: 0;
   /* Always on top */
   z-index: 1000000;
+
   margin: auto;
   border-radius: 0px 0px 5px 5px;
 

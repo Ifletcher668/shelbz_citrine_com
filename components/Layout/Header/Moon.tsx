@@ -3,16 +3,28 @@ import styled from 'styled-components';
 import { BREAKPOINTS } from '~utils/constants';
 
 const Moon = styled.div`
-  display: none;
+  position: fixed;
+  top: -30px;
+  right: -70px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--accent-shadow);
+  transition: var(--transition);
 
-  @media ${BREAKPOINTS.LAPTOP} {
-    display: revert;
-    position: fixed;
-    top: -100px;
-    right: -60px;
-    z-index: 1;
+  /* Increase size on mobile because vw scales too quickly at smaller sizes */
+  width: calc(var(--moon-size) + 12vw);
+  height: calc(var(--moon-size) + 12vw);
+
+  @media ${BREAKPOINTS.TABLET} {
     width: var(--moon-size);
     height: var(--moon-size);
+    top: -50px;
+  }
+
+  @media ${BREAKPOINTS.LAPTOP} {
+    top: -100px;
+    right: -85px;
+    z-index: 1;
     border-radius: 50%;
     background: var(--accent);
     box-shadow: var(--accent-shadow);
