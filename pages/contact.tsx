@@ -202,7 +202,6 @@ const ContactPage = () => {
           onSubmit={handleSubmit}
           data-netlify="true"
           noValidate
-          data-netlify-recaptcha="true"
         >
           {/* Necessary for Netlify forms to work */}
           <input type="hidden" name="form-name" value="contact" />
@@ -252,8 +251,6 @@ const ContactPage = () => {
           </SubmitButton>
 
           <ConfettiCanvas ref={confettiCanvas} />
-
-          <div data-netlify-recaptcha="true" />
 
           {showSuccessMessage !== false ? (
             <Message>
