@@ -17,3 +17,13 @@ export const BREAKPOINTS = {
   LAPTOP: `(min-width: ${1101 / 16}rem)`,
   DESKTOP: `(min-width: ${1501 / 16}rem)`,
 } as const;
+
+export const VALIDATION_CONSTANTS = {
+  VALID_NAME_REGEX: /^[^0-9`!@#\$%\^&*+_=<>{}()\[\]]+$/,
+  VALID_EMAIL_REGEX:
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  BAD_GMAIL_REGEX: /@gmail\.co$/,
+  BAD_HOTMAIL_REGEX: /@hotmail\.co$/,
+  BAD_COM_REGEX: /.com[a-zA-Z]$/,
+  BAD_CON_REGEX: /.con$/,
+};
