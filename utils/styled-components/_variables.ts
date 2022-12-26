@@ -123,7 +123,7 @@ const variables = css`
       --accent-shadow: 0 0 30px 10px var(--blue-900);
       --link-primary: var(--white);
       --link-accent: var(--blue-600);
-      --header-background: var(--red-400);
+      --header-background: var(--blue-400);
     }
   }
 `;
