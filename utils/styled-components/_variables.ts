@@ -95,8 +95,8 @@ const variables = css`
     --orange-800: hsl(var(--orange-hue) 90% 25%);
     --orange-900: hsl(var(--orange-hue) 80% 24%);
 
-    /* Shadow based on red-400 */
-    --shadow-color: 1deg 100% 10%;
+    /* Shadow for based on blue-400 */
+    --shadow-color: var(--blue-hue) 90% 30%;
 
     --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
       0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),

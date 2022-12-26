@@ -27,7 +27,7 @@ const Header = () => {
     '--padding': isAtTop ? 'var(--spacing-large)' : 'var(--spacing-medium)',
     '--font-size': isAtTop ? '1.5rem' : '1rem',
     '--max-width': isAtTop
-      ? 'min(calc(var(--max-width-wrapper) * 1.5), 90vw)'
+      ? 'calc(var(--max-width-wrapper) * 1.5)'
       : 'calc(var(--max-width-wrapper) * 1.3)',
     '--moon-size': isAtTop ? '25vw' : '22vw',
     '--box-shadow': isAtTop ? '0 0 0 0' : 'var(--shadow-elevation-medium)',
