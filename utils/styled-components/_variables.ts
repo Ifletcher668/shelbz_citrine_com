@@ -112,6 +112,7 @@ const variables = css`
       --link-primary: var(--black);
       --link-accent: var(--red-50);
       --header-background: var(--red-400);
+      --disabled: var(--red-200);
     }
   }
 
@@ -124,6 +125,7 @@ const variables = css`
       --link-primary: var(--white);
       --link-accent: var(--blue-600);
       --header-background: var(--blue-400);
+      --disabled: var(--blue-900);
     }
   }
 `;

@@ -1,12 +1,21 @@
 import React from 'react';
 
-import { ChevronDown, ChevronUp, Menu, X } from 'react-feather';
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Menu,
+  X,
+} from 'react-feather';
 import styled from 'styled-components';
 
 const icons = {
   menu: Menu,
   'chevron-down': ChevronDown,
   'chevron-up': ChevronUp,
+  'chevron-left': ChevronLeft,
+  'chevron-right': ChevronRight,
   close: X,
 };
 
@@ -34,10 +43,16 @@ const Icon = (props: Props) => {
 };
 
 const Wrapper = styled.div<{ strokeWidth?: number }>`
+  button:disabled & {
+    --color: var(--disabled);
+    cursor: not-allowed;
+  }
+
   & > svg {
     display: block;
     stroke-width: ${({ strokeWidth }) =>
       strokeWidth !== undefined ? strokeWidth + 'px' : undefined};
+    color: var(--color);
   }
 `;
 
