@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { Column, Layout, MainWrapper, Row, Spacer } from '~components/index';
+
 import { ROUTES } from '../utils/constants';
 
-import { Column, Layout, MainWrapper, Row, Spacer } from '~components/index';
 // TODO: like Helmet
 // import Head from "next/head";
 
 const Home = () => (
   <Layout>
     <MainWrapper>
-      <>
+      <Row>
         <h1>Hi, I'm Shelbz</h1>
         <ParagraphWithStyledFirstLetter>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad qui
@@ -24,12 +25,13 @@ const Home = () => (
           veritatis, illo similique tempore inventore corrupti ullam, veniam ab
           exercitationem quia officiis, iusto architecto. Quae, non!
         </ParagraphWithStyledFirstLetter>
-      </>
+      </Row>
 
       {/* BOOKING CALL TO ACTION */}
 
       {/* not setting margin values because of this wrapper's "gap" */}
       <Spacer />
+
       <Row justify>
         <h2>
           Here to book an appointment?{' '}
@@ -60,7 +62,7 @@ const Home = () => (
           </ParagraphWithStyledFirstLetter>
           <div
             style={{
-              width: '450px',
+              width: '100%',
               height: '450px',
               background: 'white',
               color: 'black',
@@ -87,7 +89,7 @@ const Home = () => (
           </ParagraphWithStyledFirstLetter>
           <div
             style={{
-              width: '450px',
+              width: '100%',
               height: '450px',
               background: 'white',
               color: 'black',
