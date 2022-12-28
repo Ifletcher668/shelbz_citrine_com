@@ -1,6 +1,6 @@
-import { Layout, MainWrapper, Row } from "../../components";
-import barberAtNight from "../../assets/barber-at-night.png";
-import PictureGrid from "../../components/PictureGrid";
+import { Layout, MainWrapper, Row } from '../../components';
+import barberAtNight from '../../assets/barber-at-night.png';
+import PictureGrid from '../../components/PictureGrid';
 
 const pictures = [
   barberAtNight,
@@ -23,7 +23,7 @@ const BarberPage = () => (
           architecto. Quae, non!
         </p>
       </Row>
-      <PictureGrid pictures={pictures} />
+      <PictureGrid data={pictures} />
     </MainWrapper>
   </Layout>
 );
