@@ -1,14 +1,16 @@
 import { useMemo, useState } from 'react';
 
+import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import Pagination from '~components/Pagination/Pagination';
 
+import { Row } from '..';
 import { fadeIn } from '../../utils/styled-components/snippets';
 
 type PictureGridProps = {
-  data: any[];
+  data: StaticImageData[];
 };
 
 const PictureGrid = ({ data }: PictureGridProps) => {
@@ -25,14 +27,17 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   return (
     <Wrapper>
       <Grid>
-        {displayed.map((picture, idx) => {
-          // TODO: Fix images themselves, don't resize them
-          const width = picture.width / 4;
-          const height = width;
-
+        {displayed.map((image, idx) => {
           return (
             <PictureWrapper key={idx}>
-              <Picture src={picture.src} alt="" width={width} height={height} />
+              <Picture
+                src={image.src}
+                //
+                alt=""
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+              />
               <PictureCaption>Working at night</PictureCaption>
             </PictureWrapper>
           );
@@ -51,21 +56,24 @@ const PictureGrid = ({ data }: PictureGridProps) => {
 
 export default PictureGrid;
 
-const Wrapper = styled.div`
+const Wrapper = styled(Row)`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto;
   gap: 16px;
 `;
 
 const Picture = styled(Image)`
   width: 100%;
+  height: 100%;
+  object-fit: contain;
 `;
 
 const PictureCaption = styled.figcaption`
@@ -77,8 +85,8 @@ const PictureWrapper = styled.article`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: all 250ms ease-in-out;
 
+  transition: all 250ms ease-in-out;
   animation: ${fadeIn} var(--duration) ease-in-out;
 
   ${PictureCaption} {

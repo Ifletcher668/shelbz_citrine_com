@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { usePagination } from '~utils/hooks';
 import { DOTS } from '~utils/hooks/usePagination/usePagination';
 
-import { Icon, UnstyledButton } from '..';
+import { Icon, UnstyledButton, VisuallyHidden } from '..';
 
 type Props = {
   onPageChange: (pageNumber: number) => void;
@@ -53,6 +53,9 @@ const Pagination = (props: Props) => {
   return (
     <Wrapper>
       <UnstyledButton onClick={onPrevious} disabled={isFirstPage}>
+        <VisuallyHidden>
+          {isFirstPage ? 'You are on the first page' : 'Previous page'}
+        </VisuallyHidden>
         <Icon id="chevron-left" />
       </UnstyledButton>
       {paginationRange.map((pageNumber, idx) => {
@@ -89,6 +92,9 @@ const Pagination = (props: Props) => {
         );
       })}
       <UnstyledButton onClick={onNext} disabled={isLastPage}>
+        <VisuallyHidden>
+          {isLastPage ? 'You are on the last page' : 'Next page'}
+        </VisuallyHidden>
         <Icon id="chevron-right" />
       </UnstyledButton>
     </Wrapper>
