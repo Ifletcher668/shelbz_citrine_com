@@ -1,14 +1,17 @@
 import type { FormEvent } from 'react';
-import { useRef } from 'react';
 import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
-import ConfettiGenerator from 'confetti-js';
 import styled, { css } from 'styled-components';
 
-import { Layout, MainWrapper } from '~components/index';
+import {
+  AnimatedText,
+  ConfettiCanvas,
+  Layout,
+  MainWrapper,
+} from '~components/index';
 import { VALIDATION_CONSTANTS } from '~utils/constants';
-import { fadeIn, shake } from '~utils/styled-components/snippets';
+import { shake } from '~utils/styled-components/snippets';
 
 function encode(data: Record<string, string | number | boolean>) {
   return Object.keys(data)
@@ -17,8 +20,6 @@ function encode(data: Record<string, string | number | boolean>) {
 }
 
 const ContactPage = () => {
-  const confettiCanvas = useRef<HTMLCanvasElement>(null);
-
   // Form field states
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -150,37 +151,6 @@ const ContactPage = () => {
     if (name === 'message') setMessage(value);
   };
 
-  useEffect(() => {
-    if (!showSuccessMessage) return;
-
-    const canvas = confettiCanvas.current;
-
-    if (!canvas) return;
-
-    const confetti = new ConfettiGenerator({
-      target: canvas,
-      max: 100,
-      size: 1,
-      animate: true,
-      props: ['circle', 'square', 'triangle', 'line'],
-      colors: [
-        [165, 104, 246],
-        [230, 61, 135],
-        [0, 199, 228],
-      ],
-      clock: 25,
-      rotate: true,
-      width: 1000,
-      height: 1000,
-    });
-
-    confetti.render();
-
-    return () => {
-      confetti.clear();
-    };
-  }, [showSuccessMessage]);
-
   return (
     <Layout>
       <MainWrapper>
@@ -205,6 +175,7 @@ const ContactPage = () => {
         >
           {/* Necessary for Netlify forms to work */}
           <input type="hidden" name="form-name" value="contact" />
+
           <Label>
             <LabelText>Your Name:</LabelText>
             <Input
@@ -214,7 +185,10 @@ const ContactPage = () => {
               value={name}
             />
           </Label>
-          {nameError !== null ? <ErrorMessage>{nameError}</ErrorMessage> : ''}
+
+          <ErrorMessage duration={250} isMounted={Boolean(nameError)}>
+            {nameError}
+          </ErrorMessage>
 
           <Label>
             <LabelText>Your Email:</LabelText>{' '}
@@ -225,7 +199,10 @@ const ContactPage = () => {
               value={email}
             />
           </Label>
-          {emailError !== null ? <ErrorMessage>{emailError}</ErrorMessage> : ''}
+
+          <ErrorMessage duration={250} isMounted={Boolean(emailError)}>
+            {emailError}
+          </ErrorMessage>
 
           <Label>
             <LabelText>Message:</LabelText>
@@ -235,11 +212,10 @@ const ContactPage = () => {
               value={message}
             />
           </Label>
-          {messageError !== null ? (
-            <ErrorMessage>{messageError}</ErrorMessage>
-          ) : (
-            ''
-          )}
+
+          <ErrorMessage duration={250} isMounted={Boolean(messageError)}>
+            {messageError}
+          </ErrorMessage>
 
           <Label>
             <LabelText>I confirm this is for tattoo inquiries only</LabelText>
@@ -250,15 +226,11 @@ const ContactPage = () => {
             Send
           </SubmitButton>
 
-          <ConfettiCanvas ref={confettiCanvas} />
+          <ConfettiCanvas show={showSuccessMessage} />
 
-          {showSuccessMessage !== false ? (
-            <Message>
-              Thanks for your message! I'll get back to you soon.
-            </Message>
-          ) : (
-            ''
-          )}
+          <AnimatedText duration={250} isMounted={showSuccessMessage}>
+            Thanks for your message! I'll get back to you soon.
+          </AnimatedText>
         </Form>
       </MainWrapper>
     </Layout>
@@ -267,20 +239,7 @@ const ContactPage = () => {
 
 export default ContactPage;
 
-const ConfettiCanvas = styled.canvas`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-`;
-
-const Message = styled.p`
-  animation: ${fadeIn} 250ms ease-in-out;
-`;
-
-const ErrorMessage = styled(Message)`
+const ErrorMessage = styled(AnimatedText)`
   color: var(--red-100);
 
   /* remove parent flexbox's "gap" property */

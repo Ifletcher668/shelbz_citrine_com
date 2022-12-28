@@ -6,6 +6,16 @@ export const fadeIn = keyframes`
   }
   100% {
     opacity: 1;
+    
+  }
+`;
+
+export const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 `;
 
@@ -53,5 +63,14 @@ export const shake = keyframes`
   }
   100% {
     transform: translateX(8);
+  }
+`;
+
+export const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 `;
