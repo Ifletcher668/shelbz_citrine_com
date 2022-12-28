@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 
 const Header = () => {
   const [isAtTop, setIsAtTop] = useState(true);
+  const [forceHide, setForceHide] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,32 @@ const Header = () => {
     '--moon-size': isAtTop ? '25vw' : '22vw',
     '--box-shadow': isAtTop ? '0 0 0 0' : 'var(--shadow-elevation-medium)',
   } as CSSProperties;
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      const handleKeyDown = (ev: KeyboardEvent) => {
+        if (ev.key === 'Control') {
+          setForceHide(true);
+        }
+      };
+
+      const handleKeyUp = () => {
+        setForceHide(false);
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keydown', handleKeyUp);
+      };
+    }
+  }, []);
+
+  if (forceHide) {
+    return <></>;
+  }
 
   return (
     <HeaderWrapper style={styles}>
