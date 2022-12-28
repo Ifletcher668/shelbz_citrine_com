@@ -1,15 +1,15 @@
-import type { CSSProperties } from 'react';
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Icon from '~components/Icon';
 import UnstyledButton from '~components/UnstyledButton';
 import VisuallyHidden from '~components/VisuallyHidden';
 import type { ROUTES } from '~utils/constants';
-import { fadeIn } from '~utils/styled-components/snippets';
+import { useDelayedUnmount } from '~utils/hooks';
+import { fadeIn, fadeOut } from '~utils/styled-components/snippets';
 
 type Props = {
   display: string;
@@ -23,11 +23,15 @@ const SubNav = (props: Props) => {
   // TODO: make 'items' accept only typeof ROUTES
   const { display, items } = props;
   const [showSubmenu, setShowSubmenu] = useState(false);
+  const shouldRender = useDelayedUnmount(showSubmenu, 250);
   const ref = useRef<null | HTMLButtonElement>(null);
 
   // Close submenu on click outside
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
+      /* Typecasting to Node here, as explained in this StackOverflow answer:
+        https://stackoverflow.com/questions/61164018/typescript-ev-target-and-node-contains-eventtarget-is-not-assignable-to-node#:~:text=Short%20answer%3A%20It%27s,this%20PR.
+      */
       if (ref.current && !ref.current.contains(event.target as Node)) {
         setShowSubmenu(false);
       }
@@ -53,11 +57,6 @@ const SubNav = (props: Props) => {
     };
   });
 
-  // TODO: find permanent solution here: https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript
-  const style = {
-    '--display': showSubmenu ? 'flex' : 'none',
-  } as CSSProperties;
-
   return (
     <SubNavWrapper ref={ref} onClick={() => setShowSubmenu(!showSubmenu)}>
       <VisuallyHidden>
@@ -65,26 +64,38 @@ const SubNav = (props: Props) => {
       </VisuallyHidden>{' '}
       {display}
       <Icon id={showSubmenu ? 'chevron-up' : 'chevron-down'} strokeWidth={2} />
-      <SubNavMenu style={style}>
-        {items.map(item => (
-          <Link key={item.display} href={item.href}>
-            {item.display}
-          </Link>
-        ))}
-      </SubNavMenu>
+      {shouldRender ? (
+        <SubNavMenu isMounted={showSubmenu} duration={250}>
+          {items.map(item => (
+            <Link key={item.display} href={item.href}>
+              {item.display}
+            </Link>
+          ))}
+        </SubNavMenu>
+      ) : (
+        <></>
+      )}
     </SubNavWrapper>
   );
 };
 
 export default SubNav;
 
-const SubNavMenu = styled.nav`
-  display: var(--display, 'flex');
+type AnimationProps = {
+  isMounted: boolean;
+  duration: number;
+};
+
+const SubNavMenu = styled.nav<AnimationProps>`
+  display: flex;
   flex-direction: column;
   gap: clamp(16px, 2vw + 1rem, 48px);
 
+  ${({ isMounted, duration }) => css`
+    animation: ${isMounted ? fadeIn : fadeOut} ${duration}ms ease-in-out;
+  `}
+
   background-color: var(--header-background);
-  animation: ${fadeIn} 500ms ease-in-out;
   border-radius: 0 0 5px 5px;
   box-shadow: var(--focus-shadow);
 
