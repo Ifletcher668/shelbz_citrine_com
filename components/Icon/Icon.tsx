@@ -1,22 +1,16 @@
 import React from 'react';
 
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Menu,
-  X,
-} from 'react-feather';
+import * as reactFeather from 'react-feather';
 import styled from 'styled-components';
 
 const icons = {
-  menu: Menu,
-  'chevron-down': ChevronDown,
-  'chevron-up': ChevronUp,
-  'chevron-left': ChevronLeft,
-  'chevron-right': ChevronRight,
-  close: X,
+  menu: reactFeather.Menu,
+  'chevron-down': reactFeather.ChevronDown,
+  'chevron-up': reactFeather.ChevronUp,
+  'chevron-left': reactFeather.ChevronLeft,
+  'chevron-right': reactFeather.ChevronRight,
+  'external-link': reactFeather.ExternalLink,
+  close: reactFeather.X,
 };
 
 type Props = {
@@ -53,6 +47,12 @@ const Wrapper = styled.div<{ strokeWidth?: number }>`
     stroke-width: ${({ strokeWidth }) =>
       strokeWidth !== undefined ? strokeWidth + 'px' : undefined};
     color: var(--color);
+  }
+
+  a & {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 4px;
   }
 `;
 

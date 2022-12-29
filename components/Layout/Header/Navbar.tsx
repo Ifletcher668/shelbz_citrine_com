@@ -29,6 +29,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
 
       <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
         Book
+        <Icon id="external-link" strokeWidth={2} size={16} />
       </a>
 
       <Link href={ROUTES.CONTACT}>Contact</Link>
