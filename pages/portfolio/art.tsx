@@ -10,16 +10,22 @@ import portraitOfATear from '~public/assets/art/portrait-of-a-tear.jpg';
 import tigermothGroomingLogo from '~public/assets/art/tigermoth-grooming-logo.jpg';
 
 const data = [
-  cervadae,
-  fartsInAJar,
-  heart,
-  henbane,
-  noctua,
-  portraitOfATear,
-  tigermothGroomingLogo,
+  { img: cervadae, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: fartsInAJar, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: heart, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: henbane, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: noctua, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: portraitOfATear,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  {
+    img: tigermothGroomingLogo,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
 ];
 
-const BarberPage = () => {
+const ArtPage = () => {
   return (
     <Layout>
       <MainWrapper>
@@ -39,4 +45,4 @@ const BarberPage = () => {
   );
 };
 
-export default BarberPage;
+export default ArtPage;

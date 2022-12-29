@@ -20,23 +20,38 @@ import texturedPixieCut from '~public/assets/hair/textured-pixie-cut.jpg';
 import valkyrie from '~public/assets/hair/valkyrie.jpg';
 
 const pictures = [
-  barberMirror,
-  blowdry,
-  curlyMullet,
-  inAFieldOfFlowers,
-  peace,
-  pixieMullet,
-  playingGuitar,
-  shag,
-  shelbzBarberProfile,
-  skinFade,
-  smilingAtWork,
-  sploosh,
-  straightRazorCloseup,
-  straightRazorSideShot,
-  texturedBangs,
-  texturedPixieCut,
-  valkyrie,
+  { img: barberMirror, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: blowdry, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: curlyMullet, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: inAFieldOfFlowers,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  { img: peace, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: pixieMullet, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: playingGuitar, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: shag, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: shelbzBarberProfile,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  { img: skinFade, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: smilingAtWork, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: sploosh, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: straightRazorCloseup,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  {
+    img: straightRazorSideShot,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  { img: texturedBangs, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: texturedPixieCut,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  { img: valkyrie, caption: 'hello!' },
 ];
 
 const BarberPage = () => (
