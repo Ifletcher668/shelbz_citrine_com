@@ -54,6 +54,8 @@ const MobileMenu = (props: Props) => {
           <Link href={ROUTES.ABOUT}>About Me</Link>
           <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
             Book
+            <VisuallyHidden> External link</VisuallyHidden>
+            <Icon id="external-link" strokeWidth={2} size={16} />
           </a>
           <Link href={ROUTES.CONTACT}>Contact</Link>
           <SubNav

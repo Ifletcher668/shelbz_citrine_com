@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Icon from '~components/Icon';
 import Spacer from '~components/Spacer';
 import UnstyledButton from '~components/UnstyledButton';
+import VisuallyHidden from '~components/VisuallyHidden';
 import { BREAKPOINTS, ROUTES } from '~utils/constants';
 
 import SubNav from './SubNav';
@@ -29,6 +30,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
 
       <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
         Book
+        <VisuallyHidden> External link</VisuallyHidden>
         <Icon id="external-link" strokeWidth={2} size={16} />
       </a>
 

@@ -10,6 +10,7 @@ const icons = {
   'chevron-left': reactFeather.ChevronLeft,
   'chevron-right': reactFeather.ChevronRight,
   'external-link': reactFeather.ExternalLink,
+  gear: reactFeather.Settings,
   close: reactFeather.X,
 };
 
