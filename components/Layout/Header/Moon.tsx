@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BREAKPOINTS } from '~utils/constants';
+import { BREAKPOINTS } from '../../../utils/constants';
 
 const Moon = styled.div`
   position: fixed;

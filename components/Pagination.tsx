@@ -2,10 +2,12 @@ import type { CSSProperties } from 'react';
 
 import styled from 'styled-components';
 
-import { usePagination } from '~utils/hooks';
-import { DOTS } from '~utils/hooks/usePagination/usePagination';
+import { usePagination } from '../utils/hooks';
+import { DOTS } from '../utils/hooks/usePagination/usePagination';
 
-import { Icon, UnstyledButton, VisuallyHidden } from '..';
+import Icon from './Icon';
+import UnstyledButton from './UnstyledButton';
+import VisuallyHidden from './VisuallyHidden';
 
 type Props = {
   onPageChange: (pageNumber: number) => void;

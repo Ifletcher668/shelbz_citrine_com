@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
-import { useDelayedUnmount } from '~utils/hooks';
-import { fadeIn, fadeOut } from '~utils/styled-components/snippets';
+import { useDelayedUnmount } from '../utils/hooks';
+import { fadeIn, fadeOut } from '../utils/styled-components/snippets';
 
 type Props = {
   isMounted: boolean;

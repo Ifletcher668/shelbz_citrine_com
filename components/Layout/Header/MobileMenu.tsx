@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { ROUTES } from '~utils/constants';
-import { open } from '~utils/styled-components/snippets';
-
+import { ROUTES } from '../../../utils/constants';
+import { open } from '../../../utils/styled-components/snippets';
 import Icon from '../../Icon';
 import UnstyledButton from '../../UnstyledButton';
 import VisuallyHidden from '../../VisuallyHidden';

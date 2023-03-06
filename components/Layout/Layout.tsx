@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Spacer } from '..';
 import { fadeIn } from '../../utils/styled-components/snippets';
 import SettingsButton from '../SettingsButton';
+import Spacer from '../Spacer';
 
 import Footer from './Footer';
 import Header from './Header';

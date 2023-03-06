@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
-import Icon from '~components/Icon';
-import UnstyledButton from '~components/UnstyledButton';
-import VisuallyHidden from '~components/VisuallyHidden';
-import type { ROUTES } from '~utils/constants';
-import { useDelayedUnmount } from '~utils/hooks';
-import { fadeIn, fadeOut } from '~utils/styled-components/snippets';
+import type { ROUTES } from '../../../utils/constants';
+import { useDelayedUnmount } from '../../../utils/hooks';
+import { fadeIn, fadeOut } from '../../../utils/styled-components/snippets';
+import Icon from '../../Icon';
+import UnstyledButton from '../../UnstyledButton';
+import VisuallyHidden from '../../VisuallyHidden';
 
 type Props = {
   display: string;

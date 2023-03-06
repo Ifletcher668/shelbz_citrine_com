@@ -3,11 +3,11 @@ import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import Icon from '~components/Icon';
-import Spacer from '~components/Spacer';
-import UnstyledButton from '~components/UnstyledButton';
-import VisuallyHidden from '~components/VisuallyHidden';
-import { BREAKPOINTS, ROUTES } from '~utils/constants';
+import { BREAKPOINTS, ROUTES } from '../../../utils/constants';
+import Icon from '../../Icon';
+import Spacer from '../../Spacer';
+import UnstyledButton from '../../UnstyledButton';
+import VisuallyHidden from '../../VisuallyHidden';
 
 import SubNav from './SubNav';
 

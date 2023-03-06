@@ -4,8 +4,9 @@ import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import Pagination from '~components/Pagination/Pagination';
-import { BREAKPOINTS } from '~utils/constants';
+import { BREAKPOINTS } from '../utils/constants';
+
+import Pagination from './Pagination';
 
 type Image = {
   img: StaticImageData;

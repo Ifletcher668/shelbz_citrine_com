@@ -4,14 +4,11 @@ import { useEffect, useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
-import {
-  AnimatedText,
-  ConfettiCanvas,
-  Layout,
-  MainWrapper,
-} from '~components/index';
-import { VALIDATION_CONSTANTS } from '~utils/constants';
-import { shake } from '~utils/styled-components/snippets';
+import AnimatedText from '../components/AnimatedText';
+import Layout from '../components/Layout/Layout';
+import MainWrapper from '../components/Layout/MainWrapper';
+import { VALIDATION_CONSTANTS } from '../utils/constants';
+import { shake } from '../utils/styled-components/snippets';
 
 function encode(data: Record<string, string | number | boolean>) {
   return Object.keys(data)
@@ -225,8 +222,6 @@ const ContactPage = () => {
           <SubmitButton isInErrorState={isInErrorState} type="submit">
             Send
           </SubmitButton>
-
-          <ConfettiCanvas show={showSuccessMessage} />
 
           <AnimatedText duration={250} isMounted={showSuccessMessage}>
             Thanks for your message! I'll get back to you soon.
