@@ -39,7 +39,7 @@ const Icon = (props: Props) => {
 
 const Wrapper = styled.div<{ strokeWidth?: number }>`
   button:disabled & {
-    --color: var(--disabled);
+    --color: var(--color-disabled);
     cursor: not-allowed;
   }
 

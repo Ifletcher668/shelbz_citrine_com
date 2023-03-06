@@ -8,7 +8,9 @@ import { fadeIn, fadeOut } from '~utils/styled-components/snippets';
 
 import { useThemeContext } from '../contexts/ThemeContext';
 
-import { Icon, UnstyledButton, VisuallyHidden } from '.';
+import Icon from './Icon';
+import UnstyledButton from './UnstyledButton';
+import VisuallyHidden from './VisuallyHidden';
 
 export default function SettingsButton() {
   return (
@@ -24,14 +26,10 @@ const Wrapper = styled.div`
   left: 0;
   z-index: 1000000;
   margin: 1rem;
-
-  font-size: var(--font-size);
-  box-shadow: var(--box-shadow);
   border-radius: 50%;
-  transition: var(--transition);
 
   svg:hover {
-    color: var(--blue-700);
+    color: var(--color-700);
   }
 `;
 
@@ -151,7 +149,7 @@ const SubNavWrapper = styled.div`
   ${UnstyledButton} {
     &:hover,
     &:focus {
-      color: var(--link-accent);
+      color: var(--font-accent);
     }
   }
 
@@ -177,7 +175,7 @@ const SubNavWrapper = styled.div`
     cursor: pointer;
 
     &:hover {
-      color: var(--link-accent);
+      color: var(--font-accent);
     }
 
     &:focus {

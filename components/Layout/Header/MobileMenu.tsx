@@ -98,7 +98,7 @@ const Gap = styled(UnstyledButton)`
   min-width: 75px;
   max-width: 150px;
   opacity: 0.8;
-  background-color: var(--blue-800);
+  background-color: var(--color-800);
 `;
 
 const Nav = styled.nav`
@@ -115,7 +115,7 @@ const Footer = styled.footer`
 
 const Body = styled.div`
   flex: 1;
-  background-color: var(--blue-400);
+  background-color: var(--header-background);
 
   display: flex;
   flex-direction: column;

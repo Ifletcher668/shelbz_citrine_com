@@ -11,14 +11,11 @@ const GlobalStyle = createGlobalStyle`
   ${variables}
   ${reset}
 
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
+  html {
+    background: black;
   }
 
   body {
-    background: var(--background);
     color: var(--font-primary);
     font-family: cursive;
   }
@@ -29,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
     /* TODO: figure out color */
     font-weight: 700;
-    color: var(--link-primary);
+    color: var(--font-secondary);
     text-decoration: none;
     border: none;
     padding: 0;
@@ -38,9 +35,9 @@ const GlobalStyle = createGlobalStyle`
 
     background-image: linear-gradient(
         transparent calc(100% - 2px),
-        var(--link-accent) 2px
+        var(--font-accent) 2px
       ),
-      linear-gradient(transparent calc(100% - 2px), var(--blue-50) 2px);
+      linear-gradient(transparent calc(100% - 2px), var(--font-primary) 2px);
     background-size: 0% 6px, 100% 6px;
     background-repeat: no-repeat;
     background-position: 0 bottom, 0 bottom;
@@ -54,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover {
       text-decoration: none;
-      color: var(--link-accent);
+      color: var(--font-accent);
       cursor: pointer;
       background-size: 100% 6px, 100% 6px;
     }
@@ -64,6 +61,10 @@ const GlobalStyle = createGlobalStyle`
       transition: none;
     }
   }
+  h1,h2,h3,h4,h5,h6 {
+    color: var(--font-secondary);
+  }
+
   h1,h2,h3,h4 {
     font-family: 'Cinzel Decorative', cursive;
   }

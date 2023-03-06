@@ -67,12 +67,12 @@ const Pagination = (props: Props) => {
         const styles = {
           '--current-page-background-color':
             pageNumber === currentPage
-              ? 'var(--link-accent)'
-              : 'var(--background-color)',
+              ? 'var(--font-accent)'
+              : 'var(--background)',
           '--current-page-color':
             pageNumber === currentPage
-              ? 'var(--background-color)'
-              : 'var(--link-accent)',
+              ? 'var(--background)'
+              : 'var(--font-accent)',
         } as CSSProperties;
 
         // Render Page Pills

@@ -124,6 +124,6 @@ const SubNavWrapper = styled(UnstyledButton)`
   }
 
   &:hover {
-    color: var(--link-accent);
+    color: var(--font-accent);
   }
 `;

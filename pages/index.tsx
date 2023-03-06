@@ -12,18 +12,11 @@ const Home = () => (
   <Layout>
     <MainWrapper>
       <Row>
-        <h1>Hi, I'm Shelbz</h1>
+        <h1>Hi, I'm Tigermoth</h1>
         <ParagraphWithStyledFirstLetter>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad qui
-          suscipit commodi porro veritatis, illo similique tempore inventore
-          corrupti ullam, veniam ab exercitationem quia officiis, iusto
-          architecto. Quae, non! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Ipsam ad qui suscipit commodi porro veritatis, illo
-          similique tempore inventore corrupti ullam, veniam ab exercitationem
-          quia officiis, iusto architecto. Quae, non!Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Ipsam ad qui suscipit commodi porro
-          veritatis, illo similique tempore inventore corrupti ullam, veniam ab
-          exercitationem quia officiis, iusto architecto. Quae, non!
+          I'm an artist, tattooer, and barber with a penchant for the weird and
+          wonderful. I started drawing {new Date().getFullYear() - 1996} years
+          ago.
         </ParagraphWithStyledFirstLetter>
       </Row>
 
@@ -34,7 +27,7 @@ const Home = () => (
 
       <Row justify>
         <h2>
-          Here to book an appointment?{' '}
+          Here for a hair appointment?{' '}
           <a href={ROUTES.BOOK} target="_blank" rel="noopener noreferrer">
             Book now!
           </a>{' '}
@@ -45,9 +38,9 @@ const Home = () => (
 
       <Row>
         <Column>
-          <Link href={ROUTES.BARBER_PORTFOLIO}>
-            <h2>I'm a Barber</h2>
-          </Link>
+          <h2>
+            <Link href={ROUTES.BARBER_PORTFOLIO}>I'm a Barber</Link>
+          </h2>
           <ParagraphWithStyledFirstLetter>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
             qui Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
@@ -72,9 +65,9 @@ const Home = () => (
           </div>
         </Column>
         <Column>
-          <Link href={ROUTES.ART_PORTFOLIO}>
-            <h2>and an Artist</h2>
-          </Link>
+          <h2>
+            <Link href={ROUTES.ART_PORTFOLIO}>and an Artist</Link>
+          </h2>
           <ParagraphWithStyledFirstLetter>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
             qui Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam

@@ -7,8 +7,8 @@ const Moon = styled.div`
   top: -30px;
   right: -70px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: var(--accent-shadow);
+  background: var(--moon-gradient);
+  box-shadow: var(--moon-shadow);
   transition: var(--transition);
 
   /* Increase size on mobile because vw scales too quickly at smaller sizes */
@@ -25,10 +25,6 @@ const Moon = styled.div`
     top: -100px;
     right: -85px;
     z-index: 1;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: var(--accent-shadow);
-    transition: var(--transition);
   }
 
   @media ${BREAKPOINTS.DESKTOP} {

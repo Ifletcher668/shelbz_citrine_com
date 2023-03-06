@@ -2,8 +2,9 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
   const meta = {
-    title: 'Shelbz Citrine',
-    description: 'A barber extraordinaire',
+    title: 'Tigermoth',
+    description:
+      'Shelbz Citrine, a.k.a. Tigermoth, is a freelance artist and barber.',
     // image: "TODO",
   };
 

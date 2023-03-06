@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Spacer } from '..';
 import { fadeIn } from '../../utils/styled-components/snippets';
+import SettingsButton from '../SettingsButton';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -23,9 +24,21 @@ const Layout = ({ children }: Props) => {
       <Spacer top={200} />
       <PageTransition>{children}</PageTransition>
       <Footer />
+      <SettingsButton />
+      <Background />
     </Wrapper>
   );
 };
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  z-index: -1;
+`;
 
 const Wrapper = styled.div`
   min-height: 100%;

@@ -20,9 +20,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
       <Spacer />
       <Side>
         <Link href={ROUTES.HOME}>
-          <SiteTitle>
-            Shelbz <br /> Citrine
-          </SiteTitle>
+          <SiteTitle>Tigermoth</SiteTitle>
         </Link>
       </Side>
 
@@ -51,9 +49,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
       <Spacer />
       <Side style={{ '--flex': '3' } as CSSProperties}>
         <Link href={ROUTES.HOME}>
-          <SiteTitle>
-            Shelbz <br /> Citrine
-          </SiteTitle>
+          <SiteTitle>Tigermoth</SiteTitle>
         </Link>
       </Side>
 

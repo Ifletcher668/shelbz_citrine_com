@@ -240,7 +240,7 @@ const ContactPage = () => {
 export default ContactPage;
 
 const ErrorMessage = styled(AnimatedText)`
-  color: var(--red-100);
+  color: var(--color-error);
 
   /* remove parent flexbox's "gap" property */
   margin-top: calc(var(--spacing-large) * -1);
@@ -249,10 +249,10 @@ const ErrorMessage = styled(AnimatedText)`
 const SubmitButton = styled.button<{ isInErrorState: boolean }>`
   width: 50%;
   padding: 12px 20px;
-  background: var(--blue-800);
-  border: 1px solid var(--blue-200);
+  background: var(--color-800);
+  border: 1px solid var(--font-accent);
   border-radius: 6px;
-  color: var(--blue-100);
+  color: var(--font-accent);
   font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
@@ -266,8 +266,8 @@ const SubmitButton = styled.button<{ isInErrorState: boolean }>`
 
   &:hover,
   &:focus {
-    background: var(--blue-700);
-    border: 1px solid var(--blue-300);
+    background: var(--color-700);
+    border: 1px solid var(--font-accent);
     scale: 0.99;
   }
 `;
@@ -305,14 +305,14 @@ const Input = styled.input`
   height: 3rem;
   padding: 12px 20px;
 
-  background: var(--blue-800);
-  border: 1px solid var(--blue-200);
+  background: var(--color-800);
+  border: 1px solid var(--font-accent);
   border-radius: 6px;
 
   &:hover,
   &:focus {
-    background: var(--blue-700);
-    border: 1px solid var(--blue-300);
+    background: var(--color-700);
+    border: 1px solid var(--font-accent);
   }
 `;
 
@@ -332,14 +332,14 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
     width: 24px;
     height: 24px;
-    background-color: var(--blue-800);
-    border: 1px solid var(--blue-200);
+    background-color: var(--color-800);
+    border: 1px solid var(--font-accent);
     border-radius: 4px;
   }
 
   &:checked {
     &::before {
-      background-color: var(--blue-700);
+      background-color: var(--color-700);
     }
 
     // creates a 'checkmark' ::after psuedo-element
@@ -352,8 +352,8 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 
       width: 16px;
       height: 8px;
-      border-left: 3px solid var(--blue-100);
-      border-bottom: 3px solid var(--blue-200);
+      border-left: 3px solid var(--font-accent);
+      border-bottom: 3px solid var(--font-accent);
       transform: rotate(-45deg);
     }
   }
@@ -361,8 +361,8 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   &:hover,
   &:focus {
     &::before {
-      background: var(--blue-700);
-      border: 1px solid var(--blue-300);
+      background: var(--color-700);
+      border: 1px solid var(--font-accent);
     }
   }
 
@@ -380,8 +380,8 @@ const Textarea = styled.textarea`
   height: 6rem;
   padding: 12px 20px;
 
-  background: var(--blue-800);
-  border: 1px solid var(--blue-200);
+  background: var(--color-800);
+  border: 1px solid var(--font-accent);
   border-radius: 6px;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -389,7 +389,7 @@ const Textarea = styled.textarea`
 
   &:hover,
   &:focus {
-    background: var(--blue-700);
-    border: 1px solid var(--blue-300);
+    background: var(--color-700);
+    border: 1px solid var(--font-accent);
   }
 `;

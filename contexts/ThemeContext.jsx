@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const DEFAULT_COLOR_SCHEME = 'moon';
+const DEFAULT_COLOR_SCHEME = 'bloodMoon';
 const POSSIBLE_COLOR_SCHEMES = ['moon', 'ocean', 'bloodMoon', 'harvestMoon'];
 
 const defaultSearchProvider = {
@@ -9,8 +9,6 @@ const defaultSearchProvider = {
     console.log('Default changeColorScheme');
   },
 };
-
-// possible colorSheets: moon, sun, bloodMoon, harvestMoon
 
 export const ThemeContext = createContext(defaultSearchProvider);
 
