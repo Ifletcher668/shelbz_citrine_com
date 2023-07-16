@@ -31,7 +31,7 @@ const ArtPage = () => {
     <Layout>
       <MainWrapper>
         <Row>
-          <h1>Art Portfolio</h1>
+          <h1>My Portfolio</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
             qui suscipit commodi porro veritatis, illo similique tempore

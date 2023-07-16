@@ -1,111 +1,79 @@
 import Link from 'next/link';
-import styled from 'styled-components';
 
-import Column from '../components/Layout/Column';
+import Paragraph from 'components/Paragraph';
+
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
-import Spacer from '../components/Spacer';
+import PictureGrid from '../components/PictureGrid';
+import cervadae from '../public/assets/art/cervadae.jpg';
+import fartsInAJar from '../public/assets/art/farts-in-a-jar.jpg';
+import heart from '../public/assets/art/heart.jpg';
+import henbane from '../public/assets/art/henbane.jpg';
+import noctua from '../public/assets/art/noctua.jpg';
+import portraitOfATear from '../public/assets/art/portrait-of-a-tear.jpg';
+import tigermothGroomingLogo from '../public/assets/art/tigermoth-grooming-logo.jpg';
 import { ROUTES } from '../utils/constants';
+import Column from 'components/Layout/Column';
 
-// TODO: like Helmet
-// import Head from "next/head";
+const data = [
+  { img: cervadae, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: fartsInAJar, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: heart, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: henbane, caption: 'Placeholder caption, needs to be replaced!' },
+  { img: noctua, caption: 'Placeholder caption, needs to be replaced!' },
+  {
+    img: portraitOfATear,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+  {
+    img: tigermothGroomingLogo,
+    caption: 'Placeholder caption, needs to be replaced!',
+  },
+];
 
 const Home = () => (
   <Layout>
     <MainWrapper>
-      <Row>
-        <h1>Hi, I'm Tigermoth</h1>
-        <ParagraphWithStyledFirstLetter>
-          I'm an artist, tattooer, and barber with a penchant for the weird and
-          wonderful. I started drawing {new Date().getFullYear() - 1996} years
-          ago.
-        </ParagraphWithStyledFirstLetter>
-      </Row>
+      <h1>Hi, I'm Shelbz:</h1>
 
-      {/* BOOKING CALL TO ACTION */}
+      <Row rowSpacing={40}>
+        {/* BOOKING CALL TO ACTION */}
+        <Paragraph>
+          an artist combining classic training with self-taught innovation to
+          produce dark and surreal works inspired by a medley of influences,
+          from the eerie landscapes of Dungeons and Dragons to video game
+          narratives.
+        </Paragraph>
 
-      {/* not setting margin values because of this wrapper's "gap" */}
-      <Spacer />
-
-      <Row justify>
-        <h2>
-          Here for a hair appointment?{' '}
-          <a href={ROUTES.BOOK} target="_blank" rel="noopener noreferrer">
-            Book now!
-          </a>{' '}
-        </h2>
-      </Row>
-      {/* not setting margin values because of this wrapper's "gap" */}
-      <Spacer />
-
-      <Row>
         <Column>
-          <h2>
-            <Link href={ROUTES.BARBER_PORTFOLIO}>I'm a Barber</Link>
-          </h2>
-          <ParagraphWithStyledFirstLetter>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
-            qui Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad quiLorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad qui
-          </ParagraphWithStyledFirstLetter>
-          <div
-            style={{
-              width: '100%',
-              height: '450px',
-              background: 'white',
-              color: 'black',
-            }}
-          >
-            Image Goes here
-          </div>
+          <Paragraph>
+            My style bridges the gap between the known and the unfamiliar, with
+            a fusion of elements reminiscent of master oil painters such as
+            Botticelli, Nerdrum, and Scholr. Rooted in the audacity of
+            17th-century art and the mind-bending concepts of 20th-century
+            surrealism, my pieces study the dichotomy between contrast and
+            harmony.
+          </Paragraph>
         </Column>
         <Column>
-          <h2>
-            <Link href={ROUTES.ART_PORTFOLIO}>and an Artist</Link>
-          </h2>
-          <ParagraphWithStyledFirstLetter>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad
-            qui Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            ad qui Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Ipsam ad qui Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Ipsam ad qui Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ipsam ad qui Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Ipsam ad qui Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Ipsam ad qui Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Ipsam ad qui Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Ipsam ad qui
-          </ParagraphWithStyledFirstLetter>
-          <div
-            style={{
-              width: '100%',
-              height: '450px',
-              background: 'white',
-              color: 'black',
-            }}
-          >
-            Image Goes here
-          </div>
+          <Paragraph>
+            My artistic journey is not just about creating art - it's about
+            creating experiences, building connections, and inspiring
+            conversations. Whether you're looking for wearable art, interested
+            in a local commission, or eager to explore international art shows,{' '}
+            <Link href={ROUTES.CONTACT}>I would love to hear from you!</Link>{' '}
+            Let's make art not simply a visual treat, but a meaningful encounter
+            that leaves a lasting impact.
+          </Paragraph>
         </Column>
       </Row>
+
+      <h2 id="feed">My work</h2>
+
+      <PictureGrid data={data} />
     </MainWrapper>
   </Layout>
 );
-
-const ParagraphWithStyledFirstLetter = styled.p`
-  &::first-letter {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-right: 2px;
-    font-family: 'Cinzel Decorative', cursive;
-  }
-`;
 
 export default Home;

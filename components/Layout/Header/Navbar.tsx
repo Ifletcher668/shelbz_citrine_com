@@ -7,9 +7,6 @@ import { BREAKPOINTS, ROUTES } from '../../../utils/constants';
 import Icon from '../../Icon';
 import Spacer from '../../Spacer';
 import UnstyledButton from '../../UnstyledButton';
-import VisuallyHidden from '../../VisuallyHidden';
-
-import SubNav from './SubNav';
 
 type Props = {
   setShowMobileMenu: (show: boolean) => void;
@@ -20,27 +17,13 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
       <Spacer />
       <Side>
         <Link href={ROUTES.HOME}>
-          <SiteTitle>Tigermoth</SiteTitle>
+          <SiteTitle>Shelbz Citrine</SiteTitle>
         </Link>
       </Side>
 
       <Link href={ROUTES.ABOUT}>About Me</Link>
 
-      <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
-        Book
-        <VisuallyHidden> External link</VisuallyHidden>
-        <Icon id="external-link" strokeWidth={2} size={16} />
-      </a>
-
       <Link href={ROUTES.CONTACT}>Contact</Link>
-
-      <SubNav
-        display="Portfolio"
-        items={[
-          { display: 'Art', href: ROUTES.ART_PORTFOLIO },
-          { display: 'Hair', href: ROUTES.BARBER_PORTFOLIO },
-        ]}
-      />
 
       <Side />
     </Nav>
@@ -49,7 +32,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => (
       <Spacer />
       <Side style={{ '--flex': '3' } as CSSProperties}>
         <Link href={ROUTES.HOME}>
-          <SiteTitle>Tigermoth</SiteTitle>
+          <SiteTitle>Shelbz Citrine</SiteTitle>
         </Link>
       </Side>
 

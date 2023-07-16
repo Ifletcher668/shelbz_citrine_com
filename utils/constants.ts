@@ -2,9 +2,9 @@ export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
   BOOK: 'https://squareup.com/appointments/book/q1xf9jczhanlgg/LJFMCFRDSQS00/services',
+  REDBUBBLE: 'https://www.redbubble.com/people/mottephobia5/shop',
   CONTACT: '/contact',
-  ART_PORTFOLIO: '/portfolio/art',
-  BARBER_PORTFOLIO: '/portfolio/barber',
+  FEED: '/#feed',
 } as const;
 
 export const SOCIALS = {

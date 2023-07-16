@@ -9,8 +9,6 @@ import Icon from '../../Icon';
 import UnstyledButton from '../../UnstyledButton';
 import VisuallyHidden from '../../VisuallyHidden';
 
-import SubNav from './SubNav';
-
 type Props = {
   isOpen: boolean;
   onDismiss: () => void;
@@ -51,19 +49,7 @@ const MobileMenu = (props: Props) => {
         <Nav>
           <Link href={ROUTES.HOME}>Home</Link>
           <Link href={ROUTES.ABOUT}>About Me</Link>
-          <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
-            Book
-            <VisuallyHidden> External link</VisuallyHidden>
-            <Icon id="external-link" strokeWidth={2} size={16} />
-          </a>
           <Link href={ROUTES.CONTACT}>Contact</Link>
-          <SubNav
-            display="Portfolio"
-            items={[
-              { display: 'Art', href: ROUTES.ART_PORTFOLIO },
-              { display: 'Hair', href: ROUTES.BARBER_PORTFOLIO },
-            ]}
-          />
         </Nav>
 
         <Footer>

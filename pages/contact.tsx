@@ -2,12 +2,17 @@ import type { FormEvent } from 'react';
 import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
+import Link from 'next/link';
 import styled, { css } from 'styled-components';
+
+import Accordion from 'components/Accordian';
+import { Row } from 'components/Layout';
+import Paragraph from 'components/Paragraph';
 
 import AnimatedText from '../components/AnimatedText';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
-import { VALIDATION_CONSTANTS } from '../utils/constants';
+import { BREAKPOINTS, ROUTES, VALIDATION_CONSTANTS } from '../utils/constants';
 import { shake } from '../utils/styled-components/snippets';
 
 function encode(data: Record<string, string | number | boolean>) {
@@ -152,16 +157,51 @@ const ContactPage = () => {
     <Layout>
       <MainWrapper>
         <h1>Contact</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad qui
-          suscipit commodi porro veritatis, illo similique tempore inventore
-          corrupti ullam, veniam ab exercitationem quia officiis, iusto
-          architecto. Quae, non!
-        </p>
-        <p>
-          Please fill out the contact form{' '}
-          <strong>for tattoo inquiries only!</strong>
-        </p>
+
+        <Row rowSpacing={40}>
+          <Paragraph>
+            If you are looking to buy something right away, check out my{' '}
+            <Link href={ROUTES.REDBUBBLE}> Redbubble</Link> store!
+          </Paragraph>
+
+          <Paragraph>
+            If you like what you see, but want something custom, let's talk! For
+            commissioned pieces, I keep several goals in mind when I take on new
+            projects. These are my general guidelines:
+          </Paragraph>
+
+          <Row>
+            <Accordion
+              summary="Wearable and Usable Art"
+              content={[
+                "Art is not merely a passive object to be observed - it's a dynamic expression of human creativity, meant to be lived and interacted with. I aim to weave this philosophy into my work by creating wearable and usable art.",
+                "My creations are not just pleasing to the eye, but also serve a purpose, providing a unique opportunity for art lovers to incorporate artistic expressions into their daily lives. Whether it's a one-of-a-kind hand-painted jacket, a carefully designed accessory, or an art-infused home décor item, each piece resonates with an individualistic charm, turning everyday objects into extraordinary artistic statements.",
+                'Contact me to add a touch of artistic flair to your wardrobe or living space, and experience art in its most interactive form.',
+              ]}
+            />
+          </Row>
+
+          <Row>
+            <Accordion
+              summary="Local Commissions"
+              content={[
+                "Art has the power to tell stories, capture emotions, and create a profound connection with its observer. That's why I offer local commissions, providing a bespoke artistic service tailored to your vision and desires. If you have a particular story to tell, a memory to immortalize, or a vision to transform into a tangible piece of art, I'm here to bring it to life.",
+                "Collaborating with me on a local commission not only supports the thriving local art scene, but also results in a personal piece of artwork that is an authentic reflection of you or your story. Contact me to discuss your ideas, and let's co-create something beautiful and meaningful.",
+              ]}
+            />
+          </Row>
+
+          <Row>
+            <Accordion
+              summary="World Art Shows"
+              content={[
+                "Art is a universal language that transcends borders, bringing people together from all walks of life. My goal is to commune with artists and art enthusiasts around the world by participating in international art shows. These events are an enriching platform for cultural exchange, creative exploration, and collective inspiration. If you're an artist seeking to collaborate, a curator looking for fresh perspectives, or an art enthusiast eager to delve into diverse artistic styles, your invitation to participate in such enriching experiences would be warmly welcomed. Reach out to me, and let's embark on a global artistic journey together.",
+              ]}
+            />
+          </Row>
+        </Row>
+
+        <h2>What are you looking for?</h2>
 
         <Form
           name="contact"
@@ -213,11 +253,6 @@ const ContactPage = () => {
           <ErrorMessage duration={250} isMounted={Boolean(messageError)}>
             {messageError}
           </ErrorMessage>
-
-          <Label>
-            <LabelText>I confirm this is for tattoo inquiries only</LabelText>
-            <Checkbox name="confirm" />
-          </Label>
 
           <SubmitButton isInErrorState={isInErrorState} type="submit">
             Send
@@ -281,6 +316,10 @@ const Form = styled.form`
   margin-right: auto;
   /* containing block for positioned checkboxes */
   position: relative;
+
+  @media ${BREAKPOINTS.TABLET} {
+    margin-right: revert;
+  }
 `;
 
 const Label = styled.label`

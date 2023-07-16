@@ -4,8 +4,7 @@ import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { BREAKPOINTS } from '../utils/constants';
-
+import Modal from './Modal';
 import Pagination from './Pagination';
 
 type Image = {
@@ -20,6 +19,8 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   const gridRef = useRef<HTMLDivElement | null>(null);
   const pageSize = 6;
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalImage, setModalImage] = useState<Image | null>(null);
+
   const displayed = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
@@ -32,15 +33,21 @@ const PictureGrid = ({ data }: PictureGridProps) => {
     setCurrentPage(pageNumber);
   };
 
+  const handleImageClick = (imageData: Image) => {
+    setModalImage(imageData);
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
+  };
+
   return (
     <Wrapper>
       <Grid ref={gridRef}>
         {displayed.map((imageData, idx) => (
           <PictureWrapper
-            key={idx}
-            className={`${
-              imageData.img.width > imageData.img.height ? 'landscape' : ''
-            }`}
+            key={`${currentPage}-${idx}`}
+            onClick={() => handleImageClick(imageData)}
           >
             <Picture
               src={imageData.img.src}
@@ -48,15 +55,26 @@ const PictureGrid = ({ data }: PictureGridProps) => {
               alt=""
               width={imageData.img.width}
               height={imageData.img.height}
-              // loading="lazy"
-              // placeholder="blur"
-              // blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
             />
 
             <PictureCaption>{imageData.caption}</PictureCaption>
           </PictureWrapper>
         ))}
       </Grid>
+
+      <Modal isOpen={!!modalImage} onClose={closeModal}>
+        {modalImage && (
+          <Picture
+            width={modalImage.img.width}
+            height={modalImage.img.width}
+            src={modalImage.img.src}
+            alt={modalImage.caption ?? ''}
+          />
+        )}
+      </Modal>
 
       <Pagination
         currentPage={currentPage}
@@ -79,7 +97,7 @@ const Wrapper = styled.section`
 
 const Grid = styled.div`
   --gap: 8px;
-  --row-height: 320px;
+  --row-height: 450px;
 
   display: flex;
   flex-wrap: wrap;
@@ -92,7 +110,8 @@ const Picture = styled(Image)`
   height: 100%;
   max-height: var(--row-height);
   border-radius: 2px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 `;
 
 const PictureCaption = styled.figcaption`
@@ -107,6 +126,7 @@ const PictureCaption = styled.figcaption`
 
 const PictureWrapper = styled.article`
   position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -135,12 +155,6 @@ const PictureWrapper = styled.article`
 
     ${PictureCaption} {
       opacity: 1;
-    }
-  }
-
-  @media ${BREAKPOINTS.TABLET} {
-    &.landscape {
-      grid-column: span 2 / auto;
     }
   }
 `;
