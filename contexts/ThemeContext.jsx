@@ -3,14 +3,14 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const DEFAULT_COLOR_SCHEME = 'bloodMoon';
 const POSSIBLE_COLOR_SCHEMES = ['moon', 'ocean', 'bloodMoon', 'harvestMoon'];
 
-const defaultSearchProvider = {
+const defaultThemeProvider = {
   colorScheme: DEFAULT_COLOR_SCHEME,
   changeColorScheme: () => {
     console.log('Default changeColorScheme');
   },
 };
 
-export const ThemeContext = createContext(defaultSearchProvider);
+export const ThemeContext = createContext(defaultThemeProvider);
 
 export const useThemeContext = () => useContext(ThemeContext);
 
