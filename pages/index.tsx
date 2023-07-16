@@ -46,7 +46,7 @@ const Home = (props: Props) => {
   return (
     <Layout>
       <MainWrapper>
-        <h1>Hi, I'm Shelbz:</h1>
+        <h1>Hi, I'm Shelbz</h1>
 
         <Row rowSpacing={40}>
           {/* BOOKING CALL TO ACTION */}

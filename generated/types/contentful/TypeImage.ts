@@ -5,4 +5,5 @@ export interface TypeImageFields {
   caption?: EntryFields.Symbol;
 }
 
+// @ts-ignore
 export type TypeImage = Entry<TypeImageFields>;

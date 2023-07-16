@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     color: var(--font-primary);
-    font-family: cursive;
+    font-family: 'Cormorant';
   }
 
   a {
@@ -98,7 +98,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 0.05vw;
   }
