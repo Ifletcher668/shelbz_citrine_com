@@ -11,11 +11,18 @@ export const SOCIALS = {
   INSTAGRAM: 'https://www.instagram.com/tigermoth_grooming/',
 } as const;
 
-export const BREAKPOINTS = {
+export const BREAKPOINT_NUMBERS = {
   MOBILE: 0,
-  TABLET: `(min-width: ${769 / 16}rem)`,
-  LAPTOP: `(min-width: ${1101 / 16}rem)`,
-  DESKTOP: `(min-width: ${1501 / 16}rem)`,
+  TABLET: 769,
+  LAPTOP: 1101,
+  DESKTOP: 1501,
+};
+
+export const BREAKPOINTS = {
+  MOBILE: BREAKPOINT_NUMBERS.MOBILE,
+  TABLET: `(min-width: ${BREAKPOINT_NUMBERS.TABLET / 16}rem)`,
+  LAPTOP: `(min-width: ${BREAKPOINT_NUMBERS.LAPTOP / 16}rem)`,
+  DESKTOP: `(min-width: ${BREAKPOINT_NUMBERS.DESKTOP / 16}rem)`,
 } as const;
 
 export const VALIDATION_CONSTANTS = {

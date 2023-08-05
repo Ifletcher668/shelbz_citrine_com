@@ -1,26 +1,31 @@
 import { useMemo, useRef, useState } from 'react';
 
-import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
+import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
+
+import type { ContentfulImage } from 'contentful/types';
+import { BREAKPOINT_NUMBERS } from 'utils/constants';
 
 import Modal from './Modal';
 import Pagination from './Pagination';
 
-type Image = {
-  img: StaticImageData;
-  caption?: string;
-};
 type PictureGridProps = {
-  data: Image[];
+  data: ContentfulImage[];
 };
 
 const PictureGrid = ({ data }: PictureGridProps) => {
   const gridRef = useRef<HTMLDivElement | null>(null);
-  const pageSize = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const [modalImage, setModalImage] = useState<Image | null>(null);
+  const [modalImage, setModalImage] = useState<ContentfulImage | null>(null);
 
+  const pageSize = 6;
+  const breakpointColumnsObj = {
+    default: 3,
+    [BREAKPOINT_NUMBERS.LAPTOP]: 3,
+    [BREAKPOINT_NUMBERS.TABLET]: 2,
+    [BREAKPOINT_NUMBERS.MOBILE]: 1,
+  };
   const displayed = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
@@ -33,7 +38,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
     setCurrentPage(pageNumber);
   };
 
-  const handleImageClick = (imageData: Image) => {
+  const handleImageClick = (imageData: ContentfulImage) => {
     setModalImage(imageData);
   };
 
@@ -42,36 +47,49 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   };
 
   return (
-    <Wrapper>
-      <Grid ref={gridRef}>
-        {displayed.map((imageData, idx) => (
-          <PictureWrapper
-            key={`${currentPage}-${idx}`}
-            onClick={() => handleImageClick(imageData)}
-          >
-            <Picture
-              src={imageData.img.src}
-              // omit alt tag to use alt text as caption
-              alt=""
-              width={imageData.img.width}
-              height={imageData.img.height}
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
-            />
+    // ref points to the wrapper because "Masonry" does not use forwardRef
+    <Wrapper ref={gridRef}>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        {displayed.map((imageData, idx) => {
+          if (!imageData.fields.file) return;
+          const { description, file, title } = imageData.fields;
 
-            <PictureCaption>{imageData.caption}</PictureCaption>
-          </PictureWrapper>
-        ))}
-      </Grid>
+          if (!file.url) return;
+          if (!file.details.image) return;
+
+          return (
+            <PictureWrapper
+              key={`${currentPage}-${idx}`}
+              onClick={() => handleImageClick(imageData)}
+            >
+              <Picture
+                src={file.url}
+                // omit alt tag to use alt text as caption
+                alt={title ?? ''}
+                width={file.details.image.width}
+                height={file.details.image.height}
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+              />
+
+              {description && <PictureCaption>{description}</PictureCaption>}
+            </PictureWrapper>
+          );
+        })}
+      </Masonry>
 
       <Modal isOpen={!!modalImage} onClose={closeModal}>
         {modalImage && (
           <Picture
-            width={modalImage.img.width}
-            height={modalImage.img.width}
-            src={modalImage.img.src}
-            alt={modalImage.caption ?? ''}
+            width={modalImage.fields.file?.details.image?.width ?? 0}
+            height={modalImage.fields.file?.details.image?.height ?? 0}
+            src={modalImage.fields.file?.url ?? ''}
+            alt={modalImage.fields.description ?? ''}
           />
         )}
       </Modal>
@@ -93,25 +111,30 @@ const Wrapper = styled.section`
   flex-direction: column;
   gap: 32px;
   width: 100%;
-`;
 
-const Grid = styled.div`
-  --gap: 8px;
-  --row-height: 450px;
+  .my-masonry-grid {
+    display: flex;
+    gap: 5px;
+    width: auto;
+  }
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--gap);
+  .my-masonry-grid_column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-clip: padding-box;
+  }
+
+  .my-masonry-grid_column > div {
+    /* change div to the element you're using */
+    margin-bottom: 30px;
+  }
 `;
 
 const Picture = styled(Image)`
   width: 100%;
-  height: 100%;
-  max-height: var(--row-height);
+  height: auto;
   border-radius: 2px;
-  object-fit: cover;
-  object-position: center;
 `;
 
 const PictureCaption = styled.figcaption`
@@ -120,11 +143,13 @@ const PictureCaption = styled.figcaption`
   right: 0;
   margin: auto;
   bottom: 0;
-  font-size: 0.8rem;
+  font-size: var(--font-size-small);
   text-align: center;
+  padding: var(--spacing-large);
 `;
 
 const PictureWrapper = styled.article`
+  cursor: pointer;
   position: relative;
 
   display: flex;

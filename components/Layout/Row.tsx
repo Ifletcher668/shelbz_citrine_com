@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 type RowProps = {
   align?: boolean;
-  justify?: boolean;
+  justify?:
+    | boolean
+    | 'flex-start'
+    | 'flex-end'
+    | 'space-between'
+    | 'space-around';
   rowSpacing?: number;
 };
 
@@ -14,7 +19,11 @@ const Row = styled.div<RowProps>`
   flex-wrap: wrap;
   ${({ align }) => (align ? 'align-items: center;' : 'align-items: stretch;')};
   ${({ justify }) =>
-    justify ? 'justify-content: center;' : 'justify-content: stretch;'};
+    typeof justify === 'boolean'
+      ? 'justify-content: center;'
+      : typeof justify === 'string'
+      ? `justify-content: ${justify};`
+      : 'justify-content: stretch;'};
 
   /* TODO: make this a dynamic variable */
   gap: ${({ rowSpacing }) => (rowSpacing ? rowSpacing : DEFAULT_SPACING)}px;

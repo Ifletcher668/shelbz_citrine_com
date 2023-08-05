@@ -160,14 +160,17 @@ const ContactPage = () => {
 
         <Row rowSpacing={40}>
           <Paragraph>
-            If you are looking to buy something right away, check out my{' '}
-            <Link href={ROUTES.REDBUBBLE}> Redbubble</Link> store!
+            If an immediate purchase is what you're after, explore my{' '}
+            <Link href={ROUTES.REDBUBBLE}> Redbubble</Link> store! I
+            periodically add an expanding array of my creative works. It's the
+            perfect place to find something that speaks to your aesthetic sense
+            and personal style.
           </Paragraph>
 
           <Paragraph>
-            If you like what you see, but want something custom, let's talk! For
-            commissioned pieces, I keep several goals in mind when I take on new
-            projects. These are my general guidelines:
+            I pride myself in creating custom pieces that not only meet, but
+            surpass your expectations. For commissions, I adhere to a set of
+            fundamental goals. Here are my key guidelines:
           </Paragraph>
 
           <Row>
@@ -200,9 +203,9 @@ const ContactPage = () => {
             />
           </Row>
         </Row>
-
-        <h2>What are you looking for?</h2>
-
+        <Row justify="flex-end">
+          <h2>What are you looking for?</h2>
+        </Row>
         <Form
           name="contact"
           method="POST"

@@ -1,55 +1,42 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 import Column from 'components/Layout/Column';
 import Paragraph from 'components/Paragraph';
+import { fetchImageFeed } from 'contentful/helpers';
+import type { ContentfulImage } from 'contentful/types';
+import goddessPicture from 'public/assets/goddess.jpg';
 
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
 import PictureGrid from '../components/PictureGrid';
-import cervadae from '../public/assets/art/cervadae.jpg';
-import fartsInAJar from '../public/assets/art/farts-in-a-jar.jpg';
-import heart from '../public/assets/art/heart.jpg';
-import henbane from '../public/assets/art/henbane.jpg';
-import noctua from '../public/assets/art/noctua.jpg';
-import portraitOfATear from '../public/assets/art/portrait-of-a-tear.jpg';
-import tigermothGroomingLogo from '../public/assets/art/tigermoth-grooming-logo.jpg';
 import { ROUTES } from '../utils/constants';
-import { fetchImageFeed } from 'contentful/helpers';
-import { TypeImage, TypeImageFields } from 'generated/types/contentful';
-
-const data = [
-  { img: cervadae, caption: 'Placeholder caption, needs to be replaced!' },
-  { img: fartsInAJar, caption: 'Placeholder caption, needs to be replaced!' },
-  { img: heart, caption: 'Placeholder caption, needs to be replaced!' },
-  { img: henbane, caption: 'Placeholder caption, needs to be replaced!' },
-  { img: noctua, caption: 'Placeholder caption, needs to be replaced!' },
-  {
-    img: portraitOfATear,
-    caption: 'Placeholder caption, needs to be replaced!',
-  },
-  {
-    img: tigermothGroomingLogo,
-    caption: 'Placeholder caption, needs to be replaced!',
-  },
-];
 
 type Props = {
-  imageFeed: TypeImageFields[];
+  imageFeed: ContentfulImage[];
 };
 const Home = (props: Props) => {
   const { imageFeed } = props;
-
-  // TODO: use
-  console.log(imageFeed);
 
   return (
     <Layout>
       <MainWrapper>
         <h1>Hi, I'm Shelbz</h1>
 
+        <HeroImage
+          src={goddessPicture}
+          // omit alt tag to use alt text as caption
+          alt={''}
+          width={1332}
+          height={666}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+        />
+
         <Row rowSpacing={40}>
-          {/* BOOKING CALL TO ACTION */}
           <Paragraph>
             an artist combining classic training with self-taught innovation to
             produce dark and surreal works inspired by a medley of influences,
@@ -83,19 +70,27 @@ const Home = (props: Props) => {
 
         <h2 id="feed">My work</h2>
 
-        <PictureGrid data={data} />
+        <PictureGrid data={imageFeed} />
       </MainWrapper>
     </Layout>
   );
 };
 
+const HeroImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  object-fit: cover;
+  object-position: center;
+`;
+
 export async function getStaticProps() {
   const res = await fetchImageFeed();
+
   if (!res) return;
 
-  const imageFeed = await res.map(image => {
-    return image.fields;
-  });
+  // need to assign to a variable to properly 'await'
+  const imageFeed = res;
 
   return {
     props: {

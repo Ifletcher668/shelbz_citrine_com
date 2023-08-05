@@ -163,12 +163,17 @@ const Details = styled.details`
   border-radius: 5px;
   overflow: hidden;
 
-  summary &[open] > summary:before {
+  &[open] summary::before {
     transform: rotate(90deg);
   }
 
   @media ${BREAKPOINTS.TABLET} {
     width: 75%;
+  }
+
+  &:hover,
+  &:focus-within {
+    outline: 2px solid var(--font-accent);
   }
 `;
 

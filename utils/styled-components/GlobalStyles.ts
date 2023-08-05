@@ -114,48 +114,6 @@ const GlobalStyle = createGlobalStyle`
       box-shadow: var(--focus-shadow);
     }
   }
-
-
-  details {
-  width: 50%;
-  background: var(--color-600);
-  box-shadow: 0 .1rem 1rem -.5rem rgba(0,0,0,.4);
-  border-radius: 5px;
-  overflow: hidden;
-
-  &[open] {
-    > summary:before {
-      transform: rotate(90deg);
-    }
-  }
-
-  /* Hide default marker to animate custom one */
-  summary::-webkit-details-marker {
-    display:none;
-  }
-}
-
-summary {
-  padding: 1rem;
-  display: block;
-  background: var(--color-500);
-  padding-left: var(--spacing-large);
-  position: relative;
-  cursor: pointer;
-
-  &:before {
-    content: '';
-    border-width: 0.4rem;
-    border-style: solid;
-    border-color: transparent transparent transparent var(--font-primary);
-    position: absolute;
-    top: 1.3rem;
-    left: 1rem;
-    transform: rotate(0);
-    transform-origin: .2rem 50%;
-    transition: 0.25s transform ease;
-  }
-}
 `;
 
 export default GlobalStyle;
