@@ -8,7 +8,6 @@ import Paragraph from 'components/Paragraph';
 import Spacer from 'components/Spacer';
 import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.jpg';
 import freyjaToArms from 'public/assets/freyja-to-arms.jpg';
-import lifeOfAnArtist from 'public/assets/life-of-an-artist.jpg';
 import { ROUTES } from 'utils/constants';
 
 import Layout from '../components/Layout/Layout';
@@ -32,7 +31,7 @@ const AboutPage = () => (
 
         <Paragraph>
           Prepare to enter the universe of an artist with a penchant for the
-          peculiar and extraordinary. My canvas is a blend of classic training
+          peculiar and extraordinary. My canvas is a blend of classical training
           and self-taught innovation, with an indelible dedication to the dark
           and surreal.
         </Paragraph>

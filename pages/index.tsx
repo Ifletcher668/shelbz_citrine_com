@@ -38,7 +38,7 @@ const Home = (props: Props) => {
 
         <Row rowSpacing={40}>
           <Paragraph>
-            an artist combining classically training with self-taught innovation
+            an artist combining classical training with self-taught innovation
             to produce dark and surreal works inspired by a medley of
             influences, from the eerie landscapes of Dungeons and Dragons to
             video game narratives.
