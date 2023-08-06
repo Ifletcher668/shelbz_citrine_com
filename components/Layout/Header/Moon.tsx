@@ -14,6 +14,8 @@ const Moon = styled.div`
   /* Increase size on mobile because vw scales too quickly at smaller sizes */
   width: calc(var(--moon-size) + 12vw);
   height: calc(var(--moon-size) + 12vw);
+  max-width: 420px;
+  max-height: 420px;
 
   @media ${BREAKPOINTS.TABLET} {
     width: var(--moon-size);

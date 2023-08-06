@@ -2,6 +2,10 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const DEFAULT_COLOR_SCHEME = 'bloodMoon';
 const POSSIBLE_COLOR_SCHEMES = ['moon', 'ocean', 'bloodMoon', 'harvestMoon'];
+const RANDOM_COLOR_SCHEME =
+  POSSIBLE_COLOR_SCHEMES[
+    Math.floor(Math.random() * POSSIBLE_COLOR_SCHEMES.length)
+  ];
 
 const defaultThemeProvider = {
   colorScheme: DEFAULT_COLOR_SCHEME,
@@ -15,7 +19,7 @@ export const ThemeContext = createContext(defaultThemeProvider);
 export const useThemeContext = () => useContext(ThemeContext);
 
 const ThemeProvider = ({ children }) => {
-  const [colorScheme, setColorScheme] = useState(DEFAULT_COLOR_SCHEME);
+  const [colorScheme, setColorScheme] = useState(RANDOM_COLOR_SCHEME);
 
   function changeColorScheme(colorScheme) {
     if (
@@ -39,10 +43,6 @@ const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     document.body.dataset.colorScheme = colorScheme;
-  }, [colorScheme]);
-
-  useEffect(() => {
-    console.log('colorScheme', colorScheme);
   }, [colorScheme]);
 
   return (

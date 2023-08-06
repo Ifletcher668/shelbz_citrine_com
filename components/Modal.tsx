@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import VisuallyHidden from './VisuallyHidden';
+import { BREAKPOINTS } from 'utils/constants';
 
 type ModalProps = {
   isOpen: boolean;
@@ -87,7 +88,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
 const CloseButton = styled.button`
   position: absolute;
   top: 0;
-  right: -35px;
+  right: 0;
   width: 30px;
   height: 30px;
   border: none;
@@ -103,6 +104,10 @@ const CloseButton = styled.button`
     height: 32px;
     width: 2px;
     background-color: var(--font-primary);
+  }
+
+  @media ${BREAKPOINTS.LAPTOP} {
+    right: -35px;
   }
 
   &:before {

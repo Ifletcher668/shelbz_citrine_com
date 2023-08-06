@@ -161,10 +161,9 @@ const ContactPage = () => {
         <Row rowSpacing={40}>
           <Paragraph>
             If an immediate purchase is what you're after, explore my{' '}
-            <Link href={ROUTES.REDBUBBLE}> Redbubble</Link> store! I
-            periodically add an expanding array of my creative works. It's the
-            perfect place to find something that speaks to your aesthetic sense
-            and personal style.
+            <Link href={ROUTES.REDBUBBLE}> Redbubble store</Link> to find
+            something that fits your needs! It's the perfect place to find
+            something that speaks to your aesthetic sense and personal style.
           </Paragraph>
 
           <Paragraph>
