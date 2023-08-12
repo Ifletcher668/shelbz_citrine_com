@@ -7,7 +7,7 @@ import Column from 'components/Layout/Column';
 import Paragraph from 'components/Paragraph';
 import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
-import goddessPicture from 'public/assets/goddess.jpg';
+import goddessPicture from 'public/assets/goddess.webp';
 
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
@@ -36,9 +36,11 @@ const Home = (props: Props) => {
             src={goddessPicture}
             // omit alt tag to use alt text as caption
             alt={''}
-            width={1332}
+            width={960}
             height={666}
-            loading="eager"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
           />
 
           <Row rowSpacing={40}>
