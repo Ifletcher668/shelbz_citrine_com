@@ -1,15 +1,13 @@
 {
-  "name": "shelbz-v2",
-  "version": "0.1.0",
+  "name": "shelbzcitrine.com",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc",
-    "generate:contentful": "cf-content-types-generator contentful/export.json --out generated/types/contentful",
-    "cf-export": "node ./cfExport.mjs"
+    "type-check": "tsc"
   },
   "dependencies": {
     "@types/node": "18.11.17",
@@ -28,8 +26,6 @@
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "cf-content-types-generator": "^2.12.2",
-    "contentful-cli": "^2.6.29",
     "dotenv": "^16.3.1",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
