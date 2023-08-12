@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,8 +12,12 @@ import Column from '../components/Layout/Column';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
-import PictureGrid from '../components/PictureGrid';
+import ObserverWrapper from '../components/ObserverWrapper';
 import { ROUTES, SEO } from '../utils/constants';
+
+const PictureGrid = dynamic(() => import('../components/PictureGrid'), {
+  loading: () => <p>Loading...</p>,
+});
 
 type Props = {
   imageFeed: ContentfulImage[];
@@ -78,7 +83,9 @@ const Home = (props: Props) => {
 
           <h2 id="feed">My work</h2>
 
-          <PictureGrid data={imageFeed} />
+          <ObserverWrapper>
+            <PictureGrid data={imageFeed} />
+          </ObserverWrapper>
         </MainWrapper>
       </Layout>
     </>
