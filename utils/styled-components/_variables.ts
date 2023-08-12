@@ -1,4 +1,21 @@
+import { Cinzel_Decorative, Cormorant } from 'next/font/google';
 import { css } from 'styled-components';
+
+export const cinzelDecorative = Cinzel_Decorative({
+  weight: ['400'],
+  style: 'normal',
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+});
+
+export const cormorant = Cormorant({
+  weight: ['300', '400', '700'],
+  style: ['italic', 'normal'],
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+});
 
 const variables = css`
   /* Shared between color schemes */
@@ -20,7 +37,6 @@ const variables = css`
     --spacing-extra-small: 16px;
     --spacing-double-extra-small: 8px;
 
-    --size-moon: 400px;
     /* font-size */
     --font-size-double-extra-large: clamp(2rem, 6vw, 3rem);
     --font-size-extra-large: clamp(1.75rem, 4vw, 2rem);
@@ -30,10 +46,15 @@ const variables = css`
     --font-size-extra-small: 1rem;
     --font-size-double-extra-small: 0.875rem;
 
+    /* font-family */
+    --font-cinzel-decorative: ${cinzelDecorative.style.fontFamily};
+    --font-cormorant: ${cormorant.style.fontFamily};
+
     /* MISC */
     --max-width-wrapper: min(960px, 92vw);
     --focus-shadow: 0 0 20px 2px var(--color-600), 0 0 0 3px var(--color-500);
     --border-radius: 12px;
+    --size-moon: 400px;
   }
 
   [data-color-scheme='moon'] {

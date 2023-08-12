@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-import Icon from 'components/Icon';
-import Paragraph from 'components/Paragraph';
-import VisuallyHidden from 'components/VisuallyHidden';
 import { ROUTES } from 'utils/constants';
+
+import Icon from '../../Icon';
+import VisuallyHidden from '../../VisuallyHidden';
 
 const Footer = () => {
   return (
     <Wrapper>
-      <Paragraph>Copyright Shelbz Citrine</Paragraph>
-      <Paragraph>Site by Isiah Fletcher</Paragraph>
+      <p>Copyright Shelbz Citrine</p>
+      <p>Site by Isiah Fletcher</p>
       <a target="_blank" rel="noreferrer noopener" href={ROUTES.BOOK}>
         Looking for a hair cut? Check out my other site!
         <VisuallyHidden> External link</VisuallyHidden>

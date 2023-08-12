@@ -97,8 +97,4 @@ const HeaderWrapper = styled.header`
   font-size: var(--font-size);
   box-shadow: var(--box-shadow);
   transition: var(--transition);
-
-  a {
-    text-transform: uppercase;
-  }
 `;

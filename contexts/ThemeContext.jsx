@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useLayoutEffect, useState } from 'react';
 
 const DEFAULT_COLOR_SCHEME = 'bloodMoon';

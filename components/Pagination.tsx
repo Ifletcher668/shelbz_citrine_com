@@ -54,12 +54,14 @@ const Pagination = (props: Props) => {
 
   return (
     <Wrapper>
-      <UnstyledButton onClick={onPrevious} disabled={isFirstPage}>
-        <VisuallyHidden>
-          {isFirstPage ? 'You are on the first page' : 'Previous page'}
-        </VisuallyHidden>
-        <Icon id="chevron-left" />
-      </UnstyledButton>
+      <li>
+        <UnstyledButton onClick={onPrevious} disabled={isFirstPage}>
+          <VisuallyHidden>
+            {isFirstPage ? 'You are on the first page' : 'Previous page'}
+          </VisuallyHidden>
+          <Icon id="chevron-left" />
+        </UnstyledButton>
+      </li>
       {paginationRange.map((pageNumber, idx) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
@@ -93,12 +95,15 @@ const Pagination = (props: Props) => {
           </PaginationControl>
         );
       })}
-      <UnstyledButton onClick={onNext} disabled={isLastPage}>
-        <VisuallyHidden>
-          {isLastPage ? 'You are on the last page' : 'Next page'}
-        </VisuallyHidden>
-        <Icon id="chevron-right" />
-      </UnstyledButton>
+      <li>
+        {' '}
+        <UnstyledButton onClick={onNext} disabled={isLastPage}>
+          <VisuallyHidden>
+            {isLastPage ? 'You are on the last page' : 'Next page'}
+          </VisuallyHidden>
+          <Icon id="chevron-right" />
+        </UnstyledButton>
+      </li>
     </Wrapper>
   );
 };

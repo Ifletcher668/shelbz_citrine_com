@@ -3,12 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import Column from 'components/Layout/Column';
-import Paragraph from 'components/Paragraph';
 import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import goddessPicture from 'public/assets/goddess.webp';
 
+import Column from '../components/Layout/Column';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
@@ -44,25 +43,25 @@ const Home = (props: Props) => {
           />
 
           <Row rowSpacing={40}>
-            <Paragraph>
+            <p>
               an artist combining classical training with self-taught innovation
               to produce dark and surreal works inspired by a medley of
               influences, from the eerie landscapes of Dungeons and Dragons to
               video game narratives.
-            </Paragraph>
+            </p>
 
             <Column>
-              <Paragraph>
+              <p>
                 My style bridges the gap between the known and the unfamiliar,
                 with a fusion of elements reminiscent of master oil painters
                 such as Botticelli, Nerdrum, and Scholr. Rooted in the audacity
                 of 17th-century art and the mind-bending concepts of
                 20th-century surrealism, my pieces study the dichotomy between
                 contrast and harmony.
-              </Paragraph>
+              </p>
             </Column>
             <Column>
-              <Paragraph>
+              <p>
                 My artistic journey is not just about creating art - it's about
                 creating experiences, building connections, and inspiring
                 conversations. Whether you're looking for wearable art,
@@ -73,7 +72,7 @@ const Home = (props: Props) => {
                 </Link>{' '}
                 Let's make art not simply a visual treat, but a meaningful
                 encounter that leaves a lasting impact.
-              </Paragraph>
+              </p>
             </Column>
           </Row>
 

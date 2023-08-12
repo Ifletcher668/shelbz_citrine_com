@@ -19,7 +19,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalImage, setModalImage] = useState<ContentfulImage | null>(null);
 
-  const pageSize = 6;
+  const pageSize = 24;
   const breakpointColumnsObj = {
     default: 3,
     [BREAKPOINT_NUMBERS.LAPTOP]: 3,

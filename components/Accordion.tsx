@@ -5,8 +5,6 @@ import styled from 'styled-components';
 
 import { BREAKPOINTS } from 'utils/constants';
 
-import Paragraph from './Paragraph';
-
 type Props = {
   content: string[];
   summary: string;
@@ -140,7 +138,7 @@ const Accordion = (props: Props) => {
 
       <Content ref={contentRef} className="content">
         {content.map(paragraph => (
-          <Paragraph key={paragraph}>{paragraph}</Paragraph>
+          <p key={paragraph}>{paragraph}</p>
         ))}
       </Content>
     </Details>

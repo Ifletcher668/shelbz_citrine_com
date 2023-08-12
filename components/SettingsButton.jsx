@@ -146,9 +146,11 @@ const SubNavWrapper = styled.div`
   transition-property: color;
 
   ${UnstyledButton} {
+    font-weight: 700;
+    color: var(--font-secondary);
     &:hover,
     &:focus {
-      color: var(--font-accent);
+      color: var(--font-primary);
     }
   }
 

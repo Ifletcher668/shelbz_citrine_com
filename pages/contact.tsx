@@ -2,14 +2,13 @@ import type { FormEvent } from 'react';
 import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
+import Head from 'next/head';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
-import Accordion from 'components/Accordian';
-import { Row } from 'components/Layout';
-import Paragraph from 'components/Paragraph';
-
+import Accordion from '../components/Accordion';
 import AnimatedText from '../components/AnimatedText';
+import { Row } from '../components/Layout';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import {
@@ -19,7 +18,6 @@ import {
   VALIDATION_CONSTANTS,
 } from '../utils/constants';
 import { shake } from '../utils/styled-components/snippets';
-import Head from 'next/head';
 
 function encode(data: Record<string, string | number | boolean>) {
   return Object.keys(data)
@@ -171,18 +169,18 @@ const ContactPage = () => {
           <h1>Contact</h1>
 
           <Row rowSpacing={40}>
-            <Paragraph>
+            <p>
               If an immediate purchase is what you're after, explore my{' '}
               <Link href={ROUTES.REDBUBBLE}> Redbubble store</Link> to find
               something that fits your needs! It's the perfect place to find
               something that speaks to your aesthetic sense and personal style.
-            </Paragraph>
+            </p>
 
-            <Paragraph>
+            <p>
               I pride myself in creating custom pieces that not only meet, but
               surpass your expectations. For commissions, I adhere to a set of
               fundamental goals. Here are my key guidelines:
-            </Paragraph>
+            </p>
 
             <Row>
               <Accordion
@@ -365,64 +363,65 @@ const Input = styled.input`
   }
 `;
 
-const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  cursor: pointer;
+// TODO: Might need to add this soon
+// const Checkbox = styled.input.attrs({ type: 'checkbox' })`
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   cursor: pointer;
 
-  &::before {
-    content: '';
+//   &::before {
+//     content: '';
 
-    position: absolute;
-    top: 0px;
-    right: 0px;
+//     position: absolute;
+//     top: 0px;
+//     right: 0px;
 
-    width: 24px;
-    height: 24px;
-    background-color: var(--color-800);
-    border: 1px solid var(--font-accent);
-    border-radius: 4px;
-  }
+//     width: 24px;
+//     height: 24px;
+//     background-color: var(--color-800);
+//     border: 1px solid var(--font-accent);
+//     border-radius: 4px;
+//   }
 
-  &:checked {
-    &::before {
-      background-color: var(--color-700);
-    }
+//   &:checked {
+//     &::before {
+//       background-color: var(--color-700);
+//     }
 
-    // creates a 'checkmark' ::after psuedo-element
-    &::after {
-      content: '';
+//     // creates a 'checkmark' ::after psuedo-element
+//     &::after {
+//       content: '';
 
-      position: absolute;
-      top: 6px;
-      right: 4px;
+//       position: absolute;
+//       top: 6px;
+//       right: 4px;
 
-      width: 16px;
-      height: 8px;
-      border-left: 3px solid var(--font-accent);
-      border-bottom: 3px solid var(--font-accent);
-      transform: rotate(-45deg);
-    }
-  }
+//       width: 16px;
+//       height: 8px;
+//       border-left: 3px solid var(--font-accent);
+//       border-bottom: 3px solid var(--font-accent);
+//       transform: rotate(-45deg);
+//     }
+//   }
 
-  &:hover,
-  &:focus {
-    &::before {
-      background: var(--color-700);
-      border: 1px solid var(--font-accent);
-    }
-  }
+//   &:hover,
+//   &:focus {
+//     &::before {
+//       background: var(--color-700);
+//       border: 1px solid var(--font-accent);
+//     }
+//   }
 
-  /* apply focus styles to ::before element */
-  &:focus {
-    box-shadow: none;
-    &::before {
-      box-shadow: var(--focus-shadow);
-    }
-  }
-`;
+//   /* apply focus styles to ::before element */
+//   &:focus {
+//     box-shadow: none;
+//     &::before {
+//       box-shadow: var(--focus-shadow);
+//     }
+//   }
+// `;
 
 const Textarea = styled.textarea`
   flex: 4;

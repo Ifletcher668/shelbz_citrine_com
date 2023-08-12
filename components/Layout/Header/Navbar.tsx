@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -11,49 +11,58 @@ import UnstyledButton from '../../UnstyledButton';
 type Props = {
   setShowMobileMenu: (show: boolean) => void;
 };
-const Navbar = ({ setShowMobileMenu }: Props) => (
-  <>
-    <Nav>
-      <Spacer />
-      <Side>
+const Navbar = ({ setShowMobileMenu }: Props) => {
+  return (
+    <>
+      <Nav>
+        <Spacer />
         <Link href={ROUTES.HOME}>
           <SiteTitle>Shelbz Citrine</SiteTitle>
         </Link>
-      </Side>
 
-      <Link href={ROUTES.ABOUT}>About Me</Link>
+        <Side />
 
-      <Link href={ROUTES.CONTACT}>Contact</Link>
+        <Link href={ROUTES.ABOUT}>About Me</Link>
 
-      <Side />
-    </Nav>
+        <Link href={ROUTES.CONTACT}>Contact</Link>
 
-    <MobileNav>
-      <Spacer />
-      <Side style={{ '--flex': '3' } as CSSProperties}>
-        <Link href={ROUTES.HOME}>
-          <SiteTitle>Shelbz Citrine</SiteTitle>
-        </Link>
-      </Side>
+        <Side />
+        <Spacer />
+      </Nav>
 
-      <UnstyledButton onClick={() => setShowMobileMenu(true)}>
-        <Icon id="menu" strokeWidth={2} size={48} />
-      </UnstyledButton>
-      <Side />
-    </MobileNav>
-  </>
-);
+      <MobileNav>
+        <Spacer />
+        <Side style={{ '--flex': '3' } as CSSProperties}>
+          <Link href={ROUTES.HOME}>
+            <SiteTitle>Shelbz Citrine</SiteTitle>
+          </Link>
+        </Side>
+
+        <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+          <Icon id="menu" strokeWidth={2} size={48} />
+        </UnstyledButton>
+        <Side />
+      </MobileNav>
+    </>
+  );
+};
 
 export default Navbar;
 
 const Nav = styled.nav`
   display: none;
 
+  a {
+    font-size: calc(var(--font-size) * 1.2);
+    text-transform: uppercase;
+    margin-top: -5px;
+  }
+
   @media ${BREAKPOINTS.LAPTOP} {
     display: flex;
-    align-items: baseline;
+    align-items: flex-end;
     justify-content: space-around;
-    gap: clamp(16px, 2vw + 1rem, 48px);
+    gap: clamp(16px, 2.5vw, 48px);
   }
 `;
 
@@ -69,8 +78,8 @@ const MobileNav = styled.div`
 `;
 
 const SiteTitle = styled.span`
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: calc(var(--font-size) * 1.4);
+  font-family: var(--font-cinzel-decorative);
+  font-size: calc(var(--font-size) * 1.8);
 `;
 
 const Side = styled.div`

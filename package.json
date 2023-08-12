@@ -12,12 +12,11 @@
     "cf-export": "node ./cfExport.mjs"
   },
   "dependencies": {
-    "@next/font": "13.0.7",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "contentful": "^10.3.4",
-    "next": "13.0.7",
+    "next": "13.4.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "^2.0.10",

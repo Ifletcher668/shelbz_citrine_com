@@ -10,6 +10,7 @@ import variables from './_variables';
 const GlobalStyle = createGlobalStyle`
   ${variables}
   ${reset}
+  
 
   html {
     background: black;
@@ -17,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     color: var(--font-primary);
-    font-family: 'Cormorant';
+    font-family: var(--font-cormorant);
   }
 
   a {
@@ -64,43 +65,50 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1,h2,h3,h4 {
-    font-family: 'Cinzel Decorative', cursive;
+    font-family: var(--font-cinzel-decorative);
   }
 
   h1 {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   h2 {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   h3 {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   h4 {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   h5 {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   h6 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   p {
     font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: 0.05vw;
+
+    &::first-letter {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-right: 5px;
+    font-family: var(--font-cinzel-decorative);
+  }
   }
 
   input,
