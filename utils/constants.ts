@@ -34,3 +34,31 @@ export const VALIDATION_CONSTANTS = {
   BAD_COM_REGEX: /.com[a-zA-Z]$/,
   BAD_CON_REGEX: /.con$/,
 };
+
+export const SEO = {
+  base: {
+    title: 'Shelbz Citrine',
+    description:
+      "Shelbz Citrine blends modernity and heritage, weaves the magic of traditional painting styles into a digital age tableau, infused into a tapestry that speaks to the contemporary mind. Her work stands as a bridge, connecting the timeless mastery of the 17th century with the innovative surrealism of the 20th, crafting an aesthetic that resonates with the contemporary connoisseur's diverse interests.",
+    openGraph: {
+      image: '/assets/goddess.jpg',
+      description:
+        "Experience the mesmerizing blend of classic and modern in Shelbz Citrine's art. Her work bridges the timeless mastery of traditional painting styles with innovative surrealism, crafting an aesthetic that speaks volumes to today's diverse art enthusiasts.",
+    },
+  },
+  homePage: {
+    title: 'Shelbz Citrine | Home',
+    description:
+      'A Boise, Idaho based artist combining classical training with self-taught innovation to produce dark and surreal works inspired by a medley of influences.',
+  },
+  contactPage: {
+    title: 'Contact Me',
+    description:
+      'Discover acrylic, oil, and Procreate art by Shelbz. Commission surreal to sublime pieces, regardless of your location – Boise and beyond. Reach out today!',
+  },
+  aboutPage: {
+    title: 'About Me',
+    description:
+      "A Boise, Idaho based artist and painter. Shelbz's art is a hybrid of old and new, traditional and futuristic.",
+  },
+};

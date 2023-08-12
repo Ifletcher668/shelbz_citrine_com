@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useLayoutEffect, useState } from 'react';
 
 const DEFAULT_COLOR_SCHEME = 'bloodMoon';
 const POSSIBLE_COLOR_SCHEMES = ['moon', 'ocean', 'bloodMoon', 'harvestMoon'];
@@ -33,7 +33,7 @@ const ThemeProvider = ({ children }) => {
     localStorage.setItem('colorScheme', colorScheme);
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const storedColorScheme = localStorage.getItem('colorScheme');
 
     if (storedColorScheme) {
@@ -41,7 +41,7 @@ const ThemeProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.dataset.colorScheme = colorScheme;
   }, [colorScheme]);
 

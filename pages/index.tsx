@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -12,7 +13,7 @@ import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
 import PictureGrid from '../components/PictureGrid';
-import { ROUTES } from '../utils/constants';
+import { ROUTES, SEO } from '../utils/constants';
 
 type Props = {
   imageFeed: ContentfulImage[];
@@ -21,58 +22,67 @@ const Home = (props: Props) => {
   const { imageFeed } = props;
 
   return (
-    <Layout>
-      <MainWrapper>
-        <h1>Hi, I'm Shelbz</h1>
+    <>
+      <Head>
+        <title>{SEO.homePage.title}</title>
+        <meta name="description" content={SEO.homePage.description} />
+      </Head>
 
-        <HeroImage
-          src={goddessPicture}
-          // omit alt tag to use alt text as caption
-          alt={''}
-          width={1332}
-          height={666}
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
-        />
+      <Layout>
+        <MainWrapper>
+          <h1>Hi, I'm Shelbz</h1>
 
-        <Row rowSpacing={40}>
-          <Paragraph>
-            an artist combining classical training with self-taught innovation
-            to produce dark and surreal works inspired by a medley of
-            influences, from the eerie landscapes of Dungeons and Dragons to
-            video game narratives.
-          </Paragraph>
+          <HeroImage
+            src={goddessPicture}
+            // omit alt tag to use alt text as caption
+            alt={''}
+            width={1332}
+            height={666}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+          />
 
-          <Column>
+          <Row rowSpacing={40}>
             <Paragraph>
-              My style bridges the gap between the known and the unfamiliar,
-              with a fusion of elements reminiscent of master oil painters such
-              as Botticelli, Nerdrum, and Scholr. Rooted in the audacity of
-              17th-century art and the mind-bending concepts of 20th-century
-              surrealism, my pieces study the dichotomy between contrast and
-              harmony.
+              an artist combining classical training with self-taught innovation
+              to produce dark and surreal works inspired by a medley of
+              influences, from the eerie landscapes of Dungeons and Dragons to
+              video game narratives.
             </Paragraph>
-          </Column>
-          <Column>
-            <Paragraph>
-              My artistic journey is not just about creating art - it's about
-              creating experiences, building connections, and inspiring
-              conversations. Whether you're looking for wearable art, interested
-              in a local commission, or eager to explore international art
-              shows,{' '}
-              <Link href={ROUTES.CONTACT}>I would love to hear from you!</Link>{' '}
-              Let's make art not simply a visual treat, but a meaningful
-              encounter that leaves a lasting impact.
-            </Paragraph>
-          </Column>
-        </Row>
 
-        <h2 id="feed">My work</h2>
+            <Column>
+              <Paragraph>
+                My style bridges the gap between the known and the unfamiliar,
+                with a fusion of elements reminiscent of master oil painters
+                such as Botticelli, Nerdrum, and Scholr. Rooted in the audacity
+                of 17th-century art and the mind-bending concepts of
+                20th-century surrealism, my pieces study the dichotomy between
+                contrast and harmony.
+              </Paragraph>
+            </Column>
+            <Column>
+              <Paragraph>
+                My artistic journey is not just about creating art - it's about
+                creating experiences, building connections, and inspiring
+                conversations. Whether you're looking for wearable art,
+                interested in a local commission, or eager to explore
+                international art shows,{' '}
+                <Link href={ROUTES.CONTACT}>
+                  I would love to hear from you!
+                </Link>{' '}
+                Let's make art not simply a visual treat, but a meaningful
+                encounter that leaves a lasting impact.
+              </Paragraph>
+            </Column>
+          </Row>
 
-        <PictureGrid data={imageFeed} />
-      </MainWrapper>
-    </Layout>
+          <h2 id="feed">My work</h2>
+
+          <PictureGrid data={imageFeed} />
+        </MainWrapper>
+      </Layout>
+    </>
   );
 };
 
