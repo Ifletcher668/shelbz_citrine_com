@@ -13,13 +13,14 @@ export const SOCIALS = {
 
 export const BREAKPOINT_NUMBERS = {
   MOBILE: 0,
+  LARGE_PHONE: 532,
   TABLET: 769,
   LAPTOP: 1101,
   DESKTOP: 1501,
 };
 
 export const BREAKPOINTS = {
-  MOBILE: BREAKPOINT_NUMBERS.MOBILE,
+  LARGE_PHONE: `(min-width: ${BREAKPOINT_NUMBERS.LARGE_PHONE / 16}rem)`,
   TABLET: `(min-width: ${BREAKPOINT_NUMBERS.TABLET / 16}rem)`,
   LAPTOP: `(min-width: ${BREAKPOINT_NUMBERS.LAPTOP / 16}rem)`,
   DESKTOP: `(min-width: ${BREAKPOINT_NUMBERS.DESKTOP / 16}rem)`,

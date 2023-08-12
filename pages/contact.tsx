@@ -226,7 +226,7 @@ const ContactPage = () => {
             <input type="hidden" name="form-name" value="contact" />
 
             <Label>
-              <LabelText>Your Name:</LabelText>
+              <LabelText>Name:</LabelText>
               <Input
                 type="text"
                 name="name"
@@ -240,7 +240,7 @@ const ContactPage = () => {
             </ErrorMessage>
 
             <Label>
-              <LabelText>Your Email:</LabelText>{' '}
+              <LabelText>Email:</LabelText>{' '}
               <Input
                 type="email"
                 name="email"
@@ -254,7 +254,7 @@ const ContactPage = () => {
             </ErrorMessage>
 
             <Label>
-              <LabelText>Message:</LabelText>
+              <LabelText>What would you like to know?</LabelText>
               <Textarea
                 name="message"
                 onChange={onChangeHandler}
@@ -284,59 +284,33 @@ export default ContactPage;
 
 const ErrorMessage = styled(AnimatedText)`
   color: var(--color-error);
+  font-size: var(--font-size-small);
+  font-weight: 900;
 
   /* remove parent flexbox's "gap" property */
   margin-top: calc(var(--spacing-large) * -1);
-`;
-
-const SubmitButton = styled.button<{ isInErrorState: boolean }>`
-  width: 50%;
-  padding: 12px 20px;
-  background: var(--color-800);
-  border: 1px solid var(--font-accent);
-  border-radius: 6px;
-  color: var(--font-accent);
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-
-  ${({ isInErrorState }) =>
-    isInErrorState &&
-    css`
-      animation ${shake} 300ms ease;
-    `}
-
-  &:hover,
-  &:focus {
-    background: var(--color-700);
-    border: 1px solid var(--font-accent);
-    scale: 0.99;
-  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-large);
-
-  width: clamp(
-    300px,
-    var(--max-width-wrapper),
-    calc(var(--max-width-wrapper) / 2)
-  );
-  margin-left: auto;
-  margin-right: auto;
   /* containing block for positioned checkboxes */
   position: relative;
 
   @media ${BREAKPOINTS.TABLET} {
-    margin-right: revert;
+    align-self: flex-end;
+    width: clamp(
+      300px,
+      var(--max-width-wrapper),
+      calc(var(--max-width-wrapper) / 2)
+    );
   }
 `;
 
 const Label = styled.label`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 
   /* containing block for positioned checkboxes */
@@ -344,7 +318,11 @@ const Label = styled.label`
 `;
 
 const LabelText = styled.span`
-  flex: 1;
+  flex: 1 100%;
+
+  @media ${BREAKPOINTS.LARGE_PHONE} {
+    flex-basis: 0;
+  }
 `;
 
 const Input = styled.input`
@@ -360,6 +338,32 @@ const Input = styled.input`
   &:focus {
     background: var(--color-700);
     border: 1px solid var(--font-accent);
+  }
+`;
+
+const SubmitButton = styled.button<{ isInErrorState: boolean }>`
+  padding: 12px 20px;
+  background: var(--color-500);
+  border: 1px solid var(--font-accent);
+  border-radius: 6px;
+  color: var(--font-accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  ${({ isInErrorState }) =>
+    isInErrorState &&
+    css`
+      animation ${shake} 300ms ease;
+      `}
+
+  &:hover,
+  &:focus {
+    background: var(--color-800);
+    border: 1px solid var(--font-accent);
+    scale: 0.99;
+    color: var(--font-primary);
   }
 `;
 

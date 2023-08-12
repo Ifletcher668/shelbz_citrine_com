@@ -106,7 +106,7 @@ const GlobalStyle = createGlobalStyle`
     &::first-letter {
     font-size: 2rem;
     font-weight: 400;
-    margin-right: 5px;
+    margin-right: 2px;
     font-family: var(--font-cinzel-decorative);
   }
   }
