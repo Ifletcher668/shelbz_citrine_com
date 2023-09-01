@@ -22,6 +22,7 @@ const PictureGrid = dynamic(() => import('../components/PictureGrid'), {
 type Props = {
   imageFeed: ContentfulImage[];
 };
+
 const Home = (props: Props) => {
   const { imageFeed } = props;
 
@@ -38,13 +39,10 @@ const Home = (props: Props) => {
 
           <HeroImage
             src={goddessPicture}
-            // omit alt tag to use alt text as caption
             alt={''}
-            width={960}
-            height={666}
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+            width={300}
+            height={360}
+            loading="eager"
           />
 
           <Row rowSpacing={40}>
