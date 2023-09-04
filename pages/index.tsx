@@ -40,8 +40,8 @@ const Home = (props: Props) => {
           <HeroImage
             src={goddessPicture}
             alt={''}
-            width={300}
-            height={360}
+            width={960}
+            height={540}
             loading="eager"
           />
 
