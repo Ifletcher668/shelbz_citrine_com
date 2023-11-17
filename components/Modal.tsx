@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react';
 
 import styled from 'styled-components';
 
-import VisuallyHidden from './VisuallyHidden';
 import { BREAKPOINTS } from 'utils/constants';
+
+import VisuallyHidden from './VisuallyHidden';
 
 type ModalProps = {
   isOpen: boolean;
@@ -41,7 +42,6 @@ const Modal = (props: ModalProps) => {
         <CloseButton ref={modalRef} onClick={onClose} type="button">
           <VisuallyHidden>Close</VisuallyHidden>
         </CloseButton>
-
         {children}
       </ModalContentWrapper>
     </ModalWrapper>
@@ -62,7 +62,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 10000000;
 
   visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
   pointer-events: ${props => (props.isOpen ? 'auto' : 'none')};
