@@ -72,7 +72,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
                 width={250}
                 height={250}
                 loading="lazy"
-                quality={50}
+                quality={75}
                 placeholder="blur"
                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+Cg==
                 "
@@ -89,7 +89,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
           <Picture
             width={250}
             height={250}
-            quality={50}
+            quality={75}
             src={modalImage.fields.file?.url ?? ''}
             alt={modalImage.fields.description ?? ''}
           />
