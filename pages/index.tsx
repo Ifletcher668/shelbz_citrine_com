@@ -57,10 +57,10 @@ const Home = (props: Props) => {
               <p>
                 My style bridges the gap between the known and the unfamiliar,
                 with a fusion of elements reminiscent of master oil painters
-                such as Botticelli, Nerdrum, and Scholr. Rooted in the audacity
-                of 17th-century art and the mind-bending concepts of
-                20th-century surrealism, my pieces study the dichotomy between
-                contrast and harmony.
+                such as Sandro Botticelli, Odd Nerdrum, and Alessandro Sicioldr.
+                Rooted in the audacity of 17th-century art and the mind-bending
+                concepts of 20th-century surrealism, my pieces study the
+                dichotomy between contrast and harmony.
               </p>
             </Column>
             <Column>
