@@ -38,7 +38,7 @@ const Navbar = ({ setShowMobileMenu }: Props) => {
           </Link>
         </Side>
 
-        <UnstyledButton onClick={() => setShowMobileMenu(true)}>
+        <UnstyledButton id="open-menu" onClick={() => setShowMobileMenu(true)}>
           <Icon id="menu" strokeWidth={2} size={48} />
         </UnstyledButton>
         <Side />
