@@ -170,13 +170,6 @@ const ContactPage = () => {
 
           <Row rowSpacing={40}>
             <p>
-              If an immediate purchase is what you're after, explore my{' '}
-              <Link href={ROUTES.REDBUBBLE}> Redbubble store</Link> to find
-              something that fits your needs! It's the perfect place to find
-              something that speaks to your aesthetic sense and personal style.
-            </p>
-
-            <p>
               I pride myself in creating custom pieces that not only meet, but
               surpass your expectations. For commissions, I adhere to a set of
               fundamental goals. Here are my key guidelines:

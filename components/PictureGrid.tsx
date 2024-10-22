@@ -23,8 +23,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   const breakpointColumnsObj = {
     default: 3,
     [BREAKPOINT_NUMBERS.LAPTOP]: 3,
-    [BREAKPOINT_NUMBERS.TABLET]: 2,
-    [BREAKPOINT_NUMBERS.MOBILE]: 1,
+    [BREAKPOINT_NUMBERS.TABLET]: 1,
   };
   const displayed = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;

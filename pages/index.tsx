@@ -35,7 +35,7 @@ const Home = (props: Props) => {
 
       <Layout>
         <MainWrapper>
-          <h1>Hi, I'm SHelbz</h1>
+          <h1>Hi, I'm Shelbz</h1>
 
           <HeroImage
             src={goddessPicture}

@@ -27,6 +27,8 @@ const Wrapper = styled.div`
   margin: 1rem;
   border-radius: 50%;
 
+  background: black;
+
   svg:hover {
     color: var(--color-700);
   }

@@ -8,6 +8,7 @@ import { open } from '../../../utils/styled-components/snippets';
 import Icon from '../../Icon';
 import UnstyledButton from '../../UnstyledButton';
 import VisuallyHidden from '../../VisuallyHidden';
+import { useRouter } from 'next/router';
 
 type Props = {
   isOpen: boolean;
@@ -15,9 +16,15 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
 };
 
-// TODO: use Reach Router when it supports React 18
+const LINKS = [
+  { href: ROUTES.HOME, label: 'Home' },
+  { href: ROUTES.ABOUT, label: 'About Me' },
+  { href: ROUTES.CONTACT, label: 'Contact' },
+];
+
 const MobileMenu = (props: Props) => {
   const { isOpen, setIsOpen, onDismiss } = props;
+  const router = useRouter();
 
   // Close submenu on Escape key press
   useEffect(() => {
@@ -47,9 +54,11 @@ const MobileMenu = (props: Props) => {
         </CloseButton>
 
         <Nav>
-          <Link href={ROUTES.HOME}>Home</Link>
-          <Link href={ROUTES.ABOUT}>About Me</Link>
-          <Link href={ROUTES.CONTACT}>Contact</Link>
+          {LINKS.filter(link => link.href !== router.pathname).map(link => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </Nav>
 
         <Footer>
@@ -90,12 +99,19 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 5.5vw - 4rem, 3rem);
+
+  a {
+    font-size: var(--font-size-double-extra-large);
+  }
 `;
 
 const Footer = styled.footer`
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 5.5vw - 4rem, 3rem);
+
+  p {
+    font-size: var(--font-size-double-extra-small);
+  }
 `;
 
 const Body = styled.div`

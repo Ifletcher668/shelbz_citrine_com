@@ -23,7 +23,6 @@ const Navbar = ({ setShowMobileMenu }: Props) => {
         <Side />
 
         <Link href={ROUTES.ABOUT}>About Me</Link>
-
         <Link href={ROUTES.CONTACT}>Contact</Link>
 
         <Side />

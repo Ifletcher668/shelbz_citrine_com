@@ -78,12 +78,12 @@ const AboutPage = () => (
         </div>
 
         <Row>
-          <Column align="center">
+          <Column>
             <h2>
               <Link href={ROUTES.FEED}> Want to see my work?</Link>
             </h2>
           </Column>
-          <Column align="center">
+          <Column>
             <h2>
               <Link href={ROUTES.CONTACT}> Want to buy something?</Link>
             </h2>

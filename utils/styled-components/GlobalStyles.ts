@@ -3,6 +3,7 @@ import { createGlobalStyle, css } from 'styled-components';
 
 import reset from './_reset';
 import variables from './_variables';
+import { BREAKPOINTS } from 'utils/constants';
 
 /* As a work around to prettier not supporting createGlobalStyle formatting,
     change 'createGlobalStyle' to 'css', format the file, then change it back to 'createGlobalStyle'
@@ -31,27 +32,15 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0;
     width: fit-content;
 
-    background-image: linear-gradient(
-        transparent calc(100% - 2px),
-        var(--font-accent) 2px
-      ),
-      linear-gradient(transparent calc(100% - 2px), var(--font-primary) 2px);
-    background-size: 0% 6px, 100% 6px;
-    background-repeat: no-repeat;
-    background-position: 0 bottom, 0 bottom;
-    
     transition-timing-function: ease-in-out;
-    
-
     transition-duration: 500ms, 200ms;
-    transition-property: background-size, color;
+    transition-property: color;
     
 
     &:hover {
       text-decoration: none;
       color: var(--font-accent);
       cursor: pointer;
-      background-size: 100% 6px, 100% 6px;
     }
     
 
@@ -69,42 +58,42 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-triple-extra-large);
     font-weight: 400;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: var(--font-size-double-extra-large);
     font-weight: 400;
   }
 
   h3 {
-    font-size: 1.75rem;
+    font-size: var(--font-size-extra-large);
     font-weight: 400;
   }
 
   h4 {
-    font-size: 1.5rem;
+    font-size: var(--font-size-large);
     font-weight: 400;
   }
 
   h5 {
-    font-size: 1.25rem;
+    font-size: var(--font-size-medium);
     font-weight: 400;
   }
 
   h6 {
-    font-size: 1rem;
+    font-size: var(--font-size-extra-small);
     font-weight: 400;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: var(--font-size-large);
     font-weight: 400;
     letter-spacing: 0.05vw;
 
     &::first-letter {
-    font-size: 2rem;
+    font-size: var(--font-size-extra-large);
     font-weight: 400;
     margin-right: 2px;
     font-family: var(--font-cinzel-decorative);
@@ -117,10 +106,35 @@ const GlobalStyle = createGlobalStyle`
   select,
   a {
     outline: none;
+    @media ${BREAKPOINTS.LAPTOP} {
     &:focus {
       border-radius: 5px;
       box-shadow: var(--focus-shadow);
     }
+  }
+  }
+  
+  .contentful-hr{
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 50%;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+  }
+
+  .contentful-italic{
+    color: var(--font-accent)
+  }
+
+  .contentful-underline {
+    text-decoration: underline;
+
+  }
+
+  .contentful-bold-text {
+    font-weight: bold;
+    color: var(--font-accent);
   }
 `;
 

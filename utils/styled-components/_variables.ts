@@ -38,6 +38,7 @@ const variables = css`
     --spacing-double-extra-small: 8px;
 
     /* font-size */
+    --font-size-triple-extra-large: clamp(2.5rem, 6vw, 3.5rem);
     --font-size-double-extra-large: clamp(2rem, 6vw, 3rem);
     --font-size-extra-large: clamp(1.75rem, 4vw, 2rem);
     --font-size-large: clamp(1.375rem, 4vw, 1.75rem);
