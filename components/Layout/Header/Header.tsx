@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import type { CSSProperties } from 'styled-components';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { BREAKPOINTS } from 'utils/constants';
 
 import MobileMenu from './MobileMenu';
 import Moon from './Moon';
@@ -22,18 +23,6 @@ const Header = () => {
 
     return () => document.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // All styles pertaining to top positioning, or shared styles between parent and children, are defined here
-  const styles = {
-    '--transition': 'all 300ms ease',
-    '--padding': isAtTop ? 'var(--spacing-large)' : 'var(--spacing-medium)',
-    '--font-size': isAtTop ? '1.5rem' : '1rem',
-    '--max-width': isAtTop
-      ? 'calc(var(--max-width-wrapper) * 1.5)'
-      : 'calc(var(--max-width-wrapper) * 1.3)',
-    '--moon-size': isAtTop ? '25vw' : '22vw',
-    '--box-shadow': isAtTop ? '0 0 0 0' : 'var(--shadow-elevation-medium)',
-  } as CSSProperties;
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -62,7 +51,7 @@ const Header = () => {
   }
 
   return (
-    <HeaderWrapper style={styles}>
+    <HeaderWrapper isAtTop={isAtTop}>
       <Navbar setShowMobileMenu={setShowMobileMenu} />
 
       <MobileMenu
@@ -78,7 +67,26 @@ const Header = () => {
 
 export default Header;
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
+  --header-transition: all 300ms ease;
+  --padding: var(--spacing-medium);
+  --font-size: var(--font-size-extra-small);
+  --max-width: calc(var(--max-width-wrapper) * 1.3);
+  --moon-size: 22vw;
+  --box-shadow: var(--shadow-elevation-medium);
+
+  @media ${BREAKPOINTS.TABLET} {
+    ${({ isAtTop }) =>
+      isAtTop &&
+      css`
+        --padding: var(--spacing-large);
+        --font-size: var(--font-size-large);
+        --max-width: calc(var(--max-width-wrapper) * 1.5);
+        --moon-size: 25vw;
+        --box-shadow: 0 0 0 0;
+      `}
+  }
+
   position: fixed;
   top: 0;
   left: 0;
@@ -96,5 +104,5 @@ const HeaderWrapper = styled.header`
   background-color: var(--header-background);
   font-size: var(--font-size);
   box-shadow: var(--box-shadow);
-  transition: var(--transition);
+  transition: var(--header-transition);
 `;

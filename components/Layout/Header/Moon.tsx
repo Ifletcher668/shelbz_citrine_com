@@ -9,7 +9,7 @@ const Moon = styled.div`
   border-radius: 50%;
   background: var(--moon-gradient);
   box-shadow: var(--moon-shadow);
-  transition: var(--transition);
+  transition: var(--header-transition);
 
   /* Increase size on mobile because vw scales too quickly at smaller sizes */
   width: calc(var(--moon-size) + 12vw);

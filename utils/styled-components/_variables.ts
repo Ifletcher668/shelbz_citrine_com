@@ -27,7 +27,7 @@ const variables = css`
     --orange-hue: 22deg;
 
     /* SPACING */
-    --main-content-gap: 80px;
+    --main-content-gap: 60px;
     --spacing-triple-extra-large: 56px;
     --spacing-double-extra-large: 48px;
     --spacing-extra-large: 40px;

@@ -21,8 +21,9 @@ const Layout = ({ children }: Props) => {
   return (
     <Wrapper>
       <Header />
-      <Spacer top={200} />
+      <Spacer top={140} />
       <PageTransition>{children}</PageTransition>
+      <Spacer top={40} />
       <Footer />
       <SettingsButton />
       <Background />
@@ -47,7 +48,6 @@ const Wrapper = styled.div`
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--main-content-gap);
 `;
 
 export default Layout;
