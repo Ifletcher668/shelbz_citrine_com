@@ -10,6 +10,7 @@ import { fadeIn, fadeOut } from '../utils/styled-components/snippets';
 import Icon from './Icon';
 import UnstyledButton from './UnstyledButton';
 import VisuallyHidden from './VisuallyHidden';
+import { BREAKPOINTS } from 'utils/constants';
 
 export default function SettingsButton() {
   return (
@@ -150,9 +151,15 @@ const SubNavWrapper = styled.div`
   ${UnstyledButton} {
     font-weight: 700;
     color: var(--font-secondary);
-    &:hover,
+
     &:focus {
       color: var(--font-primary);
+    }
+
+    @media ${BREAKPOINTS.TABLET} {
+      &:hover {
+        color: var(--font-primary);
+      }
     }
   }
 

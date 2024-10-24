@@ -5,7 +5,7 @@ import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
 import type { ContentfulImage } from 'contentful/types';
-import { BREAKPOINT_NUMBERS } from 'utils/constants';
+import { BREAKPOINT_NUMBERS, BREAKPOINTS } from 'utils/constants';
 
 import Modal from './Modal';
 import Pagination from './Pagination';
@@ -89,6 +89,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
             width={250}
             height={250}
             quality={100}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={modalImage.fields.file?.url ?? ''}
             alt={modalImage.fields.description ?? ''}
           />
@@ -158,7 +159,8 @@ const PictureWrapper = styled.article`
   gap: 16px;
 
   ${PictureCaption} {
-    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
   }
 
   transition: all 250ms ease-in-out;
@@ -173,14 +175,20 @@ const PictureWrapper = styled.article`
     transition: all 250ms ease-in-out;
   }
 
-  &:hover {
-    /* gray transparent background over the image*/
-    &::before {
-      background-color: rgba(0, 0, 0, 0.8);
+  @media ${BREAKPOINTS.TABLET} {
+    ${PictureCaption} {
+      opacity: 0;
     }
 
-    ${PictureCaption} {
-      opacity: 1;
+    &:hover {
+      /* gray transparent background over the image*/
+      &::before {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      ${PictureCaption} {
+        opacity: 1;
+      }
     }
   }
 `;
