@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { BREAKPOINTS } from 'utils/constants';
+
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useDelayedUnmount } from '../utils/hooks';
 import { fadeIn, fadeOut } from '../utils/styled-components/snippets';
@@ -10,7 +12,6 @@ import { fadeIn, fadeOut } from '../utils/styled-components/snippets';
 import Icon from './Icon';
 import UnstyledButton from './UnstyledButton';
 import VisuallyHidden from './VisuallyHidden';
-import { BREAKPOINTS } from 'utils/constants';
 
 export default function SettingsButton() {
   return (

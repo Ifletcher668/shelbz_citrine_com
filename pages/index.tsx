@@ -11,7 +11,6 @@ import Column from '../components/Layout/Column';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
-import ObserverWrapper from '../components/ObserverWrapper';
 import PictureGrid from '../components/PictureGrid';
 import { ROUTES, SEO } from '../utils/constants';
 

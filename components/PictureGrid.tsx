@@ -19,7 +19,7 @@ type PictureGridProps = {
 const PictureGrid = ({ data }: PictureGridProps) => {
   const gridRef = useRef<HTMLDivElement | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [modalImage, setModalImage] = useState<ContentfulImage | null>(null);
+  const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
 
   const pageSize = 24;
   const breakpointColumnsObj = {
@@ -40,11 +40,14 @@ const PictureGrid = ({ data }: PictureGridProps) => {
   };
 
   const handleImageClick = (imageData: ContentfulImage) => {
-    setModalImage(imageData);
+    const imageUrl = imageData.fields.file?.url ?? '';
+    if (modalImageUrl !== imageUrl) {
+      setModalImageUrl(imageUrl);
+    }
   };
 
   const closeModal = () => {
-    setModalImage(null);
+    setModalImageUrl(null);
   };
 
   return (
@@ -85,17 +88,23 @@ const PictureGrid = ({ data }: PictureGridProps) => {
         })}
       </Masonry>
 
-      <Modal isOpen={!!modalImage} onClose={closeModal}>
-        {modalImage && (
-          <Picture
-            width={250}
-            height={250}
-            quality={100}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            src={modalImage.fields.file?.url ?? ''}
-            alt={modalImage.fields.description ?? ''}
-          />
-        )}
+      <Modal isOpen={!!modalImageUrl} onClose={closeModal}>
+        <>
+          {modalImageUrl && (
+            <>
+              <link rel="preload" href={modalImageUrl || ''} as="image" />
+
+              <Picture
+                width={500}
+                height={500}
+                quality={100}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                src={modalImageUrl || ''}
+                alt=""
+              />
+            </>
+          )}
+        </>
       </Modal>
 
       <Pagination

@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
 import Head from 'next/head';
-import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
 import Accordion from '../components/Accordion';
@@ -11,12 +10,7 @@ import AnimatedText from '../components/AnimatedText';
 import { Row } from '../components/Layout';
 import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
-import {
-  BREAKPOINTS,
-  ROUTES,
-  SEO,
-  VALIDATION_CONSTANTS,
-} from '../utils/constants';
+import { BREAKPOINTS, SEO, VALIDATION_CONSTANTS } from '../utils/constants';
 import { shake } from '../utils/styled-components/snippets';
 
 function encode(data: Record<string, string | number | boolean>) {
