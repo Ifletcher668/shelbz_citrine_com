@@ -1,14 +1,16 @@
 import { useMemo, useRef, useState } from 'react';
 
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
 import type { ContentfulImage } from 'contentful/types';
-import { BREAKPOINT_NUMBERS, BREAKPOINTS } from 'utils/constants';
+import { BREAKPOINTS, BREAKPOINT_NUMBERS } from 'utils/constants';
 
 import Modal from './Modal';
 import Pagination from './Pagination';
+
+const NextImage = dynamic(() => import('next/image'), { ssr: false });
 
 type PictureGridProps = {
   data: ContentfulImage[];
@@ -140,7 +142,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const Picture = styled(Image)`
+const Picture = styled(NextImage)`
   width: 100%;
   height: auto;
   border-radius: 2px;
