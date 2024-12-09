@@ -139,15 +139,10 @@ const Wrapper = styled.section`
     background-clip: padding-box;
   }
 
-  .masonry-grid_column > div {
-    /* change div to the element you're using */
-    margin-bottom: 30px;
-  }
-
   @media ${BREAKPOINTS.TABLET} {
     .masonry-grid,
     .masonry-grid_column {
-      gap: var(--spacing-double-extra-small);
+      gap: var(--spacing-small);
     }
   }
 `;
@@ -159,22 +154,24 @@ const Picture = styled(NextImage)`
 `;
 
 const PictureCaption = styled.figcaption`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
   font-size: var(--font-size-small);
   text-align: center;
 
-  margin: auto;
   padding: var(--spacing-double-extra-small);
 
-  background-color: rgba(0, 0, 0, 0.9);
   opacity: 1;
 
   transition: all 250ms ease-in-out;
+
   @media ${BREAKPOINTS.TABLET} {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.9);
+
+    margin: auto;
     padding: var(--spacing-small);
   }
 `;
@@ -198,6 +195,7 @@ const PictureWrapper = styled.article`
     bottom: 0;
     transition: all 500ms ease-in-out;
   }
+  border: 1px solid hsla(0, 0%, 100%, 0.025);
 
   @media ${BREAKPOINTS.TABLET} {
     ${PictureCaption} {
