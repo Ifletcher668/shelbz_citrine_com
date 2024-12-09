@@ -195,7 +195,6 @@ const PictureWrapper = styled.article`
     bottom: 0;
     transition: all 500ms ease-in-out;
   }
-  border: 1px solid hsla(0, 0%, 100%, 0.025);
 
   @media ${BREAKPOINTS.TABLET} {
     ${PictureCaption} {
