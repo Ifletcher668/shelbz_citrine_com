@@ -21,7 +21,7 @@ const Layout = ({ children }: Props) => {
   return (
     <Wrapper>
       <Header />
-      <Spacer top={140} />
+      <Spacer top={185} />
       <PageTransition>{children}</PageTransition>
       <Spacer top={40} />
       <Footer />
