@@ -50,8 +50,8 @@ const PictureGrid = ({ data }: PictureGridProps) => {
     <Wrapper ref={gridRef}>
       <Masonry
         breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
+        className="masonry-grid"
+        columnClassName="masonry-grid_column"
       >
         {displayed.map((imageData, idx) => {
           if (!imageData.fields.file) return;
@@ -114,22 +114,29 @@ const Wrapper = styled.section`
   gap: 32px;
   width: 100%;
 
-  .my-masonry-grid {
+  .masonry-grid {
     display: flex;
-    gap: 5px;
+    gap: var(--spacing-medium);
     width: auto;
   }
 
-  .my-masonry-grid_column {
+  .masonry-grid_column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--spacing-medium);
     background-clip: padding-box;
   }
 
-  .my-masonry-grid_column > div {
+  .masonry-grid_column > div {
     /* change div to the element you're using */
     margin-bottom: 30px;
+  }
+
+  @media ${BREAKPOINTS.TABLET} {
+    .masonry-grid,
+    .masonry-grid_column {
+      gap: var(--spacing-double-extra-small);
+    }
   }
 `;
 
@@ -143,11 +150,21 @@ const PictureCaption = styled.figcaption`
   position: absolute;
   left: 0;
   right: 0;
-  margin: auto;
   bottom: 0;
+
   font-size: var(--font-size-small);
   text-align: center;
-  padding: var(--spacing-large);
+
+  margin: auto;
+  padding: var(--spacing-double-extra-small);
+
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+
+  transition: all 250ms ease-in-out;
+  @media ${BREAKPOINTS.TABLET} {
+    padding: var(--spacing-small);
+  }
 `;
 
 const PictureWrapper = styled.article`
@@ -158,11 +175,6 @@ const PictureWrapper = styled.article`
   flex-direction: column;
   gap: 16px;
 
-  ${PictureCaption} {
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 1;
-  }
-
   transition: all 250ms ease-in-out;
 
   &::before {
@@ -172,7 +184,7 @@ const PictureWrapper = styled.article`
     left: 0;
     right: 0;
     bottom: 0;
-    transition: all 250ms ease-in-out;
+    transition: all 500ms ease-in-out;
   }
 
   @media ${BREAKPOINTS.TABLET} {
@@ -183,7 +195,7 @@ const PictureWrapper = styled.article`
     &:hover {
       /* gray transparent background over the image*/
       &::before {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.6);
       }
 
       ${PictureCaption} {

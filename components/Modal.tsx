@@ -81,7 +81,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
   & > ${ModalContentWrapper} {
     opacity: ${props => (props.isOpen ? 1 : 0)};
     transform: ${props => (props.isOpen ? 'scale(1)' : 'scale(0)')};
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.15s ease;
   }
 `;
 
