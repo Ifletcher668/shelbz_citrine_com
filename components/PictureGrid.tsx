@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import type { ContentfulImage } from 'contentful/types';
 import { BREAKPOINTS, BREAKPOINT_NUMBERS } from 'utils/constants';
 
+import FadeInObserver from './FadeInObserver';
 import Modal from './Modal';
 import Pagination from './Pagination';
 
@@ -52,6 +53,7 @@ const PictureGrid = ({ data }: PictureGridProps) => {
 
   return (
     // ref points to the wrapper because "Masonry" does not use forwardRef
+
     <Wrapper ref={gridRef}>
       <Masonry
         breakpointCols={breakpointColumnsObj}
@@ -66,24 +68,23 @@ const PictureGrid = ({ data }: PictureGridProps) => {
           if (!file.details.image) return;
 
           return (
-            <PictureWrapper
-              key={`${currentPage}-${idx}`}
-              onClick={() => handleImageClick(imageData)}
-            >
-              <Picture
-                src={file.url}
-                alt={title ?? ''}
-                width={250}
-                height={250}
-                loading="lazy"
-                quality={100}
-                placeholder="blur"
-                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+Cg==
+            <FadeInObserver key={`${currentPage}-${idx}`}>
+              <PictureWrapper onClick={() => handleImageClick(imageData)}>
+                <Picture
+                  src={file.url}
+                  alt={title ?? ''}
+                  width={250}
+                  height={250}
+                  loading="lazy"
+                  quality={100}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjMDAwMDAwIi8+PC9zdmc+Cg==
                 "
-              />
+                />
 
-              {description && <PictureCaption>{description}</PictureCaption>}
-            </PictureWrapper>
+                {description && <PictureCaption>{description}</PictureCaption>}
+              </PictureWrapper>
+            </FadeInObserver>
           );
         })}
       </Masonry>

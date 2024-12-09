@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import FadeInObserver from 'components/FadeInObserver';
 import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import goddessPicture from 'public/assets/goddess.jpg';
@@ -30,51 +31,62 @@ const Home = (props: Props) => {
 
       <Layout>
         <MainWrapper>
-          <h1>Hi, I'm Shelbz</h1>
+          <FadeInObserver>
+            <h1>Hi, I'm Shelbz</h1>
+          </FadeInObserver>
 
-          <HeroImage
-            src={goddessPicture}
-            alt={''}
-            width={960}
-            height={540}
-            loading="eager"
-          />
+          <FadeInObserver>
+            <HeroImage
+              src={goddessPicture}
+              alt={''}
+              width={960}
+              height={540}
+              loading="eager"
+            />
+          </FadeInObserver>
 
           <Row rowSpacing={40}>
-            <p>
-              an artist combining classical training with self-taught innovation
-              to produce dark and surreal works inspired by a medley of
-              influences, from the eerie landscapes of Dungeons and Dragons to
-              video game narratives.
-            </p>
-
-            <Column>
+            <FadeInObserver>
               <p>
-                My style bridges the gap between the known and the unfamiliar,
-                with a fusion of elements reminiscent of master oil painters
-                such as Sandro Botticelli, Odd Nerdrum, and Alessandro Sicioldr.
-                Rooted in the audacity of 17th-century art and the mind-bending
-                concepts of 20th-century surrealism, my pieces study the
-                dichotomy between contrast and harmony.
+                an artist combining classical training with self-taught
+                innovation to produce dark and surreal works inspired by a
+                medley of influences, from the eerie landscapes of Dungeons and
+                Dragons to video game narratives.
               </p>
-            </Column>
-            <Column>
-              <p>
-                My artistic journey is not just about creating art - it's about
-                creating experiences, building connections, and inspiring
-                conversations. Whether you're looking for wearable art,
-                interested in a local commission, or eager to explore
-                international art shows,{' '}
-                <Link href={ROUTES.CONTACT}>
-                  I would love to hear from you!
-                </Link>{' '}
-                Let's make art not simply a visual treat, but a meaningful
-                encounter that leaves a lasting impact.
-              </p>
-            </Column>
+            </FadeInObserver>
+            <FadeInObserver>
+              <Column>
+                <p>
+                  My style bridges the gap between the known and the unfamiliar,
+                  with a fusion of elements reminiscent of master oil painters
+                  such as Sandro Botticelli, Odd Nerdrum, and Alessandro
+                  Sicioldr. Rooted in the audacity of 17th-century art and the
+                  mind-bending concepts of 20th-century surrealism, my pieces
+                  study the dichotomy between contrast and harmony.
+                </p>
+              </Column>
+            </FadeInObserver>
+            <FadeInObserver>
+              <Column>
+                <p>
+                  My artistic journey is not just about creating art - it's
+                  about creating experiences, building connections, and
+                  inspiring conversations. Whether you're looking for wearable
+                  art, interested in a local commission, or eager to explore
+                  international art shows,{' '}
+                  <Link href={ROUTES.CONTACT}>
+                    I would love to hear from you!
+                  </Link>{' '}
+                  Let's make art not simply a visual treat, but a meaningful
+                  encounter that leaves a lasting impact.
+                </p>
+              </Column>
+            </FadeInObserver>
           </Row>
 
-          <h2 id="feed">My work</h2>
+          <FadeInObserver>
+            <h2 id="feed">My work</h2>
+          </FadeInObserver>
 
           <PictureGrid data={imageFeed} />
         </MainWrapper>
