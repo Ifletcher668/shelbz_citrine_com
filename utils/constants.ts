@@ -42,7 +42,7 @@ export const SEO = {
     description:
       "Shelbz Citrine blends modernity and heritage, weaves the magic of traditional painting styles into a digital age tableau, infused into a tapestry that speaks to the contemporary mind. Her work stands as a bridge, connecting the timeless mastery of the 17th century with the innovative surrealism of the 20th, crafting an aesthetic that resonates with the contemporary connoisseur's diverse interests.",
     openGraph: {
-      image: '/assets/goddess.jpg',
+      image: '/assets/goddess.webp',
       description:
         "Experience the mesmerizing blend of classic and modern in Shelbz Citrine's art. Her work bridges the timeless mastery of traditional painting styles with innovative surrealism, crafting an aesthetic that speaks volumes to today's diverse art enthusiasts.",
     },

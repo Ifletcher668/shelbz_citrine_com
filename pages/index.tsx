@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import FadeInObserver from 'components/FadeInObserver';
 import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
-import goddessPicture from 'public/assets/goddess.jpg';
+import goddessPicture from 'public/assets/goddess.webp';
 
 import Column from '../components/Layout/Column';
 import Layout from '../components/Layout/Layout';

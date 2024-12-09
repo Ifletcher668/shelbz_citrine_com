@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.webp';
+import freyjaToArms from 'public/assets/freyja-to-arms.webp';
 import styled from 'styled-components';
 
 import FadeInObserver from 'components/FadeInObserver';
-import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.jpg';
-import freyjaToArms from 'public/assets/freyja-to-arms.jpg';
 import { ROUTES, SEO } from 'utils/constants';
 
 import { Layout, MainWrapper, Row } from '../components/Layout';
