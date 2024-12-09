@@ -37,7 +37,13 @@ const Home = (props: Props) => {
         <MainWrapper>
           <h1>Hi, I'm Shelbz</h1>
 
-          <HeroImage src={goddessPicture} alt={''} loading="eager" />
+          <HeroImage
+            src={goddessPicture}
+            alt={''}
+            width={960}
+            height={540}
+            loading="eager"
+          />
 
           <Row rowSpacing={40}>
             <p>
