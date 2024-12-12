@@ -1,4 +1,3 @@
-import { TagLink } from 'contentful';
 import { fetchImageFeed } from 'contentful/helpers';
 import { YEAR_STRINGS } from 'utils/constants';
 

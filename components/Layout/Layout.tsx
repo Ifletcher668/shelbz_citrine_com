@@ -11,10 +11,11 @@ import Spacer from '../Spacer';
 import Footer from './Footer';
 import Header from './Header';
 import HeaderProvider from 'contexts/HeaderContext';
+import { NavbarPathProps } from 'utils/getNavbarPathProps';
 
 type Props = {
   children: ReactNode;
-  navbarData: any;
+  navbarData: NavbarPathProps;
 };
 
 const PageTransition = styled.div`
