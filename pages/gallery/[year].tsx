@@ -18,6 +18,8 @@ type Props = {
 export default function Page(props: Props) {
   const { navbarPathProps, imageFeed, year } = props;
 
+  if (!navbarPathProps) return <div>Loading...</div>;
+
   return (
     <>
       <Head>
@@ -39,14 +41,9 @@ export default function Page(props: Props) {
 }
 
 export async function getStaticPaths() {
-  const paths = [];
-
-  const navbarPathProps = await getNavbarPathProps();
-  const yearStrings = YEAR_STRINGS.map(year => {
-    return { params: { year, navbarPathProps } };
-  });
-
-  paths.push(...yearStrings);
+  const paths = YEAR_STRINGS.map(year => ({
+    params: { year },
+  }));
 
   return {
     paths,
@@ -60,7 +57,6 @@ export const getStaticProps: GetStaticProps = async context => {
 
   if (!res) return { props: { navbarPathProps: {} } };
 
-  // need to assign to a variable to properly 'await'
   const imageFeed = res;
 
   return {
