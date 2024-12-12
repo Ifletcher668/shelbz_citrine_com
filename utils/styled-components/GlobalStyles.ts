@@ -3,7 +3,6 @@ import { createGlobalStyle, css } from 'styled-components';
 
 import reset from './_reset';
 import variables from './_variables';
-import { BREAKPOINTS } from 'utils/constants';
 
 /* As a work around to prettier not supporting createGlobalStyle formatting,
     change 'createGlobalStyle' to 'css', format the file, then change it back to 'createGlobalStyle'

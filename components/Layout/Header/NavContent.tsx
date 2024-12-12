@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
@@ -10,13 +11,20 @@ import { slideDown } from 'utils/styled-components/snippets';
 const NavContent = () => {
   const { navbarPathProps } = useNavbarContext();
   const { isSubmenuOpen, setIsSubmenuOpen } = useHeaderContext();
+  const router = useRouter();
 
+  const determineActiveRoute = (path: string) => {
+    return router.asPath.includes(path);
+  };
   return (
     <>
       {NAVIGATION_LINKS.map(link => {
+        const isActive = determineActiveRoute(link.href);
+
         if (link.hasSubmenu) {
           return (
             <SubmenuListItem
+              isActive={isActive}
               key={link.href}
               onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
             >
@@ -43,7 +51,11 @@ const NavContent = () => {
         }
 
         return (
-          <ListItem key={link.href} mobileOnly={link.mobileOnly || false}>
+          <ListItem
+            isActive={isActive}
+            key={link.href}
+            mobileOnly={link.mobileOnly || false}
+          >
             <Link href={link.href}>{link.label}</Link>
           </ListItem>
         );
@@ -54,13 +66,19 @@ const NavContent = () => {
 
 export default NavContent;
 
-const SubmenuListItem = styled.li`
+const SubmenuListItem = styled.li<{ isActive: boolean }>`
   position: relative;
+
+  border-bottom: ${({ isActive }) =>
+    isActive ? '2px solid var(--font-accent)' : 'none'};
 `;
 
-const ListItem = styled.li<{ mobileOnly: boolean }>`
+const ListItem = styled.li<{ mobileOnly: boolean; isActive: boolean }>`
   @media ${BREAKPOINTS.LAPTOP} {
     display: ${({ mobileOnly }) => (mobileOnly ? 'none' : 'list-item')};
+
+    border-bottom: ${({ isActive }) =>
+      isActive ? '2px solid var(--font-accent)' : 'none'};
   }
 `;
 
