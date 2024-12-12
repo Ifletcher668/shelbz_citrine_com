@@ -1,47 +1,47 @@
-import { type CSSProperties } from 'react';
-
+import Icon from 'components/Icon';
+import Spacer from 'components/Spacer';
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
+import { BREAKPOINTS, ROUTES } from 'utils/constants';
+import Moon from './Moon';
+import UnstyledButton from 'components/UnstyledButton';
+import { useHeaderContext } from 'contexts/HeaderContext';
+import NavContent from './NavContent';
 
-import { BREAKPOINTS, ROUTES } from '../../../utils/constants';
-import Icon from '../../Icon';
-import Spacer from '../../Spacer';
-import UnstyledButton from '../../UnstyledButton';
+const Navbar = () => {
+  const { showSidebar, setShowSidebar } = useHeaderContext();
 
-type Props = {
-  setShowMobileMenu: (show: boolean) => void;
-};
-const Navbar = ({ setShowMobileMenu }: Props) => {
   return (
     <>
-      <Nav>
+      <NavbarWrapper>
         <Spacer />
-        <Link href={ROUTES.HOME}>
-          <SiteTitle>Shelbz Citrine</SiteTitle>
-        </Link>
 
-        <Side />
-
-        <Link href={ROUTES.ABOUT}>About Me</Link>
-        <Link href={ROUTES.CONTACT}>Contact</Link>
-
-        <Side />
-        <Spacer />
-      </Nav>
-
-      <MobileNav>
-        <Spacer />
         <Side style={{ '--flex': '3' } as CSSProperties}>
           <Link href={ROUTES.HOME}>
             <SiteTitle>Shelbz Citrine</SiteTitle>
           </Link>
         </Side>
 
-        <UnstyledButton id="open-menu" onClick={() => setShowMobileMenu(true)}>
-          <Icon id="menu" strokeWidth={2} size={48} />
-        </UnstyledButton>
-        <Side />
-      </MobileNav>
+        <Nav>
+          <NavItems>
+            <NavContent />
+          </NavItems>
+        </Nav>
+
+        <MenuButton
+          id="open-menu"
+          onClick={() => setShowSidebar(true)}
+          style={
+            {
+              '--visibility': showSidebar ? 'hidden' : 'visible',
+            } as CSSProperties
+          }
+        >
+          <Icon id="menu" strokeWidth={2} size={60} />
+        </MenuButton>
+      </NavbarWrapper>
+
+      <Moon />
     </>
   );
 };
@@ -51,34 +51,48 @@ export default Navbar;
 const Nav = styled.nav`
   display: none;
 
-  a {
-    font-size: calc(var(--font-size) * 1.2);
-    text-transform: uppercase;
-    margin-top: -5px;
+  @media ${BREAKPOINTS.LAPTOP} {
+    display: block;
   }
 
-  @media ${BREAKPOINTS.LAPTOP} {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
-    gap: clamp(16px, 2.5vw, 48px);
+  a {
+    font-size: var(--header-font-size);
   }
 `;
 
-const MobileNav = styled.div`
+const NavItems = styled.ul`
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: clamp(16px, 2vw + 1rem, 48px);
+
+  gap: clamp(1.2rem, 5.5vw - 4rem, 3rem);
+
+  flex: 1;
+`;
+
+const MenuButton = styled(UnstyledButton)`
+  visibility: var(--visibility);
 
   @media ${BREAKPOINTS.LAPTOP} {
     display: none;
   }
 `;
 
+const NavbarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: clamp(16px, 2vw + 1rem, 48px);
+
+  margin-right: calc(var(--moon-size) - 25px);
+`;
+
 const SiteTitle = styled.span`
   font-family: var(--font-cinzel-decorative);
-  font-size: calc(var(--font-size) * 1.8);
+  font-size: calc(var(--header-font-size) * 1.25);
 `;
 
 const Side = styled.div`

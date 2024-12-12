@@ -33,9 +33,8 @@ const GlobalStyle = createGlobalStyle`
     width: fit-content;
 
     transition-timing-function: ease-in-out;
-    transition-duration: 500ms, 200ms;
+    transition-duration: 750ms, 200ms;
     transition-property: color;
-    
 
     &:hover {
       text-decoration: none;
@@ -47,6 +46,12 @@ const GlobalStyle = createGlobalStyle`
     @media (prefers-reduced-motion) {
       transition: none;
     }
+  }
+
+  p,button,h1,h2,h3,h4,h5,h6 {
+    transition-timing-function: ease-in-out;
+    transition-duration: 500ms, 200ms;
+    transition-property: color;
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -93,11 +98,11 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: 0.05vw;
 
     &::first-letter {
-    font-size: var(--font-size-extra-large);
-    font-weight: 400;
-    margin-right: 2px;
-    font-family: var(--font-cinzel-decorative);
-  }
+      font-size: var(--font-size-extra-large);
+      font-weight: 400;
+      margin-right: 2px;
+      font-family: var(--font-cinzel-decorative);
+    }
   }
 
   input,
@@ -105,13 +110,16 @@ const GlobalStyle = createGlobalStyle`
   textarea,
   select,
   a {
+    display: inline-block;
+
     outline: none;
-    @media ${BREAKPOINTS.LAPTOP} {
-    &:focus {
-      border-radius: 5px;
-      box-shadow: var(--focus-shadow);
+
+    @media (pointer: fine) { 
+        &:focus {
+          border-radius: 5px;
+          outline: 2px solid var(--font-accent);
+        }
     }
-  }
   }
   
   .contentful-hr{

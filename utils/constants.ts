@@ -1,11 +1,17 @@
 export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
-  BOOK: 'https://squareup.com/appointments/book/q1xf9jczhanlgg/LJFMCFRDSQS00/services',
-  REDBUBBLE: 'https://www.redbubble.com/people/mottephobia5/shop',
   CONTACT: '/contact',
+  GALLERY: '/gallery',
   FEED: '/#feed',
 } as const;
+
+export const NAVIGATION_LINKS = [
+  { href: ROUTES.HOME, label: 'Home' },
+  { href: ROUTES.GALLERY, label: 'Gallery', hasSubmenu: true },
+  { href: ROUTES.ABOUT, label: 'About Me' },
+  { href: ROUTES.CONTACT, label: 'Contact' },
+];
 
 export const SOCIALS = {
   INSTAGRAM: 'https://www.instagram.com/tigermoth_grooming/',
@@ -63,3 +69,19 @@ export const SEO = {
       "A Boise, Idaho based artist and painter. Shelbz's art is a hybrid of old and new, traditional and futuristic.",
   },
 };
+
+export const YEAR_STRINGS = [
+  '2019',
+  '2020',
+  '2021',
+  '2022',
+  '2023',
+  '2024',
+  '2025',
+  '2026',
+  '2027',
+  '2027',
+  '2028',
+  '2029',
+  '2030',
+];

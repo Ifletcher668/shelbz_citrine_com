@@ -1,26 +1,32 @@
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import FadeInObserver from 'components/FadeInObserver';
+import { Layout } from 'components/Layout';
 import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import goddessPicture from 'public/assets/goddess.webp';
 
 import Column from '../components/Layout/Column';
-import Layout from '../components/Layout/Layout';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
 import PictureGrid from '../components/PictureGrid';
 import { ROUTES, SEO } from '../utils/constants';
+import {
+  getNavbarPathProps,
+  NavbarPathProps,
+} from '../utils/getNavbarPathProps';
 
 type Props = {
   imageFeed: ContentfulImage[];
+  navbarPathProps: NavbarPathProps;
 };
 
 const Home = (props: Props) => {
-  const { imageFeed } = props;
+  const { imageFeed, navbarPathProps } = props;
 
   return (
     <>
@@ -29,7 +35,7 @@ const Home = (props: Props) => {
         <meta name="description" content={SEO.homePage.description} />
       </Head>
 
-      <Layout>
+      <Layout navbarData={navbarPathProps}>
         <MainWrapper>
           <FadeInObserver>
             <h1>Hi, I'm Shelbz</h1>
@@ -103,10 +109,11 @@ const HeroImage = styled(Image)`
   object-position: center;
 `;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await fetchImageFeed();
+  const navbarPathProps = await getNavbarPathProps();
 
-  if (!res) return;
+  if (!res) return { props: { navbarPathProps } };
 
   // need to assign to a variable to properly 'await'
   const imageFeed = res;
@@ -114,8 +121,9 @@ export async function getStaticProps() {
   return {
     props: {
       imageFeed,
+      navbarPathProps,
     },
   };
-}
+};
 
 export default Home;

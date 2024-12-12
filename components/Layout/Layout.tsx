@@ -2,32 +2,40 @@ import type { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+import NavbarProvider from 'contexts/NavbarContext';
+
 import { fadeIn } from '../../utils/styled-components/snippets';
 import SettingsButton from '../SettingsButton';
 import Spacer from '../Spacer';
 
 import Footer from './Footer';
 import Header from './Header';
+import HeaderProvider from 'contexts/HeaderContext';
 
 type Props = {
   children: ReactNode;
+  navbarData: any;
 };
 
 const PageTransition = styled.div`
   animation: ${fadeIn} 750ms ease-in;
 `;
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, navbarData }: Props) => {
   return (
-    <Wrapper>
-      <Header />
-      <Spacer top={185} />
-      <PageTransition>{children}</PageTransition>
-      <Spacer top={40} />
-      <Footer />
-      <SettingsButton />
-      <Background />
-    </Wrapper>
+    <NavbarProvider data={navbarData}>
+      <Wrapper>
+        <HeaderProvider>
+          <Header />
+        </HeaderProvider>
+        <Spacer top={185} />
+        <PageTransition>{children}</PageTransition>
+        <Spacer top={40} />
+        <Footer />
+        <SettingsButton />
+        <Background />
+      </Wrapper>
+    </NavbarProvider>
   );
 };
 

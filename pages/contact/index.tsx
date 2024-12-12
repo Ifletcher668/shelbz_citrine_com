@@ -2,16 +2,27 @@ import type { FormEvent } from 'react';
 import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
-import styled, { css } from 'styled-components';
 
-import Accordion from '../components/Accordion';
-import AnimatedText from '../components/AnimatedText';
-import { Row } from '../components/Layout';
-import Layout from '../components/Layout/Layout';
-import MainWrapper from '../components/Layout/MainWrapper';
-import { BREAKPOINTS, SEO, VALIDATION_CONSTANTS } from '../utils/constants';
-import { shake } from '../utils/styled-components/snippets';
+import { getNavbarPathProps, NavbarPathProps } from 'utils/getNavbarPathProps';
+
+import Accordion from '../../components/Accordion';
+import AnimatedText from '../../components/AnimatedText';
+import { Row } from '../../components/Layout';
+import Layout from '../../components/Layout/Layout';
+import MainWrapper from '../../components/Layout/MainWrapper';
+import { SEO, VALIDATION_CONSTANTS } from '../../utils/constants';
+
+import {
+  ErrorMessage,
+  Form,
+  Input,
+  Label,
+  LabelText,
+  SubmitButton,
+  Textarea,
+} from './styled-components';
 
 function encode(data: Record<string, string | number | boolean>) {
   return Object.keys(data)
@@ -19,7 +30,13 @@ function encode(data: Record<string, string | number | boolean>) {
     .join('&');
 }
 
-const ContactPage = () => {
+type Props = {
+  navbarPathProps: NavbarPathProps;
+};
+
+const ContactPage = (props: Props) => {
+  const { navbarPathProps } = props;
+
   // Form field states
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -158,7 +175,7 @@ const ContactPage = () => {
         <meta name="description" content={SEO.contactPage.description} />
       </Head>
 
-      <Layout>
+      <Layout navbarData={navbarPathProps}>
         <MainWrapper>
           <h1>Contact</h1>
 
@@ -269,166 +286,12 @@ const ContactPage = () => {
 
 export default ContactPage;
 
-const ErrorMessage = styled(AnimatedText)`
-  color: var(--color-error);
-  font-size: var(--font-size-small);
-  font-weight: 900;
+export const getStaticProps: GetStaticProps = async () => {
+  const navbarPathProps = await getNavbarPathProps();
 
-  /* remove parent flexbox's "gap" property */
-  margin-top: calc(var(--spacing-large) * -1);
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-large);
-  /* containing block for positioned checkboxes */
-  position: relative;
-
-  @media ${BREAKPOINTS.TABLET} {
-    align-self: flex-end;
-    width: clamp(
-      300px,
-      var(--max-width-wrapper),
-      calc(var(--max-width-wrapper) / 2)
-    );
-  }
-`;
-
-const Label = styled.label`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  /* containing block for positioned checkboxes */
-  position: relative;
-`;
-
-const LabelText = styled.span`
-  flex: 1 100%;
-
-  @media ${BREAKPOINTS.LARGE_PHONE} {
-    flex-basis: 0;
-  }
-`;
-
-const Input = styled.input`
-  flex: 4;
-  height: 3rem;
-  padding: 12px 20px;
-
-  background: var(--color-800);
-  border: 1px solid var(--font-accent);
-  border-radius: 6px;
-
-  &:hover,
-  &:focus {
-    background: var(--color-700);
-    border: 1px solid var(--font-accent);
-  }
-`;
-
-const SubmitButton = styled.button<{ isInErrorState: boolean }>`
-  padding: 12px 20px;
-  background: var(--color-500);
-  border: 1px solid var(--font-accent);
-  border-radius: 6px;
-  color: var(--font-accent);
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-
-  ${({ isInErrorState }) =>
-    isInErrorState &&
-    css`
-      animation ${shake} 300ms ease;
-      `}
-
-  &:hover,
-  &:focus {
-    background: var(--color-800);
-    border: 1px solid var(--font-accent);
-    scale: 0.99;
-    color: var(--font-primary);
-  }
-`;
-
-// TODO: Might need to add this soon
-// const Checkbox = styled.input.attrs({ type: 'checkbox' })`
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   right: 0;
-//   cursor: pointer;
-
-//   &::before {
-//     content: '';
-
-//     position: absolute;
-//     top: 0px;
-//     right: 0px;
-
-//     width: 24px;
-//     height: 24px;
-//     background-color: var(--color-800);
-//     border: 1px solid var(--font-accent);
-//     border-radius: 4px;
-//   }
-
-//   &:checked {
-//     &::before {
-//       background-color: var(--color-700);
-//     }
-
-//     // creates a 'checkmark' ::after psuedo-element
-//     &::after {
-//       content: '';
-
-//       position: absolute;
-//       top: 6px;
-//       right: 4px;
-
-//       width: 16px;
-//       height: 8px;
-//       border-left: 3px solid var(--font-accent);
-//       border-bottom: 3px solid var(--font-accent);
-//       transform: rotate(-45deg);
-//     }
-//   }
-
-//   &:hover,
-//   &:focus {
-//     &::before {
-//       background: var(--color-700);
-//       border: 1px solid var(--font-accent);
-//     }
-//   }
-
-//   /* apply focus styles to ::before element */
-//   &:focus {
-//     box-shadow: none;
-//     &::before {
-//       box-shadow: var(--focus-shadow);
-//     }
-//   }
-// `;
-
-const Textarea = styled.textarea`
-  flex: 4;
-  height: 6rem;
-  padding: 12px 20px;
-
-  background: var(--color-800);
-  border: 1px solid var(--font-accent);
-  border-radius: 6px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  resize: none;
-
-  &:hover,
-  &:focus {
-    background: var(--color-700);
-    border: 1px solid var(--font-accent);
-  }
-`;
+  return {
+    props: {
+      navbarPathProps,
+    },
+  };
+};

@@ -20,12 +20,6 @@ export const cormorant = Cormorant({
 const variables = css`
   /* Shared between color schemes */
   body {
-    /* BASE THEME HUES */
-    --blue-hue: 241deg;
-    --green-hue: 177deg;
-    --red-hue: 1deg;
-    --orange-hue: 22deg;
-
     /* SPACING */
     --main-content-gap: 60px;
     --spacing-triple-extra-large: 56px;
@@ -56,169 +50,78 @@ const variables = css`
     --focus-shadow: 0 0 20px 2px var(--color-600), 0 0 0 3px var(--color-500);
     --border-radius: 12px;
     --size-moon: 400px;
+
+    /* Base Theme Hues */
+    --blue-hue: 225deg;
+    --green-hue: 165deg;
+    --red-hue: 360deg;
+    --orange-hue: 18deg;
+    --yellow-hue: 45deg;
+    --purple-hue: 265deg;
+
+    /* Theme Variables */
+    --header-background: var(--color-400);
+    --background: radial-gradient(
+      circle at center,
+      hsl(calc(var(--current-color-hue) - 5deg) 85% 2%),
+      hsl(calc(var(--current-color-hue)) 80% 6%),
+      hsl(calc(var(--current-color-hue) + 5deg) 85% 2%)
+    );
+
+    --moon-shadow: 0 0 30px 10px
+      hsl(calc(var(--current-color-hue) + 5deg) 20% 80%);
+    --moon-gradient: radial-gradient(
+      ellipse,
+      hsl(calc(var(--current-color-hue) - 10deg) 10% 85%),
+      hsl(calc(var(--current-color-hue) - 5deg) 10% 80%),
+      hsl(calc(var(--current-color-hue) + 10deg) 10% 70%)
+    );
+
+    --shadow-color: hsl(var(--current-color-hue) 90% 25%);
+    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
+      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
+      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
+
+    --font-primary: hsl(var(--current-color-hue) 100% 80%);
+    --font-accent: hsl(var(--current-color-hue) 90% 80%);
+    --font-secondary: hsl(var(--current-color-hue) 95% 50%);
+
+    --color-50: hsl(calc(var(--current-color-hue) + 5deg) 90% 30%);
+    --color-100: hsl(calc(var(--current-color-hue) + 5deg) 90% 25%);
+    --color-200: hsl(var(--current-color-hue) 85% 50%);
+    --color-300: hsl(var(--current-color-hue) 85% 45%);
+    --color-400: hsl(var(--current-color-hue) 80% 35%);
+    --color-500: hsl(var(--current-color-hue) 40% 30%);
+    --color-600: hsl(calc(var(--current-color-hue) + 5deg) 70% 40%);
+    --color-700: hsl(var(--current-color-hue) 20% 20%);
+    --color-800: hsl(var(--current-color-hue) 10% 10%);
+
+    --color-error: hsl(var(--red-hue) 100% 35%);
+    --color-disabled: hsl(var(--red-hue) 5% 15%);
   }
 
   [data-color-scheme='moon'] {
-    --color-50: hsl(calc(var(--blue-hue) + 5deg) 100% 95%);
-    --color-100: hsl(calc(var(--blue-hue) + 5deg) 95% 88%);
-    --color-200: hsl(var(--blue-hue) 95% 80%);
-    --color-300: hsl(var(--blue-hue) 95% 74%);
-    --color-400: hsl(var(--blue-hue) 90% 68%);
-    --color-500: hsl(var(--blue-hue) 20% 40%);
-    --color-600: hsl(var(--blue-hue) 20% 35%);
-    --color-700: hsl(var(--blue-hue) 20% 40%);
-    --color-800: hsl(var(--blue-hue) 20% 50%);
-    --color-900: hsl(var(--blue-hue) 20% 60%);
-    --color-error: hsl(var(--red-hue) 100% 50%);
-    --color-disabled: hsl(var(--red-hue) 1% 34%);
-
-    --background-gradient: radial-gradient(
-      circle at center,
-      hsl(calc(var(--blue-hue) - 5deg) 83% 1%),
-      hsl(calc(var(--blue-hue)) 83% 8%),
-      hsl(calc(var(--blue-hue) + 5deg) 83% 1%)
-    );
-
-    --moon-shadow: 0 0 30px 10px hsl(calc(var(--blue-hue) + 5deg) 80% 50%);
-    --moon-gradient: radial-gradient(
-      ellipse,
-      hsl(calc(var(--blue-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--blue-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--blue-hue) + 5deg) 83% 80%)
-    );
-
-    --background: var(--background-gradient);
-    --header-background: var(--color-400);
-    --font-primary: hsl(var(--blue-hue) 100% 95%);
-    --font-accent: hsl(var(--blue-hue) 70% 50%);
-    --font-secondary: hsl(var(--blue-hue) 97% 54%);
-
-    --shadow-color: var(--blue-hue) 90% 30%;
-    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
-      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
-      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
+    --current-color-hue: var(--blue-hue);
   }
 
   [data-color-scheme='ocean'] {
-    --color-50: hsl(calc(var(--green-hue) + 5deg) 100% 95%);
-    --color-100: hsl(calc(var(--green-hue) + 5deg) 95% 88%);
-    --color-200: hsl(var(--green-hue) 95% 80%);
-    --color-300: hsl(var(--green-hue) 95% 74%);
-    --color-400: hsl(var(--green-hue) 90% 68%);
-    --color-500: hsl(var(--green-hue) 20% 40%);
-    --color-600: hsl(var(--green-hue) 20% 35%);
-    --color-700: hsl(var(--green-hue) 20% 40%);
-    --color-800: hsl(var(--green-hue) 20% 50%);
-    --color-900: hsl(var(--green-hue) 20% 60%);
-    --color-error: hsl(var(--red-hue) 100% 50%);
-    --color-disabled: hsl(var(--green-hue) 1% 34%);
-
-    --background-gradient: radial-gradient(
-      circle at center,
-      hsl(calc(var(--green-hue) - 5deg) 83% 1%),
-      hsl(calc(var(--green-hue)) 83% 8%),
-      hsl(calc(var(--green-hue) + 5deg) 83% 1%)
-    );
-
-    --moon-shadow: 0 0 30px 10px hsl(calc(var(--green-hue) + 5deg) 80% 50%);
-    --moon-gradient: radial-gradient(
-      ellipse,
-      hsl(calc(var(--green-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--green-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--green-hue) + 5deg) 83% 80%)
-    );
-
-    --background: var(--background-gradient);
-    --header-background: var(--color-400);
-    --font-primary: hsl(var(--green-hue) 100% 95%);
-    --font-accent: hsl(var(--green-hue) 70% 50%);
-    --font-secondary: hsl(var(--green-hue) 97% 30%);
-
-    --shadow-color: var(--green-hue) 90% 30%;
-    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
-      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
-      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
+    --current-color-hue: var(--green-hue);
   }
 
   [data-color-scheme='bloodMoon'] {
-    --color-100: hsl(calc(var(--red-hue) + 5deg) 95% 88%);
-    --color-200: hsl(var(--red-hue) 95% 80%);
-    --color-300: hsl(var(--red-hue) 95% 74%);
-    --color-400: hsl(var(--red-hue) 97% 15%);
-    --color-500: hsl(var(--red-hue) 20% 40%);
-    --color-600: hsl(calc(var(--red-hue) + 5deg) 80% 70%);
-    --color-700: hsl(var(--red-hue) 20% 40%);
-    --color-800: hsl(var(--red-hue) 15% 18%);
-    --color-error: hsl(var(--red-hue) 100% 50%);
-    --color-disabled: hsl(var(--red-hue) 1% 34%);
-
-    --background-gradient: radial-gradient(
-      circle at center,
-      hsl(calc(var(--red-hue) - 5deg) 83% 1%),
-      hsl(calc(var(--red-hue)) 83% 8%),
-      hsl(calc(var(--red-hue) + 5deg) 83% 1%)
-    );
-
-    --moon-shadow: 0 0 30px 10px hsl(calc(var(--red-hue) + 5deg) 80% 50%);
-    --moon-gradient: radial-gradient(
-      ellipse,
-      hsl(calc(var(--red-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--red-hue) - 10deg) 83% 100%),
-      hsl(calc(var(--red-hue) + 5deg) 83% 80%)
-    );
-
-    --background: var(--background-gradient);
-    --header-background: var(--color-400);
-    --font-primary: hsl(var(--red-hue) 100% 95%);
-    --font-accent: hsl(var(--red-hue) 80% 50%);
-    --font-secondary: hsl(var(--red-hue) 97% 30%);
-
-    --shadow-color: var(--red-hue) 90% 20%;
-    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
-      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
-      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
+    --current-color-hue: var(--red-hue);
   }
 
   [data-color-scheme='harvestMoon'] {
-    --color-100: hsl(calc(var(--orange-hue) + 5deg) 95% 88%);
-    --color-200: hsl(var(--orange-hue) 95% 80%);
-    --color-300: hsl(var(--orange-hue) 95% 74%);
-    --color-400: hsl(var(--orange-hue) 97% 47%);
-    --color-500: hsl(var(--orange-hue) 20% 40%);
-    --color-600: hsl(calc(var(--orange-hue) + 5deg) 80% 70%);
-    --color-700: hsl(var(--orange-hue) 20% 40%);
-    --color-800: hsl(var(--orange-hue) 15% 18%);
-    --color-error: hsl(var(--red-hue) 100% 30%);
-    --color-disabled: hsl(var(--red-hue) 5% 34%);
+    --current-color-hue: var(--orange-hue);
+  }
 
-    --background-gradient: radial-gradient(
-      circle at center,
-      hsl(calc(var(--orange-hue) - 5deg) 83% 1%),
-      hsl(calc(var(--orange-hue)) 83% 8%),
-      hsl(calc(var(--orange-hue) + 5deg) 83% 1%)
-    );
+  [data-color-scheme='sun'] {
+    --current-color-hue: var(--yellow-hue);
+  }
 
-    --moon-shadow: 0 0 30px 10px hsl(calc(var(--orange-hue) + 5deg) 100% 80%);
-    --moon-gradient: radial-gradient(
-      ellipse,
-      hsl(calc(var(--orange-hue) - 10deg) 83% 45%),
-      hsl(calc(var(--orange-hue) - 5deg) 83% 45%),
-      hsl(calc(var(--orange-hue) - 5deg) 83% 45%),
-      hsl(calc(var(--orange-hue) + 5deg) 83% 45%),
-      hsl(calc(var(--orange-hue) + 5deg) 83% 45%),
-      hsl(calc(var(--orange-hue) + 5deg) 100% 80%)
-    );
-
-    --background: var(--background-gradient);
-    --header-background: var(--color-400);
-    --font-primary: hsl(var(--orange-hue) 80% 85%);
-    --font-accent: hsl(var(--orange-hue) 75% 35%);
-    --font-secondary: hsl(var(--orange-hue) 97% 30%);
-
-    --shadow-color: var(--orange-hue) 90% 30%;
-    --shadow-elevation-medium: 0px 0.6px 0.5px hsl(var(--shadow-color) / 1),
-      0px 2.3px 1.7px -2.5px hsl(var(--shadow-color) / 0.97),
-      0.2px 14.6px 11px -5px hsl(var(--shadow-color) / 0.49);
+  [data-color-scheme='royal'] {
+    --current-color-hue: var(--purple-hue);
   }
 `;
 

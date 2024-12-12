@@ -83,7 +83,7 @@ const SubNav = () => {
       <VisuallyHidden>{showSubmenu ? 'Hide' : 'Show'} Settings:</VisuallyHidden>{' '}
       <Icon id="gear" size={48} strokeWidth={1} tabIndex={0} />
       {shouldRender ? (
-        <SubNavMenu isMounted={showSubmenu} duration={250}>
+        <SubNavMenu isMounted={showSubmenu} duration={350}>
           <UnstyledButton
             onClick={() => ThemeContext.changeColorScheme('moon')}
             key={'moon'}
@@ -108,6 +108,18 @@ const SubNav = () => {
           >
             Harvest Moon
           </UnstyledButton>
+          <UnstyledButton
+            onClick={() => ThemeContext.changeColorScheme('sun')}
+            key={'sun'}
+          >
+            Sun
+          </UnstyledButton>
+          <UnstyledButton
+            onClick={() => ThemeContext.changeColorScheme('royal')}
+            key={'royal'}
+          >
+            Royal
+          </UnstyledButton>
         </SubNavMenu>
       ) : (
         <></>
@@ -129,11 +141,14 @@ const SubNavMenu = styled.nav`
   box-shadow: var(--focus-shadow);
   border-radius: 5px 5px 0 0;
 
+  width: max-content;
+
   position: absolute;
   bottom: 48px;
   left: 0;
   min-width: 100%;
-  padding: 1rem;
+  padding: 16px;
+  padding-right: 32px;
 `;
 
 const SubNavWrapper = styled.div`
@@ -141,8 +156,8 @@ const SubNavWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  width: fit-content;
-  font-size: var(--font-size, 1.125rem);
+
+  font-size: var(--font-size-large);
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 700;

@@ -11,6 +11,10 @@ const Moon = styled.div`
   box-shadow: var(--moon-shadow);
   transition: var(--header-transition);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   /* Increase size on mobile because vw scales too quickly at smaller sizes */
   width: calc(var(--moon-size) + 12vw);
   height: calc(var(--moon-size) + 12vw);

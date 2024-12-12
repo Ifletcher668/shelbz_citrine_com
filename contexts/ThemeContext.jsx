@@ -3,7 +3,14 @@
 import { createContext, useContext, useLayoutEffect, useState } from 'react';
 
 const DEFAULT_COLOR_SCHEME = 'bloodMoon';
-const POSSIBLE_COLOR_SCHEMES = ['moon', 'ocean', 'bloodMoon', 'harvestMoon'];
+const POSSIBLE_COLOR_SCHEMES = [
+  'moon',
+  'ocean',
+  'bloodMoon',
+  'harvestMoon',
+  'sun',
+  'royal',
+];
 const RANDOM_COLOR_SCHEME =
   POSSIBLE_COLOR_SCHEMES[
     Math.floor(Math.random() * POSSIBLE_COLOR_SCHEMES.length)
