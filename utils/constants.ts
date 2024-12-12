@@ -7,7 +7,7 @@ export const ROUTES = {
 } as const;
 
 export const NAVIGATION_LINKS = [
-  { href: ROUTES.HOME, label: 'Home' },
+  { href: ROUTES.HOME, label: 'Home', mobileOnly: true },
   { href: ROUTES.GALLERY, label: 'Gallery', hasSubmenu: true },
   { href: ROUTES.ABOUT, label: 'About Me' },
   { href: ROUTES.CONTACT, label: 'Contact' },

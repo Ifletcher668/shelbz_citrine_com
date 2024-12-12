@@ -1,66 +1,67 @@
-import Icon from 'components/Icon';
+import Link from 'next/link';
+import type { CSSObject } from 'styled-components';
+import styled from 'styled-components';
+
 import { useHeaderContext } from 'contexts/HeaderContext';
 import { useNavbarContext } from 'contexts/NavbarContext';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styled, { CSSObject } from 'styled-components';
 import { BREAKPOINTS, NAVIGATION_LINKS, ROUTES } from 'utils/constants';
 import { slideDown } from 'utils/styled-components/snippets';
 
 const NavContent = () => {
   const { navbarPathProps } = useNavbarContext();
-  const router = useRouter();
   const { isSubmenuOpen, setIsSubmenuOpen } = useHeaderContext();
 
   return (
     <>
-      {NAVIGATION_LINKS.filter(link => link.href !== router.pathname).map(
-        link => {
-          if (link.hasSubmenu) {
-            return (
-              <Submenu
-                key={link.href}
-                onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
-              >
-                <SubmenuToggleButton>{link.label}</SubmenuToggleButton>
-
-                <SubmenuItems
-                  style={
-                    {
-                      '--display': isSubmenuOpen ? 'flex' : 'none',
-                      '--animation': isSubmenuOpen
-                        ? 'slideDown 0.3s ease-in-out'
-                        : '',
-                    } as CSSObject
-                  }
-                >
-                  {navbarPathProps
-                    .filter(subLink => !router.asPath.includes(subLink))
-                    .map(subLink => (
-                      <Link href={`${ROUTES.GALLERY}/${subLink}`} key={1}>
-                        {subLink}
-                      </Link>
-                    ))}
-                </SubmenuItems>
-              </Submenu>
-            );
-          }
-
+      {NAVIGATION_LINKS.map(link => {
+        if (link.hasSubmenu) {
           return (
-            <li key={link.href}>
-              <Link href={link.href}>{link.label}</Link>
-            </li>
+            <SubmenuListItem
+              key={link.href}
+              onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+            >
+              <SubmenuToggleButton>{link.label}</SubmenuToggleButton>
+
+              <SubmenuItems
+                style={
+                  {
+                    '--display': isSubmenuOpen ? 'flex' : 'none',
+                    '--animation': isSubmenuOpen
+                      ? 'slideDown 0.3s ease-in-out'
+                      : '',
+                  } as CSSObject
+                }
+              >
+                {navbarPathProps.map(subLink => (
+                  <Link href={`${ROUTES.GALLERY}/${subLink}`} key={1}>
+                    {subLink}
+                  </Link>
+                ))}
+              </SubmenuItems>
+            </SubmenuListItem>
           );
-        },
-      )}
+        }
+
+        return (
+          <ListItem key={link.href} mobileOnly={link.mobileOnly || false}>
+            <Link href={link.href}>{link.label}</Link>
+          </ListItem>
+        );
+      })}
     </>
   );
 };
 
 export default NavContent;
 
-const Submenu = styled.div`
+const SubmenuListItem = styled.li`
   position: relative;
+`;
+
+const ListItem = styled.li<{ mobileOnly: boolean }>`
+  @media ${BREAKPOINTS.LAPTOP} {
+    display: ${({ mobileOnly }) => (mobileOnly ? 'none' : 'list-item')};
+  }
 `;
 
 const SubmenuItems = styled.div`

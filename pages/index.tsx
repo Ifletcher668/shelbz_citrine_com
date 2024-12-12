@@ -15,10 +15,8 @@ import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
 import PictureGrid from '../components/PictureGrid';
 import { ROUTES, SEO } from '../utils/constants';
-import {
-  getNavbarPathProps,
-  NavbarPathProps,
-} from '../utils/getNavbarPathProps';
+import type { NavbarPathProps } from '../utils/getNavbarPathProps';
+import { getNavbarPathProps } from '../utils/getNavbarPathProps';
 
 type Props = {
   imageFeed: ContentfulImage[];

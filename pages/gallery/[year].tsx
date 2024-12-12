@@ -7,7 +7,8 @@ import PictureGrid from 'components/PictureGrid';
 import { fetchImagesByYear } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import { SEO, YEAR_STRINGS } from 'utils/constants';
-import { getNavbarPathProps, NavbarPathProps } from 'utils/getNavbarPathProps';
+import type { NavbarPathProps } from 'utils/getNavbarPathProps';
+import { getNavbarPathProps } from 'utils/getNavbarPathProps';
 
 type Props = {
   imageFeed: ContentfulImage[];

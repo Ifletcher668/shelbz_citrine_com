@@ -2,7 +2,9 @@ import type { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+import HeaderProvider from 'contexts/HeaderContext';
 import NavbarProvider from 'contexts/NavbarContext';
+import type { NavbarPathProps } from 'utils/getNavbarPathProps';
 
 import { fadeIn } from '../../utils/styled-components/snippets';
 import SettingsButton from '../SettingsButton';
@@ -10,8 +12,6 @@ import Spacer from '../Spacer';
 
 import Footer from './Footer';
 import Header from './Header';
-import HeaderProvider from 'contexts/HeaderContext';
-import { NavbarPathProps } from 'utils/getNavbarPathProps';
 
 type Props = {
   children: ReactNode;
