@@ -17,6 +17,7 @@ type Props = {
 
 export default function Page(props: Props) {
   const { navbarPathProps, imageFeed, year } = props;
+
   return (
     <>
       <Head>
@@ -38,10 +39,17 @@ export default function Page(props: Props) {
 }
 
 export async function getStaticPaths() {
+  const paths = [];
+
+  const navbarPathProps = await getNavbarPathProps();
+  const yearStrings = YEAR_STRINGS.map(year => {
+    return { params: { year, navbarPathProps } };
+  });
+
+  paths.push(...yearStrings);
+
   return {
-    paths: YEAR_STRINGS.map(year => {
-      return { params: { year } };
-    }),
+    paths,
     fallback: true,
   };
 }
