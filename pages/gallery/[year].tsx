@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const res = await fetchImagesByYear(context.params?.year as string);
   const navbarPathProps = await getNavbarPathProps();
 
-  if (!res) return { props: {} };
+  if (!res) return { props: { navbarPathProps: {} } };
 
   // need to assign to a variable to properly 'await'
   const imageFeed = res;
