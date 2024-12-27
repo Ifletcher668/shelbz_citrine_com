@@ -1,7 +1,8 @@
+import { useEffect, useRef } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import type { CSSObject } from 'styled-components';
-import styled from 'styled-components';
+import styled, { CSSObject } from 'styled-components';
 
 import { useHeaderContext } from 'contexts/HeaderContext';
 import { useNavbarContext } from 'contexts/NavbarContext';
@@ -16,34 +17,48 @@ const NavContent = () => {
   const determineActiveRoute = (path: string) => {
     return router.asPath.includes(path);
   };
+
+  const menuRef = useRef<HTMLLIElement | null>(null);
+
+  // TODO: Breaks the menu on mobile because why the fuck wouldn't it?
+  // Fix.
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+  //       setIsSubmenuOpen(false);
+  //     }
+  //   };
+
+  //   document.addEventListener('click', handleClickOutside);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, [setIsSubmenuOpen]);
+
   return (
     <>
       {NAVIGATION_LINKS.map(link => {
         const isActive = determineActiveRoute(link.href);
 
-        if (link.hasSubmenu) {
+        if (link.href === ROUTES.GALLERY) {
           return (
-            <SubmenuListItem
-              isActive={isActive}
-              key={link.href}
-              onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
-            >
-              <SubmenuToggleButton>{link.label}</SubmenuToggleButton>
+            <SubmenuListItem ref={menuRef} isActive={isActive} key={link.href}>
+              <SubmenuToggleButton
+                onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+              >
+                {link.label}
+              </SubmenuToggleButton>
 
               <SubmenuItems
                 style={
-                  {
-                    '--display': isSubmenuOpen ? 'flex' : 'none',
-                    '--animation': isSubmenuOpen
-                      ? 'slideDown 0.3s ease-in-out'
-                      : '',
-                  } as CSSObject
+                  { '--display': isSubmenuOpen ? 'flex' : 'none' } as CSSObject
                 }
               >
                 {navbarPathProps.map(subLink => (
-                  <Link href={`${ROUTES.GALLERY}/${subLink}`} key={1}>
-                    {subLink}
-                  </Link>
+                  <ListItem key={subLink} isActive={false} mobileOnly={false}>
+                    <Link href={`${ROUTES.GALLERY}/${subLink}`}>{subLink}</Link>
+                  </ListItem>
                 ))}
               </SubmenuItems>
             </SubmenuListItem>
@@ -70,7 +85,7 @@ const SubmenuListItem = styled.li<{ isActive: boolean }>`
   position: relative;
 
   border-bottom: ${({ isActive }) =>
-    isActive ? '2px solid var(--font-accent)' : 'none'};
+    isActive ? '2px solid var(--font-secondary-accent)' : 'none'};
 `;
 
 const ListItem = styled.li<{ mobileOnly: boolean; isActive: boolean }>`
@@ -78,26 +93,34 @@ const ListItem = styled.li<{ mobileOnly: boolean; isActive: boolean }>`
     display: ${({ mobileOnly }) => (mobileOnly ? 'none' : 'list-item')};
 
     border-bottom: ${({ isActive }) =>
-      isActive ? '2px solid var(--font-accent)' : 'none'};
+      isActive ? '2px solid var(--font-secondary-accent)' : 'none'};
   }
 `;
 
-const SubmenuItems = styled.div`
+const SubmenuItems = styled.ul`
   display: var(--display);
-  animation: ${slideDown} 0.5s ease-in-out;
+  animation: ${slideDown} 0.2s ease-in-out;
+  list-style: none;
+
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 
   @media ${BREAKPOINTS.LAPTOP} {
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 0;
 
-    background: var(--header-background);
-    padding-left: var(--spacing-extra-small);
-    padding-bottom: var(--spacing-extra-small);
-    padding-right: var(--spacing-extra-large);
+    background: var(--background-secondary);
+    border: 1px solid var(--background);
+    border-top: none;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+
+    padding-left: var(--spacing-32);
+    padding-bottom: var(--spacing-32);
+    padding-right: var(--spacing-40);
   }
 `;
 
@@ -105,7 +128,7 @@ const SubmenuToggleButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-extra-small);
+  gap: var(--spacing-16);
 
   /* Styled to look like an anchor */
   background: none;
@@ -127,7 +150,7 @@ const SubmenuToggleButton = styled.button`
 
   &:hover {
     text-decoration: none;
-    color: var(--font-accent);
+    color: var(--font-secondary-accent);
     cursor: pointer;
   }
 

@@ -4,12 +4,13 @@ export const ROUTES = {
   CONTACT: '/contact',
   GALLERY: '/gallery',
   FEED: '/#feed',
+  CANVAS: '/canvas',
 } as const;
 
 export const NAVIGATION_LINKS = [
   { href: ROUTES.HOME, label: 'Home', mobileOnly: true },
-  { href: ROUTES.GALLERY, label: 'Gallery', hasSubmenu: true },
-  { href: ROUTES.ABOUT, label: 'About Me' },
+  { href: ROUTES.GALLERY, label: 'Gallery' },
+  { href: ROUTES.ABOUT, label: 'About' },
   { href: ROUTES.CONTACT, label: 'Contact' },
 ];
 
@@ -56,17 +57,17 @@ export const SEO = {
   homePage: {
     title: 'Shelbz Citrine | Home',
     description:
-      'A Boise, Idaho based artist combining classical training with self-taught innovation to produce dark and surreal works inspired by a medley of influences.',
+      'A Salem, Oregon based artist combining classical training with self-taught innovation to produce dark and surreal works inspired by a medley of influences.',
   },
   contactPage: {
     title: 'Contact Me',
     description:
-      'Discover acrylic, oil, and Procreate art by Shelbz. Commission surreal to sublime pieces, regardless of your location – Boise and beyond. Reach out today!',
+      'Discover acrylic, oil, and Procreate art by Shelbz. Commission surreal to sublime pieces, regardless of your location – Salem and beyond. Reach out today!',
   },
   aboutPage: {
     title: 'About Me',
     description:
-      "A Boise, Idaho based artist and painter. Shelbz's art is a hybrid of old and new, traditional and futuristic.",
+      "A Salem, Oregon based artist and painter. Shelbz's art is a hybrid of old and new, traditional and futuristic.",
   },
 };
 

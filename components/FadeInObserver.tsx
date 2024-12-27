@@ -9,7 +9,13 @@ const FadeInWrapper = styled.div`
   transition: opacity 1s ease-out, transform 1s ease-out;
 `;
 
-const FadeInObserver = ({ children }: { children: ReactNode }) => {
+const FadeInObserver = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef(null);
 
@@ -44,6 +50,7 @@ const FadeInObserver = ({ children }: { children: ReactNode }) => {
 
   return (
     <FadeInWrapper
+      className={className}
       ref={elementRef}
       style={
         {

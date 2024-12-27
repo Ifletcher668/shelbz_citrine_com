@@ -8,7 +8,8 @@ import FadeInObserver from 'components/FadeInObserver';
 import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.webp';
 import freyjaToArms from 'public/assets/freyja-to-arms.webp';
 import { ROUTES, SEO } from 'utils/constants';
-import { getNavbarPathProps, NavbarPathProps } from 'utils/getNavbarPathProps';
+import type { NavbarPathProps } from 'utils/getNavbarPathProps';
+import { getNavbarPathProps } from 'utils/getNavbarPathProps';
 
 import { Layout, MainWrapper, Row } from '../components/Layout';
 import Column from '../components/Layout/Column';
@@ -156,7 +157,7 @@ const WindowSideViewImage = styled(BaseImage)`
 
 const FreyjaToArmsImage = styled(BaseImage)`
   float: left;
-  margin-right: var(--spacing-extra-large);
+  margin-right: var(--spacing-24);
   margin-top: 12px;
 `;
 

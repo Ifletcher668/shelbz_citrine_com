@@ -3,8 +3,6 @@ import { useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { BREAKPOINTS } from 'utils/constants';
-
 type Props = {
   content: string[];
   summary: string;
@@ -150,50 +148,60 @@ export default Accordion;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-medium);
-  padding: var(--spacing-extra-small);
+  gap: var(--spacing-24);
+  padding: var(--spacing-32);
+  padding-top: 0;
+  padding-bottom: var(--spacing-48);
 `;
 
 const Details = styled.details`
   width: 100%;
-  background: var(--color-600);
-  box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  overflow: hidden;
 
   &[open] summary::before {
     transform: rotate(90deg);
   }
 
-  @media ${BREAKPOINTS.TABLET} {
-    width: 75%;
-  }
-
-  &:hover,
-  &:focus-within {
-    outline: 2px solid var(--font-accent);
+  &:focus,
+  &:hover {
+    box-shadow: var(--shadow-elevation-low);
   }
 `;
 
 const Summary = styled.summary`
-  padding: 1rem;
   display: block;
-  background: var(--color-500);
-  padding-left: var(--spacing-large);
+  padding: var(--spacing-16);
+  padding-left: var(--spacing-32);
+
+  color: var(--font-tertiary);
+  font-size: var(--font-size-medium);
+
   position: relative;
+
   cursor: pointer;
 
   &:before {
     content: '';
+    position: absolute;
+
     border-width: 0.4rem;
     border-style: solid;
     border-color: transparent transparent transparent var(--font-primary);
-    position: absolute;
-    top: 1.3rem;
+
+    top: 40%;
     left: 1rem;
+
     transform: rotate(0);
     transform-origin: 0.2rem 50%;
     transition: 0.25s transform ease;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus,
+  &:hover {
+    color: var(--font-secondary);
   }
 
   &::-webkit-details-marker {

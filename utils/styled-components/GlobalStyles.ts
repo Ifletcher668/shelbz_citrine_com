@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
     background: black;
   }
 
+
+
   body {
     color: var(--font-primary);
     font-family: var(--font-cormorant);
@@ -37,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover {
       text-decoration: none;
-      color: var(--font-accent);
+      color: var(--font-secondary-accent);
       cursor: pointer;
     }
     
@@ -51,6 +53,10 @@ const GlobalStyle = createGlobalStyle`
     transition-timing-function: ease-in-out;
     transition-duration: 500ms, 200ms;
     transition-property: color;
+  }
+
+  small {
+    font-size: var(--font-size-extra-small);
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -116,7 +122,7 @@ const GlobalStyle = createGlobalStyle`
     @media (pointer: fine) { 
         &:focus {
           border-radius: 5px;
-          outline: 2px solid var(--font-accent);
+          outline: 2px solid var(--font-secondary-accent);
         }
     }
   }
@@ -131,7 +137,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .contentful-italic{
-    color: var(--font-accent)
+    color: var(--font-secondary-accent)
   }
 
   .contentful-underline {
@@ -141,7 +147,7 @@ const GlobalStyle = createGlobalStyle`
 
   .contentful-bold-text {
     font-weight: bold;
-    color: var(--font-accent);
+    color: var(--font-secondary-accent);
   }
 `;
 

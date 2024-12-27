@@ -6,14 +6,12 @@ import styled from 'styled-components';
 
 import FadeInObserver from 'components/FadeInObserver';
 import { Layout } from 'components/Layout';
-import { fetchImageFeed } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import goddessPicture from 'public/assets/goddess.webp';
 
 import Column from '../components/Layout/Column';
 import MainWrapper from '../components/Layout/MainWrapper';
 import Row from '../components/Layout/Row';
-import PictureGrid from '../components/PictureGrid';
 import { ROUTES, SEO } from '../utils/constants';
 import type { NavbarPathProps } from '../utils/getNavbarPathProps';
 import { getNavbarPathProps } from '../utils/getNavbarPathProps';
@@ -24,7 +22,7 @@ type Props = {
 };
 
 const Home = (props: Props) => {
-  const { imageFeed, navbarPathProps } = props;
+  const { navbarPathProps } = props;
 
   return (
     <>
@@ -102,17 +100,10 @@ const HeroImage = styled(Image)`
 `;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetchImageFeed();
   const navbarPathProps = await getNavbarPathProps();
-
-  if (!res) return { props: { navbarPathProps } };
-
-  // need to assign to a variable to properly 'await'
-  const imageFeed = res;
 
   return {
     props: {
-      imageFeed,
       navbarPathProps,
     },
   };

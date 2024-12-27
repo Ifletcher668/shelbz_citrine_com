@@ -2,12 +2,12 @@ import type { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+import StarryCanvas from 'components/StarryCanvas';
 import HeaderProvider from 'contexts/HeaderContext';
 import NavbarProvider from 'contexts/NavbarContext';
 import type { NavbarPathProps } from 'utils/getNavbarPathProps';
 
 import { fadeIn } from '../../utils/styled-components/snippets';
-import SettingsButton from '../SettingsButton';
 import Spacer from '../Spacer';
 
 import Footer from './Footer';
@@ -25,15 +25,16 @@ const PageTransition = styled.div`
 const Layout = ({ children, navbarData }: Props) => {
   return (
     <NavbarProvider data={navbarData}>
+      <StarryCanvas />
       <Wrapper>
         <HeaderProvider>
           <Header />
         </HeaderProvider>
-        <Spacer top={185} />
+        <Spacer top={250} />
         <PageTransition>{children}</PageTransition>
-        <Spacer top={40} />
+        <Spacer top={150} />
         <Footer />
-        <SettingsButton />
+        <Spacer top={150} />
         <Background />
       </Wrapper>
     </NavbarProvider>
@@ -51,6 +52,9 @@ const Background = styled.div`
 `;
 
 const Wrapper = styled.div`
+  /* Necessary to put stars behind it */
+  position: relative;
+
   min-height: 100%;
   max-width: var(--max-width-wrapper);
   margin-left: auto;

@@ -128,21 +128,21 @@ const Wrapper = styled.section`
 
   .masonry-grid {
     display: flex;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-24);
     width: auto;
   }
 
   .masonry-grid_column {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-medium);
+    gap: var(--spacing-24);
     background-clip: padding-box;
   }
 
   @media ${BREAKPOINTS.TABLET} {
     .masonry-grid,
     .masonry-grid_column {
-      gap: var(--spacing-small);
+      gap: var(--spacing-18);
     }
   }
 `;
@@ -157,7 +157,7 @@ const PictureCaption = styled.figcaption`
   font-size: var(--font-size-small);
   text-align: center;
 
-  padding: var(--spacing-double-extra-small);
+  padding: var(--spacing-8);
 
   opacity: 1;
 
@@ -170,9 +170,10 @@ const PictureCaption = styled.figcaption`
     bottom: 0;
 
     background-color: rgba(0, 0, 0, 0.9);
+    color: var(--font-tertiary);
 
     margin: auto;
-    padding: var(--spacing-small);
+    padding: var(--spacing-18);
   }
 `;
 

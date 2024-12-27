@@ -3,33 +3,36 @@ import { ServerStyleSheet } from 'styled-components';
 
 import { SEO } from '../utils/constants';
 
-const MyDocument = ({ styles }) => (
-  <Html lang="en-us">
-    <Head>
-      {styles}
-      <meta name="robots" content="index, follow" />
+const MyDocument = ({ styles }) => {
+  return (
+    <Html lang="en-us">
+      <Head>
+        {styles}
+        <meta name="robots" content="index, follow" />
 
-      <meta name="title" content={SEO.base.title} />
-      <meta name="description" content={SEO.base.description} />
+        <meta name="title" content={SEO.base.title} />
+        <meta name="description" content={SEO.base.description} />
 
-      <meta property="og:title" content={SEO.base.title} />
-      <meta
-        property="og:description"
-        content={SEO.base.openGraph.description}
-      />
-      <meta property="og:image" content={SEO.base.openGraph.image} />
-      <meta property="og:type" content="website" />
+        <meta property="og:title" content={SEO.base.title} />
+        <meta
+          property="og:description"
+          content={SEO.base.openGraph.description}
+        />
+        <meta property="og:image" content={SEO.base.openGraph.image} />
+        <meta property="og:type" content="website" />
 
-      <meta rel="icon" href="favicon.jpg" />
-    </Head>
+        <meta rel="icon" href="favicon.jpg" />
+      </Head>
 
-    <body>
-      <Main />
-      <NextScript />
-    </body>
-  </Html>
-);
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+};
 
+// Only for SSR in dev
 MyDocument.getInitialProps = async ctx => {
   const sheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
@@ -43,7 +46,12 @@ MyDocument.getInitialProps = async ctx => {
     const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,
-      styles: [initialProps.styles, sheet.getStyleElement()],
+      styles: (
+        <>
+          {initialProps.styles}
+          {sheet.getStyleElement()}
+        </>
+      ),
     };
   } finally {
     sheet.seal();

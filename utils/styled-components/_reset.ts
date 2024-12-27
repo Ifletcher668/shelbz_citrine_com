@@ -1,6 +1,11 @@
 import { css } from 'styled-components';
 
 const reset = css`
+  /*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
   *,
   *::before,
   *::after {
@@ -9,12 +14,6 @@ const reset = css`
 
   * {
     margin: 0;
-  }
-
-  html,
-  body,
-  #__next {
-    height: 100%;
   }
 
   body {
@@ -48,6 +47,19 @@ const reset = css`
     overflow-wrap: break-word;
   }
 
+  p {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  #root,
   #__next {
     isolation: isolate;
   }

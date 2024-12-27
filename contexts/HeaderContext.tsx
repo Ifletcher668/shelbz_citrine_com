@@ -1,11 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 type HeaderContextProps = {
   isAtTop: boolean;
@@ -18,8 +12,10 @@ type HeaderContextProps = {
 const defaultHeaderContext: HeaderContextProps = {
   isAtTop: true,
   showSidebar: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setShowSidebar: () => {},
   isSubmenuOpen: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setIsSubmenuOpen: () => {},
 };
 
@@ -34,7 +30,7 @@ const HeaderProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setIsAtTop(y < 100 ? true : false);
+      setIsAtTop(y < 160 ? true : false);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

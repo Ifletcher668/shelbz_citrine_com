@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
+import ReactFocusLock from 'react-focus-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 import styled from 'styled-components';
+
+import Spacer from 'components/Spacer';
+import { useHeaderContext } from 'contexts/HeaderContext';
 
 import { open } from '../../../utils/styled-components/snippets';
 import Icon from '../../Icon';
 import UnstyledButton from '../../UnstyledButton';
 import VisuallyHidden from '../../VisuallyHidden';
-import Spacer from 'components/Spacer';
-import ReactFocusLock from 'react-focus-lock';
-import { RemoveScroll } from 'react-remove-scroll';
+
 import NavContent from './NavContent';
-import { useHeaderContext } from 'contexts/HeaderContext';
 
 const MenuSidebar = () => {
   const router = useRouter();
@@ -28,6 +30,7 @@ const MenuSidebar = () => {
     onDismiss();
 
     // using asPath to close dynamic routes as well
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath]);
 
   // Close submenu on Escape key press
@@ -99,8 +102,8 @@ const Nav = styled.nav`
   flex-direction: column;
   gap: clamp(1rem, 5.5vw - 4rem, 3rem);
 
-  padding-left: var(--spacing-double-extra-small);
-  padding-bottom: var(--spacing-extra-large);
+  padding-left: var(--spacing-8);
+  padding-bottom: var(--spacing-40);
 
   flex: 1;
 
@@ -131,7 +134,7 @@ const Gap = styled(UnstyledButton)`
   flex: 1;
   min-width: 75px;
   opacity: 0.4;
-  background-color: var(--color-800);
+  background-color: var(--color-dark-gray);
 
   animation: ${open(0.4)} 0.3s ease-in-out;
 `;
@@ -139,7 +142,7 @@ const Gap = styled(UnstyledButton)`
 const Body = styled.div`
   flex: 1;
   max-width: 420px;
-  background-color: var(--header-background);
+  background-color: var(--background-secondary);
 
   display: flex;
   flex-direction: column;

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import FadeInObserver from 'components/FadeInObserver';
+
 type RowProps = {
   align?: boolean;
   justify?:
@@ -13,7 +15,7 @@ type RowProps = {
 
 const DEFAULT_SPACING = 16;
 
-const Row = styled.div<RowProps>`
+const Row = styled(FadeInObserver)<RowProps>`
   flex: 1 1 100%;
   display: flex;
   flex-wrap: wrap;

@@ -1,11 +1,12 @@
-import Icon from 'components/Icon';
-import Spacer from 'components/Spacer';
 import Link from 'next/link';
-import styled, { CSSProperties } from 'styled-components';
-import { BREAKPOINTS, ROUTES } from 'utils/constants';
-import Moon from './Moon';
+import type { CSSProperties } from 'styled-components';
+import styled from 'styled-components';
+
+import Icon from 'components/Icon';
 import UnstyledButton from 'components/UnstyledButton';
 import { useHeaderContext } from 'contexts/HeaderContext';
+import { BREAKPOINTS, ROUTES } from 'utils/constants';
+
 import NavContent from './NavContent';
 
 const Navbar = () => {
@@ -14,13 +15,11 @@ const Navbar = () => {
   return (
     <>
       <NavbarWrapper>
-        <Spacer />
-
-        <Side style={{ '--flex': '3' } as CSSProperties}>
+        <div style={{ display: 'flex' }}>
           <Link href={ROUTES.HOME}>
             <SiteTitle>Shelbz Citrine</SiteTitle>
           </Link>
-        </Side>
+        </div>
 
         <Nav>
           <NavItems>
@@ -37,11 +36,9 @@ const Navbar = () => {
             } as CSSProperties
           }
         >
-          <Icon id="menu" strokeWidth={2} size={60} />
+          <Icon id="menu" strokeWidth={2} size={48} />
         </MenuButton>
       </NavbarWrapper>
-
-      <Moon />
     </>
   );
 };
@@ -84,17 +81,18 @@ const MenuButton = styled(UnstyledButton)`
 const NavbarWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-left: var(--spacing-32);
+  margin-right: var(--spacing-32);
   gap: clamp(16px, 2vw + 1rem, 48px);
-
-  margin-right: calc(var(--moon-size) - 25px);
 `;
 
 const SiteTitle = styled.span`
   font-family: var(--font-cinzel-decorative);
-  font-size: calc(var(--header-font-size) * 1.25);
-`;
+  font-size: var(--header-font-size);
 
-const Side = styled.div`
-  flex: var(--flex, 1);
+  @media ${BREAKPOINTS.LAPTOP} {
+    white-space: nowrap;
+    font-size: calc(var(--header-font-size) * 1.35);
+  }
 `;
