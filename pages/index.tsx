@@ -87,12 +87,6 @@ const Home = (props: Props) => {
               </Column>
             </FadeInObserver>
           </Row>
-
-          <FadeInObserver>
-            <h2 id="feed">My work</h2>
-          </FadeInObserver>
-
-          <PictureGrid data={imageFeed} />
         </MainWrapper>
       </Layout>
     </>
