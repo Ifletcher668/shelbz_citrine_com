@@ -8,7 +8,6 @@ export const ROUTES = {
 } as const;
 
 export const NAVIGATION_LINKS = [
-  { href: ROUTES.HOME, label: 'Home', mobileOnly: true },
   { href: ROUTES.GALLERY, label: 'Gallery' },
   { href: ROUTES.ABOUT, label: 'About' },
   { href: ROUTES.CONTACT, label: 'Contact' },

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useHeaderContext } from 'contexts/HeaderContext';
-import { BREAKPOINTS } from 'utils/constants';
 
 import MenuSidebar from './MenuSidebar';
 import Navbar from './Navbar';
@@ -50,25 +49,20 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
-  --header-transition: all 250ms ease;
   --padding: var(--spacing-24);
   --header-font-size: var(--font-size-large);
   --max-width: calc(var(--max-width-wrapper));
-  --moon-size: 22vw;
   --box-shadow: var(--shadow-elevation-high);
+  --opacity: 0.98;
 
-  @media ${BREAKPOINTS.TABLET} {
-    ${({ isAtTop }) =>
-      isAtTop &&
-      css`
-        --padding: var(--spacing-32);
-        --max-width: calc(var(--max-width-wrapper) * 1.5);
-        --moon-size: 25vw;
-        --box-shadow: 0 0 0 0;
-        border-radius: 0px 0px 5px 5px;
-        opacity: 1;
-      `}
-  }
+  ${({ isAtTop }) =>
+    isAtTop &&
+    css`
+      --padding: var(--spacing-32);
+      --max-width: calc(var(--max-width-wrapper) * 1.5);
+      --box-shadow: 0 0 0 0;
+      --opacity: 1;
+    `}
 
   position: fixed;
   top: 0;
@@ -86,8 +80,7 @@ const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
   padding-bottom: var(--padding);
 
   background-color: var(--background-secondary);
-  opacity: 0.98;
-
+  opacity: var(--opacity);
   box-shadow: var(--box-shadow);
-  transition: var(--header-transition);
+  transition: all 250ms ease;
 `;

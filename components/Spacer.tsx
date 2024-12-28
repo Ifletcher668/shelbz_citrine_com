@@ -1,108 +1,155 @@
+import type { FlattenSimpleInterpolation } from 'styled-components';
 import styled, { css } from 'styled-components';
 
+import { BREAKPOINTS } from 'utils/constants';
+
 type SpacerProps = {
-  top?: number | boolean;
-  bottom?: number | boolean;
-  left?: number | boolean;
-  right?: number | boolean;
-  horizontal?: number | boolean;
-  vertical?: number | boolean;
-  all?: number | boolean;
+  top?: number | number[] | boolean;
+  bottom?: number | number[] | boolean;
+  left?: number | number[] | boolean;
+  right?: number | number[] | boolean;
 };
 
 const DEFAULT_SPACING = '24px';
 
+const calc = (value?: number | number[] | boolean): string | string[] => {
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(v => `${v}px`);
+  }
+
+  return value === true ? DEFAULT_SPACING : '0';
+};
+
+const generateMediaQueries = (
+  side: 'top' | 'bottom' | 'left' | 'right',
+  paddingValues?: string | string[],
+): string | FlattenSimpleInterpolation => {
+  if (!Array.isArray(paddingValues)) {
+    return '';
+  }
+
+  const [
+    defaultPadding,
+    largePhonePadding,
+    tabletPadding,
+    laptopPadding,
+    desktopPadding,
+  ] = paddingValues;
+
+  switch (side) {
+    case 'top':
+      return css`
+        padding-top: ${defaultPadding};
+
+        @media ${BREAKPOINTS.LARGE_PHONE} {
+          padding-top: ${largePhonePadding};
+        }
+        @media ${BREAKPOINTS.TABLET} {
+          padding-top: ${tabletPadding};
+        }
+        @media ${BREAKPOINTS.LAPTOP} {
+          padding-top: ${laptopPadding || tabletPadding};
+        }
+        @media ${BREAKPOINTS.DESKTOP} {
+          padding-top: ${desktopPadding || laptopPadding};
+        }
+      `;
+    case 'bottom':
+      return css`
+        padding-bottom: ${defaultPadding};
+
+        @media ${BREAKPOINTS.LARGE_PHONE} {
+          padding-bottom: ${largePhonePadding};
+        }
+        @media ${BREAKPOINTS.TABLET} {
+          padding-bottom: ${tabletPadding};
+        }
+        @media ${BREAKPOINTS.LAPTOP} {
+          padding-bottom: ${laptopPadding || tabletPadding};
+        }
+        @media ${BREAKPOINTS.DESKTOP} {
+          padding-bottom: ${desktopPadding || laptopPadding};
+        }
+      `;
+    case 'left':
+      return css`
+        padding-left: ${defaultPadding};
+
+        @media ${BREAKPOINTS.LARGE_PHONE} {
+          padding-left: ${largePhonePadding};
+        }
+        @media ${BREAKPOINTS.TABLET} {
+          padding-left: ${tabletPadding};
+        }
+        @media ${BREAKPOINTS.LAPTOP} {
+          padding-left: ${laptopPadding || tabletPadding};
+        }
+        @media ${BREAKPOINTS.DESKTOP} {
+          padding-left: ${desktopPadding || laptopPadding};
+        }
+      `;
+    case 'right':
+      return css`
+        padding-right: ${defaultPadding};
+
+        @media ${BREAKPOINTS.LARGE_PHONE} {
+          padding-right: ${largePhonePadding};
+        }
+        @media ${BREAKPOINTS.TABLET} {
+          padding-right: ${tabletPadding};
+        }
+        @media ${BREAKPOINTS.LAPTOP} {
+          padding-right: ${laptopPadding || tabletPadding};
+        }
+        @media ${BREAKPOINTS.DESKTOP} {
+          padding-right: ${desktopPadding || laptopPadding};
+        }
+      `;
+    default:
+      return '';
+  }
+};
+
 const Spacer = styled.div<SpacerProps>`
-  padding: ${({ all }) =>
-    typeof all === 'number' ? `${all}px` : all === true ? DEFAULT_SPACING : 0};
+  ${({ top }) =>
+    Array.isArray(top)
+      ? css`
+          ${generateMediaQueries('top', calc(top))}
+        `
+      : css<SpacerProps>`
+          padding-top: ${({ top }) => calc(top)};
+        `}
 
-  /* Vertical values do not set left/right to avoid override */
-  padding-top: ${({ vertical }) =>
-    typeof vertical === 'number'
-      ? `${vertical}px`
-      : vertical === true
-      ? DEFAULT_SPACING
-      : 0};
-  padding-bottom: ${({ vertical }) =>
-    typeof vertical === 'number'
-      ? `${vertical}px`
-      : vertical === true
-      ? DEFAULT_SPACING
-      : 0};
+  ${({ bottom }) =>
+    Array.isArray(bottom)
+      ? css`
+          ${generateMediaQueries('bottom', calc(bottom))}
+        `
+      : css<SpacerProps>`
+          padding-bottom: ${({ bottom }) => calc(bottom)};
+        `}
+          
+          ${({ left }) =>
+    Array.isArray(left)
+      ? css`
+          ${generateMediaQueries('left', calc(left))}
+        `
+      : css<SpacerProps>`
+          padding-left: ${({ left }) => calc(left)};
+        `}
 
-  /* Horizontal values do not set  top/bottom to avoid override */
-  padding-left: ${({ horizontal }) =>
-    typeof horizontal === 'number'
-      ? `${horizontal}px`
-      : horizontal === true
-      ? DEFAULT_SPACING
-      : 0};
-  padding-right: ${({ horizontal }) =>
-    typeof horizontal === 'number'
-      ? `${horizontal}px`
-      : horizontal === true
-      ? DEFAULT_SPACING
-      : 0};
-
-  /* Individual values take precedence over all */
-  ${({ top }) => {
-    return (
-      top &&
-      css<SpacerProps>`
-        padding-top: ${({ top }) =>
-          // prettier-ignore
-          typeof top === 'number' 
-      ? `${top}px` 
-      : top === true 
-      ? DEFAULT_SPACING 
-      : 0};
-      `
-    );
-  }}
-
-  ${({ bottom }) => {
-    return (
-      bottom &&
-      css<SpacerProps>`
-        padding-bottom: ${({ bottom }) =>
-          typeof bottom === 'number'
-            ? `${bottom}px`
-            : bottom === true
-            ? DEFAULT_SPACING
-            : 0};
-      `
-    );
-  }}
-  
-  
-  ${({ left }) => {
-    return (
-      left &&
-      css<SpacerProps>`
-        padding-left: ${({ left }) =>
-          typeof left === 'number'
-            ? `${left}px`
-            : left === true
-            ? DEFAULT_SPACING
-            : 0};
-      `
-    );
-  }}
-  
-  
-   ${({ right }) => {
-    return (
-      right &&
-      css<SpacerProps>`
-        padding-right: ${({ right }) =>
-          typeof right === 'number'
-            ? `${right}px`
-            : right === true
-            ? DEFAULT_SPACING
-            : 0};
-      `
-    );
-  }}
+  ${({ right }) =>
+    Array.isArray(right)
+      ? css`
+          ${generateMediaQueries('right', calc(right))}
+        `
+      : css<SpacerProps>`
+          padding-right: ${({ right }) => calc(right)};
+        `}
 `;
 
 export default Spacer;

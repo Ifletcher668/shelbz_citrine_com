@@ -30,7 +30,7 @@ const Layout = ({ children, navbarData }: Props) => {
         <HeaderProvider>
           <Header />
         </HeaderProvider>
-        <Spacer top={250} />
+        <Spacer top={[125, 135, 150, 200]} />
         <PageTransition>{children}</PageTransition>
         <Spacer top={150} />
         <Footer />

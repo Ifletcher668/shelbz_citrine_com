@@ -48,7 +48,7 @@ export default Navbar;
 const Nav = styled.nav`
   display: none;
 
-  @media ${BREAKPOINTS.LAPTOP} {
+  @media ${BREAKPOINTS.LARGE_PHONE} {
     display: block;
   }
 
@@ -73,7 +73,7 @@ const NavItems = styled.ul`
 const MenuButton = styled(UnstyledButton)`
   visibility: var(--visibility);
 
-  @media ${BREAKPOINTS.LAPTOP} {
+  @media ${BREAKPOINTS.LARGE_PHONE} {
     display: none;
   }
 `;
@@ -91,7 +91,7 @@ const SiteTitle = styled.span`
   font-family: var(--font-cinzel-decorative);
   font-size: var(--header-font-size);
 
-  @media ${BREAKPOINTS.LAPTOP} {
+  @media ${BREAKPOINTS.LARGE_PHONE} {
     white-space: nowrap;
     font-size: calc(var(--header-font-size) * 1.35);
   }

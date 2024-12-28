@@ -44,7 +44,7 @@ const MenuSidebar = () => {
     return () => {
       document.removeEventListener('keydown', handleEscapeKeyPress);
     };
-  });
+  }, [setShowSidebar]);
 
   if (!showSidebar) {
     return null;
@@ -106,8 +106,6 @@ const Nav = styled.nav`
   padding-bottom: var(--spacing-40);
 
   flex: 1;
-
-  overflow: auto;
 
   a {
     font-size: var(--font-size-double-extra-large);
