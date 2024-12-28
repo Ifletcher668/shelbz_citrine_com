@@ -55,7 +55,7 @@ const AboutPage = (props: Props) => {
               </p>
             </FadeInObserver>
 
-            <Spacer vertical={8} />
+            <Spacer top={8} bottom={8} />
 
             <FadeInObserver>
               <p>
@@ -68,7 +68,7 @@ const AboutPage = (props: Props) => {
               </p>
             </FadeInObserver>
 
-            <Spacer vertical={8} />
+            <Spacer top={8} bottom={8} />
             <FadeInObserver>
               <p>
                 While I have one foot firmly grounded in the contemporary, I
@@ -81,7 +81,7 @@ const AboutPage = (props: Props) => {
               </p>
             </FadeInObserver>
 
-            <Spacer vertical={8} />
+            <Spacer top={8} bottom={8} />
             <FadeInObserver>
               <p>
                 As a classically trained artist who has skillfully woven
@@ -91,7 +91,7 @@ const AboutPage = (props: Props) => {
                 testament to the countless dichotomies that define our world.
               </p>
             </FadeInObserver>
-            <Spacer vertical={8} />
+            <Spacer top={8} bottom={8} />
             <FadeInObserver>
               <p>
                 So, come, step into my world, and allow yourself to be
