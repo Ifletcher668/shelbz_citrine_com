@@ -83,4 +83,12 @@ const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
   opacity: var(--opacity);
   box-shadow: var(--box-shadow);
   transition: all 250ms ease;
+
+  a {
+    color: var(--font-secondary);
+
+    &:hover {
+      color: var(--font-secondary-accent);
+    }
+  }
 `;

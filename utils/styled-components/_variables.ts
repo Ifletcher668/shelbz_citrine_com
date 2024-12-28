@@ -83,7 +83,8 @@ const variables = css`
 
     --background: hsl(0deg 0 9%);
     --background: hsl(var(--brown-hue) 100% 3%);
-    --background-secondary: hsl(0deg 0 9);
+    --background-secondary: hsl(0deg 0 9%);
+    --background-tertiary: hsl(0deg 0 10%);
 
     --color-light-blue: hsl(var(--brown-hue) 20% 50%);
     --color-dark-blue: hsl(var(--brown-hue) 30% 79%);

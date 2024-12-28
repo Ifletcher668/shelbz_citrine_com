@@ -41,7 +41,8 @@ export const Label = styled.label`
 
 export const LabelText = styled.span`
   flex: 1 100%;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-medium);
+  color: var(--font-tertiary);
 
   @media ${BREAKPOINTS.LARGE_PHONE} {
     flex-basis: 0;
@@ -50,14 +51,14 @@ export const LabelText = styled.span`
 
 const INPUT_STYLES = css`
   padding: 12px 20px;
-  background: var(--background);
+  background: var(--background-tertiary);
   border: 1px solid var(--font-secondary-accent);
   border-radius: 2px;
   color: var(--font-tertiary);
 
   &:hover,
   &:focus {
-    background: var(--background-secondary);
+    background: var(--background);
     border: 1px solid var(--font-secondary-accent);
   }
 `;
@@ -71,7 +72,7 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button<{ isInErrorState: boolean }>`
   padding: 12px 20px;
-  background: var(--background-secondary);
+  background: var(--background-tertiary);
   color: var(--font-tertiary);
   border: 1px solid var(--font-secondary-accent);
   border-radius: 2px;
@@ -92,7 +93,7 @@ export const SubmitButton = styled.button<{ isInErrorState: boolean }>`
     background: var(--background);
     border: 1px solid var(--font-secondary-accent);
     scale: 0.99;
-    color: var(--font-primary);
+    color: var(--font-secondary-accent);
   }
 `;
 

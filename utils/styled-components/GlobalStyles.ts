@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     font-weight: 700;
-    color: var(--font-secondary);
+    color: var(--font-tertiary);
     text-decoration: none;
     border: none;
     padding: 0;
@@ -34,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
     width: fit-content;
 
     transition-timing-function: ease-in-out;
-    transition-duration: 750ms, 200ms;
+    transition-duration: 250ms, 200ms;
     transition-property: color;
 
     &:hover {
