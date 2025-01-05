@@ -1,14 +1,14 @@
 import Head from 'next/head';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 import ContactForm from 'components/ContactForm';
+import hardAtWork from 'public/assets/hard-at-work.jpeg';
 
 import Accordion from '../components/Accordion';
 import { Row } from '../components/Layout';
 import Layout from '../components/Layout/Layout';
 import { SEO } from '../utils/constants';
-import styled from 'styled-components';
-import Image from 'next/image';
-import hardAtWork from 'public/assets/hard-at-work.jpeg';
 
 const ContactPage = () => {
   return (

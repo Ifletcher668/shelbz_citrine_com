@@ -5,10 +5,10 @@ import Link from 'next/link';
 import FadeInObserver from 'components/FadeInObserver';
 import { Layout } from 'components/Layout';
 import PictureGrid from 'components/PictureGrid/PictureGrid';
+import Spacer from 'components/Spacer';
 import { fetchImagesByYear } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
 import { ROUTES, SEO, YEAR_STRINGS } from 'utils/constants';
-import Spacer from 'components/Spacer';
 
 type Props = {
   imageFeed: ContentfulImage[];
@@ -63,7 +63,14 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async context => {
   const res = await fetchImagesByYear(context.params?.year as string);
 
-  if (!res) return { props: { navbarPathProps: {} } };
+  if (!res) {
+    return {
+      props: {
+        year: context.params?.year,
+        imageFeed: [],
+      },
+    };
+  }
 
   const imageFeed = res;
 
