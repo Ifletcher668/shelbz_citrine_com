@@ -17,7 +17,7 @@ type Props = {
 
 export default function Page(props: Props) {
   const { imageFeed, year } = props;
-  const isEmptyYear = imageFeed.length < 1;
+  const isEmptyYear = imageFeed?.length < 1;
 
   return (
     <>
