@@ -13,7 +13,7 @@ const StyledMainWrapper = styled.main`
   /* Ensure image content that hasn't loaded yet doesn't squish this container */
   min-height: 100vh;
 
-  padding: var(--spacing-24);
+  padding: var(--spacing-16);
   padding-top: var(--spacing-24);
   padding-bottom: calc(var(--spacing-48) * 3);
 
