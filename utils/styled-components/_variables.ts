@@ -19,7 +19,7 @@ export const cormorant = Cormorant({
 
 const variables = css`
   :root {
-    --max-width-wrapper: min(1450px, 92vw);
+    --max-width-wrapper: min(1450px, 98vw);
 
     /* Spacing */
     --spacing-56: 56px;

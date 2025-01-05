@@ -108,9 +108,9 @@ const AboutPage = () => {
         <hr />
 
         <Paragraph alignment="center">
-          Art and music fuel this world with joy, with something meaningful,
-          transcendent, surreal. I am honored to work with bands to make their
-          artistic vision come alive. I regularly update my{' '}
+          Both art and music fuel this world with joy, with something
+          meaningful, transcendent, surreal. I am honored to work with bands to
+          make their artistic vision come alive. I regularly update my{' '}
           <Link href={ROUTES.GALLERY}>gallery</Link> with new pieces to check
           out. If you would like to discuss a custom piece or to purchase prints
           to existing work, let's{' '}
