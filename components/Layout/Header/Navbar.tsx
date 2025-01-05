@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import type { CSSProperties } from 'styled-components';
 import styled from 'styled-components';
 
-import Icon from 'components/Icon';
 import UnstyledButton from 'components/UnstyledButton';
 import { useHeaderContext } from 'contexts/HeaderContext';
 import { BREAKPOINTS, ROUTES } from 'utils/constants';
 
+import Hamburger from './Hamburger';
 import NavContent from './NavContent';
 
 const Navbar = () => {
@@ -26,17 +25,8 @@ const Navbar = () => {
             <NavContent />
           </NavItems>
         </Nav>
-
-        <MenuButton
-          id="open-menu"
-          onClick={() => setShowSidebar(true)}
-          style={
-            {
-              '--visibility': showSidebar ? 'hidden' : 'visible',
-            } as CSSProperties
-          }
-        >
-          <Icon id="menu" strokeWidth={2} size={48} />
+        <MenuButton id="open-menu" onClick={() => setShowSidebar(!showSidebar)}>
+          <Hamburger isOpen={showSidebar} />
         </MenuButton>
       </NavbarWrapper>
     </>

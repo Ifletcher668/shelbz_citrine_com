@@ -1,25 +1,23 @@
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import FadeInObserver from 'components/FadeInObserver';
-import { Layout, MainWrapper } from 'components/Layout';
-import PictureGrid from 'components/PictureGrid';
+import { Layout } from 'components/Layout';
+import PictureGrid from 'components/PictureGrid/PictureGrid';
 import { fetchImagesByYear } from 'contentful/helpers';
 import type { ContentfulImage } from 'contentful/types';
-import { SEO, YEAR_STRINGS } from 'utils/constants';
-import type { NavbarPathProps } from 'utils/getNavbarPathProps';
-import { getNavbarPathProps } from 'utils/getNavbarPathProps';
+import { ROUTES, SEO, YEAR_STRINGS } from 'utils/constants';
+import Spacer from 'components/Spacer';
 
 type Props = {
   imageFeed: ContentfulImage[];
-  navbarPathProps: NavbarPathProps;
   year: string;
 };
 
 export default function Page(props: Props) {
-  const { navbarPathProps, imageFeed, year } = props;
-
-  if (!navbarPathProps) return <div>Loading...</div>;
+  const { imageFeed, year } = props;
+  const isEmptyYear = imageFeed.length < 1;
 
   return (
     <>
@@ -28,14 +26,24 @@ export default function Page(props: Props) {
         <meta name="description" content={SEO.aboutPage.description} />
       </Head>
 
-      <Layout navbarData={navbarPathProps}>
-        <MainWrapper>
-          <FadeInObserver>
-            <h1>{year}</h1>
-          </FadeInObserver>
+      {/* Adding key to force page refresh */}
+      <Layout key={year}>
+        <FadeInObserver>
+          <h1>{year}</h1>
+        </FadeInObserver>
 
+        {isEmptyYear ? (
+          <div>
+            <h3>Sorry, I don't have anything for this year, yet!</h3>
+            <Spacer top={48} />
+            <p>
+              Check out another <Link href={ROUTES.GALLERY}>year</Link> to see
+              my work. And stop by again to see what I'm up to now!
+            </p>
+          </div>
+        ) : (
           <PictureGrid data={imageFeed} />
-        </MainWrapper>
+        )}
       </Layout>
     </>
   );
@@ -54,7 +62,6 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async context => {
   const res = await fetchImagesByYear(context.params?.year as string);
-  const navbarPathProps = await getNavbarPathProps();
 
   if (!res) return { props: { navbarPathProps: {} } };
 
@@ -63,7 +70,6 @@ export const getStaticProps: GetStaticProps = async context => {
   return {
     props: {
       year: context.params?.year,
-      navbarPathProps,
       imageFeed,
     },
   };

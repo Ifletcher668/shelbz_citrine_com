@@ -16,8 +16,6 @@ const GlobalStyle = createGlobalStyle`
     background: black;
   }
 
-
-
   body {
     color: var(--font-primary);
     font-family: var(--font-cormorant);
@@ -49,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  hr {
+    border: 1px solid var(--font-secondary);
+  }
+
   p,button,h1,h2,h3,h4,h5,h6 {
     transition-timing-function: ease-in-out;
     transition-duration: 500ms, 200ms;
@@ -59,12 +61,17 @@ const GlobalStyle = createGlobalStyle`
     font-size: var(--font-size-extra-small);
   }
 
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2 {
     color: var(--font-secondary);
+    font-family: var(--font-cinzel-decorative);
+    letter-spacing: 0.5vw;
+    
   }
 
-  h1,h2,h3,h4 {
-    font-family: var(--font-cinzel-decorative);
+  h3,h4,h5,h6 {
+    color: var(--font-secondary-accent);
+    font-family: var(--font-cormorant);
+    font-weight: 700;
   }
 
   h1 {

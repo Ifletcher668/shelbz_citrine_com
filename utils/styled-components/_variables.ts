@@ -19,6 +19,8 @@ export const cormorant = Cormorant({
 
 const variables = css`
   :root {
+    --max-width-wrapper: min(1450px, 92vw);
+
     /* Spacing */
     --spacing-56: 56px;
     --spacing-48: 48px;
@@ -30,7 +32,7 @@ const variables = css`
     --spacing-8: 8px;
 
     /* font-size */
-    --font-size-triple-extra-large: clamp(2.5rem, 6vw, 3.5rem);
+    --font-size-triple-extra-large: clamp(3.5rem, 6vw, 4.5rem);
     --font-size-double-extra-large: clamp(2rem, 6vw, 3rem);
     --font-size-extra-large: clamp(1.75rem, 4vw, 2rem);
     --font-size-large: clamp(1.375rem, 4vw, 1.75rem);
@@ -43,21 +45,7 @@ const variables = css`
     --font-cinzel-decorative: ${cinzelDecorative.style.fontFamily};
     --font-cormorant: ${cormorant.style.fontFamily};
 
-    /* MISC */
-    --max-width-wrapper: min(1450px, 92vw);
-    --focus-shadow: 0 0 20px 2px var(--color-dark-blue),
-      0 0 0 3px var(--color-light-blue);
-    --border-radius: 12px;
-    --size-moon: 400px;
-
-    --moon-shadow: 0 0 30px 10px hsl(calc(var(--blue-hue) + 5deg) 20% 80%);
-    --moon-gradient: radial-gradient(
-      ellipse,
-      hsl(calc(var(--blue-hue) - 10deg) 10% 85%),
-      hsl(calc(var(--blue-hue) - 5deg) 10% 80%),
-      hsl(calc(var(--blue-hue) + 10deg) 10% 70%)
-    );
-
+    /* Box Shadows */
     --shadow-color: 171deg 42% 8%;
     --shadow-elevation-low: 0px 1px 4px hsl(171deg 42% 8% / 0.5),
       0px 3px 6px hsl(171deg 42% 8% / 0.5),
@@ -81,15 +69,10 @@ const variables = css`
     --brown-hue: 39deg;
     --red-hue: 5deg;
 
-    --background: hsl(0deg 0 9%);
-    --background: hsl(var(--brown-hue) 100% 3%);
+    --background: hsl(0deg 0 0%);
     --background-secondary: hsl(0deg 0 9%);
     --background-tertiary: hsl(0deg 0 10%);
 
-    --color-light-blue: hsl(var(--brown-hue) 20% 50%);
-    --color-dark-blue: hsl(var(--brown-hue) 30% 79%);
-
-    --color-light-gray: hsl(var(--blue-hue) 5% 50%);
     --color-dark-gray: hsl(var(--blue-hue) 3% 30%);
 
     --font-primary: hsl(var(--brown-hue) 55% 34%);

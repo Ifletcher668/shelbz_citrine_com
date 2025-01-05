@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { motion } from 'motion/react';
+import { useRouter } from 'next/router';
 import styled, { css } from 'styled-components';
 
 import { useHeaderContext } from 'contexts/HeaderContext';
+import { ROUTES } from 'utils/constants';
 
 import MenuSidebar from './MenuSidebar';
 import Navbar from './Navbar';
@@ -10,6 +13,8 @@ import Navbar from './Navbar';
 const Header = () => {
   const [forceHide, setForceHide] = useState(false);
   const { isAtTop } = useHeaderContext();
+  const router = useRouter();
+  const isHomePage = router.asPath === ROUTES.HOME;
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -38,11 +43,20 @@ const Header = () => {
   }
 
   return (
-    <HeaderWrapper isAtTop={isAtTop}>
+    <MotionHeader
+      isAtTop={isAtTop}
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        type: 'spring',
+        duration: 0.5,
+        // Delay on home page to allow image animation to run first
+        delay: isHomePage ? 2 : 0.5,
+      }}
+    >
       <Navbar />
-
       <MenuSidebar />
-    </HeaderWrapper>
+    </MotionHeader>
   );
 };
 
@@ -50,18 +64,20 @@ export default Header;
 
 const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
   --padding: var(--spacing-24);
-  --header-font-size: var(--font-size-large);
+  --header-font-size: var(--font-size-extra-large);
   --max-width: calc(var(--max-width-wrapper));
   --box-shadow: var(--shadow-elevation-high);
   --opacity: 0.98;
+  --header-background: var(--background-secondary);
 
   ${({ isAtTop }) =>
     isAtTop &&
     css`
       --padding: var(--spacing-32);
-      --max-width: calc(var(--max-width-wrapper) * 1.5);
+      --max-width: calc(var(--max-width-wrapper) * 2);
       --box-shadow: 0 0 0 0;
       --opacity: 1;
+      --header-background: transparent;
     `}
 
   position: fixed;
@@ -79,10 +95,10 @@ const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
   padding-top: var(--padding);
   padding-bottom: var(--padding);
 
-  background-color: var(--background-secondary);
+  background-color: var(--header-background);
   opacity: var(--opacity);
   box-shadow: var(--box-shadow);
-  transition: all 250ms ease;
+  transition: all 500ms ease-out;
 
   a {
     color: var(--font-secondary);
@@ -92,3 +108,5 @@ const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
     }
   }
 `;
+
+const MotionHeader = motion(HeaderWrapper);

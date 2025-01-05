@@ -1,45 +1,77 @@
 import type { ReactNode } from 'react';
 
+import { motion } from 'motion/react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-import StarryCanvas from 'components/StarryCanvas';
-import HeaderProvider from 'contexts/HeaderContext';
-import NavbarProvider from 'contexts/NavbarContext';
-import type { NavbarPathProps } from 'utils/getNavbarPathProps';
+import { ROUTES } from 'utils/constants';
 
-import { fadeIn } from '../../utils/styled-components/snippets';
 import Spacer from '../Spacer';
 
 import Footer from './Footer';
-import Header from './Header';
+import MainWrapper from './MainWrapper';
 
 type Props = {
   children: ReactNode;
-  navbarData: NavbarPathProps;
 };
 
-const PageTransition = styled.div`
-  animation: ${fadeIn} 750ms ease-in;
-`;
+const Layout = ({ children }: Props) => {
+  const router = useRouter();
+  const isHomePage = router.asPath === ROUTES.HOME;
 
-const Layout = ({ children, navbarData }: Props) => {
   return (
-    <NavbarProvider data={navbarData}>
-      <StarryCanvas />
+    <>
       <Wrapper>
-        <HeaderProvider>
-          <Header />
-        </HeaderProvider>
-        <Spacer top={[125, 135, 150, 200]} />
-        <PageTransition>{children}</PageTransition>
-        <Spacer top={150} />
-        <Footer />
-        <Spacer top={150} />
-        <Background />
+        {isHomePage ? (
+          <FrontPageBackground
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0, 1],
+            }}
+            transition={{
+              scale: {
+                duration: 2,
+                ease: 'linear',
+              },
+              opacity: { duration: 2, ease: 'easeOut' },
+            }}
+          />
+        ) : (
+          <>
+            <Spacer top={[100, 115, 120, 150]} />
+
+            <MainWrapper
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                type: 'tween',
+                ease: 'easeOut',
+                opacity: { delay: 0.25, duration: 1 },
+              }}
+            >
+              {children}
+            </MainWrapper>
+            <Spacer top={150} />
+            <Footer />
+            <Spacer top={150} />
+            <Background />
+          </>
+        )}
       </Wrapper>
-    </NavbarProvider>
+    </>
   );
 };
+
+const FrontPageBackground = motion(styled.div`
+  background-image: url('/assets/roots.webp');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  z-index: -1;
+`);
 
 const Background = styled.div`
   position: fixed;

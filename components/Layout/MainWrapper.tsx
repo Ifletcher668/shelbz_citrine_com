@@ -1,12 +1,17 @@
+import { motion } from 'motion/react';
 import styled from 'styled-components';
 
 import { BREAKPOINTS } from 'utils/constants';
 
-const MainWrapper = styled.main`
+const StyledMainWrapper = styled.main`
+  background: var(--background-secondary);
+
   display: flex;
   flex-direction: column;
+  gap: 48px;
 
-  background: var(--background-secondary);
+  /* Ensure image content that hasn't loaded yet doesn't squish this container */
+  min-height: 100vh;
 
   padding: var(--spacing-24);
   padding-top: var(--spacing-24);
@@ -17,15 +22,15 @@ const MainWrapper = styled.main`
     padding-right: var(--spacing-48);
   }
 
-  @media ${BREAKPOINTS.LAPTOP} {
+  @media ${BREAKPOINTS.DESKTOP} {
     padding-left: calc(var(--spacing-48) * 3);
     padding-right: calc(var(--spacing-48) * 3);
   }
 
   border: 2px solid var(--font-secondary-accent);
   border-radius: 2px;
-
-  gap: 48px;
 `;
+
+const MainWrapper = motion(StyledMainWrapper);
 
 export default MainWrapper;

@@ -28,9 +28,11 @@ const HeaderProvider = ({ children }: { children: ReactNode }) => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   useEffect(() => {
+    setIsAtTop(window.scrollY < 50 ? true : false);
+
     const handleScroll = () => {
       const y = window.scrollY;
-      setIsAtTop(y < 160 ? true : false);
+      setIsAtTop(y < 50 ? true : false);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

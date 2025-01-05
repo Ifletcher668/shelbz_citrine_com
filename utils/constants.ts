@@ -3,7 +3,6 @@ export const ROUTES = {
   ABOUT: '/about',
   CONTACT: '/contact',
   GALLERY: '/gallery',
-  FEED: '/#feed',
   CANVAS: '/canvas',
 } as const;
 
@@ -12,6 +11,8 @@ export const NAVIGATION_LINKS = [
   { href: ROUTES.ABOUT, label: 'About' },
   { href: ROUTES.CONTACT, label: 'Contact' },
 ];
+
+export const GALLERY_YEARS_SUB_LINKS = ['2024', '2023', '2022', '2021', '2020'];
 
 export const SOCIALS = {
   INSTAGRAM: 'https://www.instagram.com/tigermoth_grooming/',

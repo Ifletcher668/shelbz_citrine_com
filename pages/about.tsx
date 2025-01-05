@@ -1,27 +1,21 @@
-import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import FadeInObserver from 'components/FadeInObserver';
-import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.webp';
+import Paragraph from 'components/Paragraph';
+// import TextWithImageRow from 'components/TextWithImageRow';
+// import windowSideViewPicture from 'public/assets/a-window-into-the-imagination.webp';
+import forestPrincess from 'public/assets/forest-princess.jpg';
 import freyjaToArms from 'public/assets/freyja-to-arms.webp';
+import inTheWoods from 'public/assets/in-the-woods.jpg';
 import { ROUTES, SEO } from 'utils/constants';
-import type { NavbarPathProps } from 'utils/getNavbarPathProps';
-import { getNavbarPathProps } from 'utils/getNavbarPathProps';
 
-import { Layout, MainWrapper, Row } from '../components/Layout';
-import Column from '../components/Layout/Column';
+import { Layout } from '../components/Layout';
 import Spacer from '../components/Spacer';
 
-type Props = {
-  navbarPathProps: NavbarPathProps;
-};
-
-const AboutPage = (props: Props) => {
-  const { navbarPathProps } = props;
-
+const AboutPage = () => {
   return (
     <>
       <Head>
@@ -29,119 +23,113 @@ const AboutPage = (props: Props) => {
         <meta name="description" content={SEO.aboutPage.description} />
       </Head>
 
-      <Layout navbarData={navbarPathProps}>
-        <MainWrapper>
-          <FadeInObserver>
-            <h1>About Me</h1>
-          </FadeInObserver>
+      <Layout>
+        <FadeInObserver>
+          <h1>About Me</h1>
+        </FadeInObserver>
 
-          <div>
-            <FreyjaToArmsImage
-              src={freyjaToArms}
-              // omit alt tag to use alt text as caption
-              alt={''}
-              width={200}
-              height={250}
-              loading="lazy"
-              placeholder="blur"
-              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
-            />
-            <FadeInObserver>
-              <p>
-                Prepare to enter the universe of an artist with a penchant for
-                the peculiar and extraordinary. My canvas is a blend of
-                classical training and self-taught innovation, with an indelible
-                dedication to the dark and surreal.
-              </p>
-            </FadeInObserver>
-
-            <Spacer top={8} bottom={8} />
-
-            <FadeInObserver>
-              <p>
-                My style is a hybrid of old and new, traditional and futuristic.
-                It brings to mind the eerie landscapes of Dungeons and Dragons,
-                the otherworldly narratives of video games, and the profound
-                mysteries that lie in the darker corners of our psyche. Each
-                piece I craft carries the essence of this fusion, teetering on
-                the edge of both the known and unfamiliar.
-              </p>
-            </FadeInObserver>
-
-            <Spacer top={8} bottom={8} />
-            <FadeInObserver>
-              <p>
-                While I have one foot firmly grounded in the contemporary, I
-                pull technique from a roster of master oil painters. The
-                sublimity of Sandro Botticelli, bold eccentricity of Odd
-                Nerdrum, and captivating allure of Alesscio Scholr all find
-                refuge in my work. It's a fusion of the artistic audacity of the
-                17th century and the mind-bending meditations of 20th-century
-                surrealism.
-              </p>
-            </FadeInObserver>
-
-            <Spacer top={8} bottom={8} />
-            <FadeInObserver>
-              <p>
-                As a classically trained artist who has skillfully woven
-                self-taught techniques into my repertoire, I create pieces that
-                are as much a study in contrast as they are in harmony. Dark yet
-                enlightening, traditional yet revolutionary, my art is a
-                testament to the countless dichotomies that define our world.
-              </p>
-            </FadeInObserver>
-            <Spacer top={8} bottom={8} />
-            <FadeInObserver>
-              <p>
-                So, come, step into my world, and allow yourself to be
-                captivated by the bizarre, the beautiful, and everything in
-                between.
-              </p>
-            </FadeInObserver>
-          </div>
-
-          <Row>
-            <FadeInObserver>
-              <Column>
-                <h2>
-                  <Link href={ROUTES.FEED}> Want to see my work?</Link>
-                </h2>
-              </Column>
-            </FadeInObserver>
-            <FadeInObserver>
-              <Column>
-                <h2>
-                  <Link href={ROUTES.CONTACT}> Want to buy something?</Link>
-                </h2>
-              </Column>
-            </FadeInObserver>
-          </Row>
-
-          <WindowSideViewImage
-            src={windowSideViewPicture}
+        <div>
+          <FreyjaToArmsImage
+            src={freyjaToArms}
             // omit alt tag to use alt text as caption
             alt={''}
-            width={1332}
-            height={666}
+            width={200}
+            height={250}
             loading="lazy"
             placeholder="blur"
             blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
           />
-        </MainWrapper>
+          <Paragraph>
+            I believe that art teases out the subconscious experiences otherwise
+            inaccessible to us, and yet they are integral to human life. My work
+            combines classical training with rigorous experimentation and an
+            indelible dedication to the surreal, the dark, and the unexplored.
+          </Paragraph>
+
+          <Spacer top={16} bottom={16} />
+
+          <Paragraph>
+            Ranging from the early renaissance works of Sandro Botticelli to the
+            eccentric works of Odd Nerdrum or Alessandro Sicioldr, my work
+            explores contrasts—dark yet enlightening, traditional yet
+            provocative—capturing the many dichotomies that shape our beautiful
+            world.
+          </Paragraph>
+
+          {/* <Spacer top={32} bottom={32} />
+          <hr />
+          <Spacer top={32} bottom={32} /> */}
+
+          {/* Find the right pictures */}
+          {/* <TextWithImageRow
+            image={windowSideViewPicture}
+            text="Artwork for musicians, honed by the unique soundscapes they create"
+            imageSide="left"
+          />
+
+          <TextWithImageRow
+            image={windowSideViewPicture}
+            text="Portraits, re-imaginations, and visions in decadent detail"
+            imageSide="right"
+          />
+
+          <TextWithImageRow
+            image={windowSideViewPicture}
+            text="Charcoal, realism, and chaos entwined with the beauty of reason"
+            imageSide="left"
+          /> */}
+        </div>
+
+        <hr />
+
+        <div>
+          <Spacer top={16} bottom={16} />
+
+          <ForestPrincessImage
+            src={forestPrincess}
+            // omit alt tag to use alt text as caption
+            alt={''}
+            width={200}
+            height={250}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+          />
+
+          <Paragraph alignment="right">
+            Art is not just to be viewed—it's to be experienced, much like music
+            is more than being heard. I create functional and wearable art that
+            blends beauty with purpose. From album artwork concepts and band
+            merch to hand-painted jackets, each piece transforms everyday
+            objects into personal, artistic statements.
+          </Paragraph>
+        </div>
+
+        <hr />
+
+        <Paragraph alignment="center">
+          Art and music fuel this world with joy, with something meaningful,
+          transcendent, surreal. I am honored to work with bands to make their
+          artistic vision come alive. I regularly update my{' '}
+          <Link href={ROUTES.GALLERY}>gallery</Link> with new pieces to check
+          out. If you would like to discuss a custom piece or to purchase prints
+          to existing work, let's{' '}
+          <Link href={ROUTES.CONTACT}>get in touch</Link>.
+        </Paragraph>
+
+        <InTheWoodsImage
+          src={inTheWoods}
+          // omit alt tag to use alt text as caption
+          alt={''}
+          width={333}
+          height={333}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0wIDBoMTAwdjEwMEgwVjB6IiBmaWxsPSIjZmZmIi8+PC9zdmc+"
+        />
       </Layout>
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const navbarPathProps = await getNavbarPathProps();
-
-  return {
-    props: {
-      navbarPathProps,
-    },
-  };
 };
 
 const BaseImage = styled(Image)`
@@ -150,15 +138,19 @@ const BaseImage = styled(Image)`
   object-position: center;
 `;
 
-const WindowSideViewImage = styled(BaseImage)`
-  width: 100%;
-  height: 100%;
-`;
-
 const FreyjaToArmsImage = styled(BaseImage)`
   float: left;
   margin-right: var(--spacing-24);
   margin-top: 12px;
+`;
+
+const ForestPrincessImage = styled(BaseImage)`
+  float: right;
+  margin-left: var(--spacing-24);
+`;
+
+const InTheWoodsImage = styled(BaseImage)`
+  align-self: center;
 `;
 
 export default AboutPage;

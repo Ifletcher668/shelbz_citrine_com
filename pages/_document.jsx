@@ -21,7 +21,7 @@ const MyDocument = ({ styles }) => {
         <meta property="og:image" content={SEO.base.openGraph.image} />
         <meta property="og:type" content="website" />
 
-        <meta rel="icon" href="favicon.jpg" />
+        <link rel="icon" href="favicon.png" type="image/png" />
       </Head>
 
       <body>

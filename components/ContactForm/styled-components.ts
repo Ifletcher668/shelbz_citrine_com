@@ -71,15 +71,21 @@ export const Input = styled.input`
 `;
 
 export const SubmitButton = styled.button<{ isInErrorState: boolean }>`
-  padding: 12px 20px;
   background: var(--background-tertiary);
   color: var(--font-tertiary);
   border: 1px solid var(--font-secondary-accent);
   border-radius: 2px;
+
   font-size: var(--font-size-medium);
   font-weight: 700;
 
+  padding: 12px 20px;
+  width: fit-content;
+  min-width: 250px;
+  align-self: flex-end;
+
   cursor: pointer;
+
   transition: all 200ms ease-in-out;
 
   ${({ isInErrorState }) =>

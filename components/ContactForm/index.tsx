@@ -162,6 +162,8 @@ const ContactForm = () => {
         data-netlify="true"
         noValidate
       >
+        <h2>What are you looking for?</h2>
+
         {/* Necessary for Netlify forms to work */}
         <input type="hidden" name="form-name" value="contact" />
 

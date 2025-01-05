@@ -1,22 +1,51 @@
 import { useEffect, useRef, useState } from 'react';
 
+import type { Variants } from 'motion/react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import type { CSSObject } from 'styled-components';
 import styled from 'styled-components';
 
 import { useHeaderContext } from 'contexts/HeaderContext';
-import { useNavbarContext } from 'contexts/NavbarContext';
 import {
   BREAKPOINTS,
   BREAKPOINT_NUMBERS,
   NAVIGATION_LINKS,
   ROUTES,
 } from 'utils/constants';
-import { slideDown } from 'utils/styled-components/snippets';
+import { GALLERY_YEARS_SUB_LINKS } from 'utils/constants';
+
+const listVariants: Variants = {
+  open: {
+    clipPath: 'inset(0% 0% 0% 0% round 10px)',
+    transition: {
+      type: 'spring',
+      bounce: 0,
+      duration: 0.7,
+      delayChildren: 0.2,
+      staggerChildren: 0.2,
+    },
+  },
+  closed: {
+    clipPath: 'inset(10% 50% 90% 50% round 10px)',
+    transition: {
+      type: 'spring',
+      bounce: 0,
+      duration: 0.3,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
+  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+};
 
 const NavContent = () => {
-  const { navbarPathProps } = useNavbarContext();
   const { isSubmenuOpen, setIsSubmenuOpen } = useHeaderContext();
   const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
@@ -69,6 +98,14 @@ const NavContent = () => {
     };
   }, [setIsSubmenuOpen]);
 
+  const handleSubmenuFocus = () => {
+    setIsSubmenuOpen(true);
+  };
+
+  const handleSubmenuBlur = () => {
+    setIsSubmenuOpen(false);
+  };
+
   return (
     <>
       {/* Only displayed on mobile screens */}
@@ -87,12 +124,19 @@ const NavContent = () => {
               </SubmenuToggleButton>
 
               <SubmenuItems
-                style={
-                  { '--display': isSubmenuOpen ? 'flex' : 'none' } as CSSObject
-                }
+                key="gallery-submenu"
+                initial={false}
+                animate={isSubmenuOpen ? 'open' : 'closed'}
+                variants={listVariants}
+                onFocus={handleSubmenuFocus}
+                onBlur={handleSubmenuBlur}
               >
-                {navbarPathProps.map(subLink => (
-                  <ListItem key={subLink} isActive={false}>
+                {GALLERY_YEARS_SUB_LINKS.map(subLink => (
+                  <ListItem
+                    key={subLink}
+                    isActive={false}
+                    variants={itemVariants}
+                  >
                     <Link href={`${ROUTES.GALLERY}/${subLink}`}>{subLink}</Link>
                   </ListItem>
                 ))}
@@ -125,14 +169,14 @@ const SubmenuListItem = styled.li<{ isActive: boolean }>`
     isActive ? '2px solid var(--font-secondary-accent)' : 'none'};
 `;
 
-const ListItem = styled.li<{ isActive: boolean }>`
+const StyledListItem = styled.li<{ isActive: boolean }>`
   border-bottom: ${({ isActive }) =>
     isActive ? '2px solid var(--font-secondary-accent)' : 'none'};
 `;
 
-const SubmenuItems = styled.ul`
-  display: var(--display);
-  animation: ${slideDown} 0.2s ease-in-out;
+const ListItem = motion(StyledListItem);
+
+const StyledSubmenuItems = styled.ul`
   list-style: none;
 
   flex-direction: column;
@@ -159,6 +203,8 @@ const SubmenuItems = styled.ul`
     padding-right: var(--spacing-40);
   }
 `;
+
+const SubmenuItems = motion(StyledSubmenuItems);
 
 const SubmenuToggleButton = styled.button`
   display: flex;
