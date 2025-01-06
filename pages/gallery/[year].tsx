@@ -2,8 +2,6 @@ import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import FadeInObserver from 'components/FadeInObserver';
-import { Layout } from 'components/Layout';
 import PictureGrid from 'components/PictureGrid/PictureGrid';
 import Spacer from 'components/Spacer';
 import { fetchImagesByYear } from 'contentful/helpers';
@@ -26,25 +24,20 @@ export default function Page(props: Props) {
         <meta name="description" content={SEO.aboutPage.description} />
       </Head>
 
-      {/* Adding key to force page refresh */}
-      <Layout key={year}>
-        <FadeInObserver>
-          <h1>{year}</h1>
-        </FadeInObserver>
+      <h1>{year}</h1>
 
-        {isEmptyYear ? (
-          <div>
-            <h3>Sorry, I don't have anything for this year, yet!</h3>
-            <Spacer top={48} />
-            <p>
-              Check out another <Link href={ROUTES.GALLERY}>year</Link> to see
-              my work. And stop by again to see what I'm up to now!
-            </p>
-          </div>
-        ) : (
-          <PictureGrid data={imageFeed} />
-        )}
-      </Layout>
+      {isEmptyYear ? (
+        <div>
+          <h3>Sorry, I don't have anything for this year, yet!</h3>
+          <Spacer top={48} />
+          <p>
+            Check out another <Link href={ROUTES.GALLERY}>year</Link> to see my
+            work. And stop by again to see what I'm up to now!
+          </p>
+        </div>
+      ) : (
+        <PictureGrid data={imageFeed} />
+      )}
     </>
   );
 }

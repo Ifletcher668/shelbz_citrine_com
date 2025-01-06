@@ -1,88 +1,35 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
+import { motion } from 'motion/react';
 import styled from 'styled-components';
-
-import FadeInObserver from 'components/FadeInObserver';
-import { Layout } from 'components/Layout';
-import goddessPicture from 'public/assets/goddess.webp';
-
-import Column from '../components/Layout/Column';
-import Row from '../components/Layout/Row';
-import { ROUTES, SEO } from '../utils/constants';
 
 const Home = () => {
   return (
-    <>
-      <Head>
-        <title>{SEO.homePage.title}</title>
-        <meta name="description" content={SEO.homePage.description} />
-      </Head>
-
-      <Layout>
-        <FadeInObserver>
-          <h1>Hi, I'm Shelbz</h1>
-        </FadeInObserver>
-
-        <FadeInObserver>
-          <HeroImage
-            src={goddessPicture}
-            alt={''}
-            width={960}
-            height={540}
-            loading="eager"
-          />
-        </FadeInObserver>
-
-        <Row rowSpacing={40}>
-          <FadeInObserver>
-            <p>
-              an artist combining classical training with self-taught innovation
-              to produce dark and surreal works inspired by a medley of
-              influences, from the eerie landscapes of Dungeons and Dragons to
-              video game narratives.
-            </p>
-          </FadeInObserver>
-          <FadeInObserver>
-            <Column>
-              <p>
-                My style bridges the gap between the known and the unfamiliar,
-                with a fusion of elements reminiscent of master oil painters
-                such as Sandro Botticelli, Odd Nerdrum, and Alessandro Sicioldr.
-                Rooted in the audacity of 17th-century art and the mind-bending
-                concepts of 20th-century surrealism, my pieces study the
-                dichotomy between contrast and harmony.
-              </p>
-            </Column>
-          </FadeInObserver>
-          <FadeInObserver>
-            <Column>
-              <p>
-                My artistic journey is not just about creating art - it's about
-                creating experiences, building connections, and inspiring
-                conversations. Whether you're looking for wearable art,
-                interested in a local commission, or eager to explore
-                international art shows,{' '}
-                <Link href={ROUTES.CONTACT}>
-                  I would love to hear from you!
-                </Link>{' '}
-                Let's make art not simply a visual treat, but a meaningful
-                encounter that leaves a lasting impact.
-              </p>
-            </Column>
-          </FadeInObserver>
-        </Row>
-      </Layout>
-    </>
+    <FrontPageBackground
+      animate={{
+        scale: [1, 1.05, 1],
+        opacity: [0, 1],
+      }}
+      transition={{
+        scale: {
+          duration: 2,
+          ease: 'linear',
+        },
+        opacity: { duration: 2, ease: 'easeOut' },
+      }}
+    />
   );
 };
 
-const HeroImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-  border-radius: 2px;
-  object-fit: cover;
-  object-position: center;
+export default Home;
+
+const StyledFrontPageBackground = styled.div`
+  background-image: url('/assets/roots.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  z-index: -1;
 `;
 
-export default Home;
+const FrontPageBackground = motion.create(StyledFrontPageBackground);

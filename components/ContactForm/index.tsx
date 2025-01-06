@@ -2,12 +2,16 @@ import type { FormEvent } from 'react';
 import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 
+import { motion } from 'motion/react';
+
+import { childVariants } from 'utils/animationConstants';
+
 import AnimatedText from '../../components/AnimatedText';
 import { VALIDATION_CONSTANTS } from '../../utils/constants';
 
 import {
+  Form as BaseFormComponent,
   ErrorMessage,
-  Form,
   Input,
   Label,
   LabelText,
@@ -20,6 +24,8 @@ function encode(data: Record<string, string | number | boolean>) {
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
 }
+
+const Form = motion.create(BaseFormComponent);
 
 const ContactForm = () => {
   // Form field states
@@ -161,6 +167,7 @@ const ContactForm = () => {
         onSubmit={handleSubmit}
         data-netlify="true"
         noValidate
+        variants={childVariants}
       >
         <h2>What are you looking for?</h2>
 

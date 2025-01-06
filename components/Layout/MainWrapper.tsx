@@ -31,6 +31,6 @@ const StyledMainWrapper = styled.main`
   border-radius: 2px;
 `;
 
-const MainWrapper = motion(StyledMainWrapper);
+const MainWrapper = motion.create(StyledMainWrapper);
 
 export default MainWrapper;

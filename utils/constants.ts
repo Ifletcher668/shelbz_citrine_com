@@ -69,6 +69,10 @@ export const SEO = {
     description:
       "A Salem, Oregon based artist and painter. Shelbz's art is a hybrid of old and new, traditional and futuristic.",
   },
+  galleryPage: {
+    title: 'Art by Shelbz',
+    description: 'A collection of artwork by Shelbz Citrine',
+  },
 };
 
 export const YEAR_STRINGS = [
