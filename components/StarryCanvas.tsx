@@ -218,6 +218,4 @@ export default StarryCanvas;
 const Canvas = styled.canvas`
   position: absolute;
   pointer-events: none;
-  /* Set min-height to avoid it being too small if first page a user navigates to is the shortest page */
-  min-height: 4000px;
 `;

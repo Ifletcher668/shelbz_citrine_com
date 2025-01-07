@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
 
-      <PageTransition>
+      <PageTransition key={`${pageKey}-canvas`}>
         <StarryCanvas />
       </PageTransition>
 
