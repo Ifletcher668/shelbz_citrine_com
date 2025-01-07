@@ -61,8 +61,6 @@ const NavItems = styled.ul`
 `;
 
 const MenuButton = styled(UnstyledButton)`
-  visibility: var(--visibility);
-
   @media ${BREAKPOINTS.LARGE_PHONE} {
     display: none;
   }
