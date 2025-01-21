@@ -17,11 +17,24 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const isHomePage = router.asPath === ROUTES.HOME;
+  const isCanvasPage = router.asPath === ROUTES.CANVAS;
   const { year } = router.query;
   const pageKey =
     router.pathname === `${ROUTES.GALLERY}/[year]` && year
       ? `${router.pathname}-${year}`
       : router.pathname;
+
+  if (isCanvasPage) {
+    return (
+      <>
+        <GlobalStyle />
+        <PageTransition key={`${pageKey}-canvas`}>
+          <StarryCanvas />
+        </PageTransition>
+        <Component {...pageProps} />
+      </>
+    );
+  }
 
   return (
     <>
