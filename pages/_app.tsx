@@ -16,7 +16,9 @@ import GlobalStyle from '../utils/styled-components/GlobalStyles';
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const isHomePage = [ROUTES.HOME, `${ROUTES.HOME}?`].includes(router.asPath);
+  const isHomePage =
+    router.asPath === ROUTES.HOME ||
+    router.asPath.startsWith(`${ROUTES.HOME}?`);
   const isCanvasPage = router.asPath === ROUTES.CANVAS;
   const { year } = router.query;
   const pageKey =
