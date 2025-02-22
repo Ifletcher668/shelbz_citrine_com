@@ -3,12 +3,10 @@ import { useEffect, useState } from 'react';
 import type { AssetFile } from 'contentful';
 import type { Variants } from 'motion/react';
 import { AnimatePresence, motion } from 'motion/react';
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import { BREAKPOINTS, BREAKPOINT_NUMBERS } from 'utils/constants';
-
-const NextImage = dynamic(() => import('next/image'), { ssr: false });
 
 type Props = {
   file: AssetFile;
@@ -104,7 +102,7 @@ const itemVariants: Variants = {
 const Wrapper = motion(styled.div``);
 
 // Styled Components
-const StyledPicture = styled(NextImage)`
+const StyledPicture = styled(Image)`
   width: 100%;
   height: auto;
   border-radius: 2px;

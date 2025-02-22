@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import StarryCanvas from 'components/StarryCanvas';
 import { ROUTES } from 'utils/constants';
+import debounce from 'utils/functions/debounce';
 
 const Canvas = () => {
   const [isMouseMoving, setIsMouseMoving] = useState(false);
-
   const mouseIdleTimer = useRef<NodeJS.Timeout | number | undefined | string>(
     undefined,
   );
@@ -17,19 +17,18 @@ const Canvas = () => {
   useEffect(() => {
     const handleMouseMove = () => {
       setIsMouseMoving(true);
-
       clearTimeout(mouseIdleTimer.current);
-
       mouseIdleTimer.current = setTimeout(() => {
         setIsMouseMoving(false);
       }, idleTimeout);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const debouncedHandleMouseMove = debounce(handleMouseMove, 100);
+
+    window.addEventListener('mousemove', debouncedHandleMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-
+      window.removeEventListener('mousemove', debouncedHandleMouseMove);
       clearTimeout(mouseIdleTimer.current);
     };
   }, []);

@@ -45,11 +45,11 @@ const Header = () => {
   return (
     <MotionHeader
       isAtTop={isAtTop}
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0, transform: 'translateY(-50px)' }}
+      animate={{ opacity: 1, transform: 'translateY(0)' }}
       transition={{
-        type: 'spring',
-        duration: 0.5,
+        duration: 0.4,
+        ease: 'easeOut',
         // Delay on home page to allow image animation to run first
         delay: isHomePage ? 2 : 0.5,
       }}
@@ -99,6 +99,12 @@ const HeaderWrapper = styled.header<{ isAtTop: boolean }>`
   opacity: var(--opacity);
   box-shadow: var(--box-shadow);
   transition: all 500ms ease-out;
+
+  /* GPU optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  will-change: transform, opacity;
 
   a {
     color: var(--font-secondary);

@@ -1,91 +1,195 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 import styled from 'styled-components';
 
 const StarryCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bufferCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationFrameRef = useRef<number>();
+  const starsRef = useRef<StarData[]>([]);
+  const lastResizeTimeRef = useRef<number>(0);
+  const contextRef = useRef<{
+    ctx: CanvasRenderingContext2D | null;
+    bufferCtx: CanvasRenderingContext2D | null;
+  }>({ ctx: null, bufferCtx: null });
+
+  type StarData = {
+    x: number;
+    y: number;
+    radius: number;
+    alpha: number;
+    alphaChange: number;
+  };
+
+  const createStar = useCallback((width: number, height: number): StarData => {
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2 + 0.1,
+      alpha: Math.random(),
+      alphaChange: Math.random() * 0.008 + 0.0001,
+    };
+  }, []);
+
+  const setupCanvas = useCallback(() => {
+    const canvas = canvasRef.current;
+    const bufferCanvas = document.createElement('canvas');
+    bufferCanvasRef.current = bufferCanvas;
+
+    if (!canvas) return;
+
+    // Get viewport dimensions
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    // Set initial canvas size
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    // Set buffer canvas size
+    bufferCanvas.width = canvas.width;
+    bufferCanvas.height = canvas.height;
+
+    // Get contexts
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const bufferCtx = bufferCanvas.getContext('2d', { alpha: false });
+
+    if (ctx && bufferCtx) {
+      contextRef.current = { ctx, bufferCtx };
+
+      // Scale contexts for DPI
+      ctx.scale(dpr, dpr);
+      bufferCtx.scale(dpr, dpr);
+
+      // Set initial black background
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, width, height);
+      bufferCtx.fillStyle = '#000000';
+      bufferCtx.fillRect(0, 0, width, height);
+
+      // Generate initial stars
+      const numStars = Math.floor((width * height) / 1000);
+      starsRef.current = Array.from({ length: numStars }, () =>
+        createStar(width, height),
+      );
+    }
+  }, [createStar]);
+
+  const resizeCanvas = useCallback(() => {
+    const canvas = canvasRef.current;
+    const bufferCanvas = bufferCanvasRef.current;
+    if (!canvas || !bufferCanvas) return;
+
+    const now = Date.now();
+    if (now - lastResizeTimeRef.current < 100) return;
+    lastResizeTimeRef.current = now;
+
+    // Get viewport dimensions
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    // Update canvas sizes
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    bufferCanvas.width = canvas.width;
+    bufferCanvas.height = canvas.height;
+
+    // Reset contexts and scale
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const bufferCtx = bufferCanvas.getContext('2d', { alpha: false });
+
+    if (ctx && bufferCtx) {
+      contextRef.current = { ctx, bufferCtx };
+
+      // Scale for DPI
+      ctx.scale(dpr, dpr);
+      bufferCtx.scale(dpr, dpr);
+
+      // Update stars for new dimensions
+      const numStars = Math.floor((width * height) / 1000);
+      starsRef.current = Array.from({ length: numStars }, () =>
+        createStar(width, height),
+      );
+    }
+  }, [createStar]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas === null) return;
+    // Initial setup
+    setupCanvas();
 
-    const ctx = canvas.getContext('2d');
-    if (ctx === null) return;
-
-    const resizeCanvas = () => {
-      const documentHeight = document.documentElement.scrollHeight;
-      const documentWidth = document.documentElement.scrollWidth;
-
-      canvas.width = documentWidth;
-      canvas.height = documentHeight;
-    };
-
-    resizeCanvas();
-
-    type StarData = {
-      x: number;
-      y: number;
-      radius: number;
-      alpha: number;
-      alphaChange: number;
-    };
-
-    const numStars = 2000;
-    const stars: StarData[] = [];
-
-    const createStar = (): StarData => {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 0.1,
-        alpha: Math.random(),
-        alphaChange: Math.random() * 0.008 + 0.0001,
-      };
-    };
-
-    for (let i = 0; i < numStars; i++) {
-      stars.push(createStar());
-    }
+    const { ctx, bufferCtx } = contextRef.current;
+    if (!ctx || !bufferCtx || !canvasRef.current || !bufferCanvasRef.current)
+      return;
 
     const drawStars = () => {
-      stars.forEach(star => {
+      const canvas = canvasRef.current;
+      const bufferCanvas = bufferCanvasRef.current;
+      if (!canvas || !bufferCanvas || !ctx || !bufferCtx) return;
+
+      // Clear with black background
+      bufferCtx.fillStyle = '#000000';
+      bufferCtx.fillRect(
+        0,
+        0,
+        canvas.width / window.devicePixelRatio,
+        canvas.height / window.devicePixelRatio,
+      );
+
+      // Draw stars
+      starsRef.current.forEach(star => {
         star.alpha += star.alphaChange;
 
         if (star.alpha >= 1 || star.alpha <= 0) {
           star.alphaChange = -star.alphaChange;
         }
 
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-        ctx.fill();
+        bufferCtx.beginPath();
+        bufferCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        bufferCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        bufferCtx.fill();
       });
+
+      // Copy buffer to main canvas
+      ctx.drawImage(bufferCanvas, 0, 0);
     };
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let lastFrameTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
 
-      drawStars();
+    const animate = (timestamp: number) => {
+      if (timestamp - lastFrameTime >= frameInterval) {
+        drawStars();
+        lastFrameTime = timestamp;
+      }
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    animate(0);
 
     window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('scroll', resizeCanvas);
 
     return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('scroll', resizeCanvas);
     };
-  }, []);
+  }, [resizeCanvas, setupCanvas]);
 
-  return <Canvas ref={canvasRef} className="starry-canvas"></Canvas>;
+  return <Canvas ref={canvasRef} />;
 };
-
-export default StarryCanvas;
 
 const Canvas = styled.canvas`
   position: absolute;
   pointer-events: none;
 `;
+
+export default StarryCanvas;
