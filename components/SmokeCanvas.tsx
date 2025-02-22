@@ -1,43 +1,40 @@
 import { useEffect, useRef, useCallback } from 'react';
-
 import styled from 'styled-components';
 
-const StarryCanvas = () => {
+const SmokeCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bufferCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationFrameRef = useRef<number>();
-  const starsRef = useRef<StarData[]>([]);
+  const smokeParticlesRef = useRef<SmokeParticle[]>([]);
   const lastResizeTimeRef = useRef<number>(0);
   const contextRef = useRef<{
     ctx: CanvasRenderingContext2D | null;
     bufferCtx: CanvasRenderingContext2D | null;
   }>({ ctx: null, bufferCtx: null });
 
-  // Calculate star density based on screen width
-  const getStarDensity = useCallback((width: number) => {
-    // More stars on mobile (width < 768px)
-    if (width < 768) {
-      return 600; // Higher density (smaller divisor)
-    }
-    // Default density for larger screens
-    return 1000;
-  }, []);
-
-  type StarData = {
+  type SmokeParticle = {
     x: number;
     y: number;
-    radius: number;
+    size: number;
     alpha: number;
-    alphaChange: number;
+    velocity: { x: number; y: number };
+    life: number;
+    maxLife: number;
   };
 
-  const createStar = useCallback((width: number, height: number): StarData => {
+  const createSmokeParticle = useCallback((width: number): SmokeParticle => {
+    const size = Math.random() * 50 + 20;
     return {
       x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 2 + 0.1,
-      alpha: Math.random(),
-      alphaChange: Math.random() * 0.008 + 0.0001,
+      y: window.innerHeight + size,
+      size,
+      alpha: Math.random() * 0.4 + 0.1,
+      velocity: {
+        x: (Math.random() - 0.5) * 0.5,
+        y: -Math.random() * 1 - 0.5,
+      },
+      life: 0,
+      maxLife: Math.random() * 100 + 100,
     };
   }, []);
 
@@ -64,8 +61,8 @@ const StarryCanvas = () => {
     bufferCanvas.height = canvas.height;
 
     // Get contexts
-    const ctx = canvas.getContext('2d', { alpha: false });
-    const bufferCtx = bufferCanvas.getContext('2d', { alpha: false });
+    const ctx = canvas.getContext('2d');
+    const bufferCtx = bufferCanvas.getContext('2d');
 
     if (ctx && bufferCtx) {
       contextRef.current = { ctx, bufferCtx };
@@ -74,20 +71,13 @@ const StarryCanvas = () => {
       ctx.scale(dpr, dpr);
       bufferCtx.scale(dpr, dpr);
 
-      // Set initial black background
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, width, height);
-      bufferCtx.fillStyle = '#000000';
-      bufferCtx.fillRect(0, 0, width, height);
-
-      // Generate initial stars with density based on screen width
-      const starDensity = getStarDensity(width);
-      const numStars = Math.floor((width * height) / starDensity);
-      starsRef.current = Array.from({ length: numStars }, () =>
-        createStar(width, height),
+      // Generate initial smoke particles
+      const numSmoke = 50;
+      smokeParticlesRef.current = Array.from({ length: numSmoke }, () =>
+        createSmokeParticle(width),
       );
     }
-  }, [createStar, getStarDensity]);
+  }, [createSmokeParticle]);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -113,8 +103,8 @@ const StarryCanvas = () => {
     bufferCanvas.height = canvas.height;
 
     // Reset contexts and scale
-    const ctx = canvas.getContext('2d', { alpha: false });
-    const bufferCtx = bufferCanvas.getContext('2d', { alpha: false });
+    const ctx = canvas.getContext('2d');
+    const bufferCtx = bufferCanvas.getContext('2d');
 
     if (ctx && bufferCtx) {
       contextRef.current = { ctx, bufferCtx };
@@ -122,15 +112,8 @@ const StarryCanvas = () => {
       // Scale for DPI
       ctx.scale(dpr, dpr);
       bufferCtx.scale(dpr, dpr);
-
-      // Update stars for new dimensions with density based on screen width
-      const starDensity = getStarDensity(width);
-      const numStars = Math.floor((width * height) / starDensity);
-      starsRef.current = Array.from({ length: numStars }, () =>
-        createStar(width, height),
-      );
     }
-  }, [createStar, getStarDensity]);
+  }, []);
 
   useEffect(() => {
     // Initial setup
@@ -140,35 +123,65 @@ const StarryCanvas = () => {
     if (!ctx || !bufferCtx || !canvasRef.current || !bufferCanvasRef.current)
       return;
 
-    const drawStars = () => {
+    const drawSmoke = () => {
       const canvas = canvasRef.current;
       const bufferCanvas = bufferCanvasRef.current;
       if (!canvas || !bufferCanvas || !ctx || !bufferCtx) return;
 
-      // Clear with black background
-      bufferCtx.fillStyle = '#000000';
-      bufferCtx.fillRect(
+      // Clear canvas (with transparency)
+      bufferCtx.clearRect(
         0,
         0,
         canvas.width / window.devicePixelRatio,
         canvas.height / window.devicePixelRatio,
       );
 
-      // Draw stars
-      starsRef.current.forEach(star => {
-        star.alpha += star.alphaChange;
-
-        if (star.alpha >= 1 || star.alpha <= 0) {
-          star.alphaChange = -star.alphaChange;
+      // Update and draw smoke particles
+      smokeParticlesRef.current = smokeParticlesRef.current.filter(particle => {
+        particle.life += 1;
+        if (particle.life >= particle.maxLife) {
+          return false;
         }
 
+        particle.x += particle.velocity.x;
+        particle.y += particle.velocity.y;
+        particle.velocity.x += (Math.random() - 0.5) * 0.1;
+
+        const progress = particle.life / particle.maxLife;
+        const currentAlpha = particle.alpha * (1 - progress);
+
         bufferCtx.beginPath();
-        bufferCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        bufferCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        const gradient = bufferCtx.createRadialGradient(
+          particle.x,
+          particle.y,
+          0,
+          particle.x,
+          particle.y,
+          particle.size,
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${currentAlpha})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        bufferCtx.fillStyle = gradient;
+        bufferCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         bufferCtx.fill();
+
+        return true;
       });
 
+      // Add new smoke particles
+      while (smokeParticlesRef.current.length < 50) {
+        smokeParticlesRef.current.push(
+          createSmokeParticle(canvas.width / window.devicePixelRatio),
+        );
+      }
+
       // Copy buffer to main canvas
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width / window.devicePixelRatio,
+        canvas.height / window.devicePixelRatio,
+      );
       ctx.drawImage(bufferCanvas, 0, 0);
     };
 
@@ -178,7 +191,7 @@ const StarryCanvas = () => {
 
     const animate = (timestamp: number) => {
       if (timestamp - lastFrameTime >= frameInterval) {
-        drawStars();
+        drawSmoke();
         lastFrameTime = timestamp;
       }
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -204,4 +217,4 @@ const Canvas = styled.canvas`
   pointer-events: none;
 `;
 
-export default StarryCanvas;
+export default SmokeCanvas;
