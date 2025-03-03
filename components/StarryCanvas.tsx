@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import styled from 'styled-components';
 
@@ -15,11 +15,9 @@ const StarryCanvas = () => {
 
   // Calculate star density based on screen width
   const getStarDensity = useCallback((width: number) => {
-    // More stars on mobile (width < 768px)
     if (width < 768) {
-      return 600; // Higher density (smaller divisor)
+      return 600;
     }
-    // Default density for larger screens
     return 1000;
   }, []);
 
@@ -35,7 +33,7 @@ const StarryCanvas = () => {
     return {
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 2 + 0.1,
+      radius: Math.random() * 1.2 + 0.1,
       alpha: Math.random(),
       alphaChange: Math.random() * 0.008 + 0.0001,
     };
